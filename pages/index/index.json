@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "社区",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-button":"@vant/weapp/button"
+  }
 }

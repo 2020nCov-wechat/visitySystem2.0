@@ -1,0 +1,20 @@
+{
+  "name": "visitsystem",
+  "version": "1.0.0",
+  "description": "---\r ###使用的前端ui框架\r [vant weapp](https://youzan.github.io/vant-weapp/#/quickstart)",
+  "main": "app.js",
+  "dependencies": {
+    "@vant/weapp": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://code.aiwac.net:10080/followup/wechat-visitsystem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": []
+}
