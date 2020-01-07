@@ -1,9 +1,37 @@
-//my.js 仿照 index.js
-//获取应用实例
+// pages/myinfor/myinfor.js
 const app = getApp()
 
 Page({
   data: {
+    sex:'男',
+    showSex: false,
+    sexOption: [
+      { name: '男' },
+      { name: '女' }
+    ],
+    tabs:'沉稳',
+    showTabs: false,
+    tabsOption: [
+      { name: '沉稳' },
+      { name: '太沉稳' },
+      { name: '热情' },
+      { name: '太热情' }
+    ],
+    formatter(type, value) {
+      if (type === 'year') {
+        return `${value}年`;
+      }
+      if (type === 'month') {
+        return `${value}月`;
+      }
+      return value;
+    },
+    minDate: new Date(1900, 1, 1).getTime(),
+    maxDate: new Date(2020, 1, 1).getTime(),
+    currentDate: null,
+    userDate:'1997年1月1日',
+    bottom: false,
+  
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -51,9 +79,28 @@ Page({
       hasUserInfo: true
     })
   },
-  goMyInfo: function () {
-    wx.navigateTo({
-     url: "../myinfor/myinfor",
-    })
+  toggle(type) {
+    this.setData({
+      [type]: !this.data[type]
+    });
   },
+  toggleActionSheet1() {
+    this.toggle('showSex');
+  },
+  showBottom() {
+    this.toggle('bottom', true);
+  },
+  hideBottom() {
+    this.toggle('bottom', false);
+  },
+
+  toggleActionSheet2() {
+    this.toggle('showTabs');
+  },
+  showTabs() {
+    this.toggle('bottom', true);
+  },
+  hideTabs() {
+    this.toggle('bottom', false);
+  }
 })

@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/my/my",
     "pages/motiontest/motiontest",
+    "pages/my/my",
+    "pages/myinfor/myinfor",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -24,7 +25,7 @@
         "text": "情绪测评"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/myinfor/myinfor",
         "iconPath": "imgs/bar/课程.png",
         "selectedIconPath": "imgs/bar/课程1.png",
         "text": "课程"

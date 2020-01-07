@@ -1,0 +1,100 @@
+<!--pages/myinfor/myinfor.wxml-->
+<view class='user'>
+   <view class='header bg-color acea-row row-between-wrapper header-out-style'>
+      <view class='picTxt acea-row row-between-wrapper header-display'>
+          <view class='pictrue'>
+            <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+            <block wx:else>
+              <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            </block>
+         </view>
+         <view class='text'>
+            <view class='acea-row row-middle'>
+               <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
+               <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
+               <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
+            </view>
+            <!-- <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
+            <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view> -->
+         </view>
+      </view>
+      <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
+   </view>
+   <view class='wrapper'>
+      <view class='nav'>
+         <view class='item'>
+            <van-cell-group>
+              <van-field
+                label="用户名"
+                value="{{ userInfo.nickName }}"
+                border="{{ false }}"
+                bind:change="onChange"
+              />
+            </van-cell-group>
+         </view>
+
+         
+         <view class='item'>
+            <van-cell-group>
+              <van-field
+                label="性别"
+                value="{{ sex }}"
+                border="{{ false }}"
+                bind:focus="toggleActionSheet1"
+              />
+            </van-cell-group>
+            <van-action-sheet
+              show="{{ showSex }}"
+              actions="{{ sexOption }}"
+              bind:close="toggleActionSheet1"
+              bind:select="toggleActionSheet1"
+            />
+         </view>
+
+         <view class='item'>
+            <van-cell-group>
+              <van-field
+                label="出生日期"
+                value="{{ userDate }}"
+                border="{{ false }}"
+                bind:focus="showBottom"
+              />
+            </van-cell-group>
+              <van-popup
+                show="{{ bottom }}"
+                position="bottom"
+                custom-style="height: 50%"
+                bind:close="hideBottom"
+              >
+                  <van-datetime-picker
+                    type="date"
+                    data-type="date"
+                    value="{{ currentDate }}"
+                    min-date="{{ minDate }}"
+                    bind:input="onInput"
+                    formatter="{{ formatter }}"
+                  />
+              </van-popup>
+         </view>
+
+          <view class='item'>
+            <van-cell-group>
+              <van-field
+                label="标签"
+                value="{{ tabs }}"
+                border="{{ false }}"
+                bind:focus="toggleActionSheet2"
+              />
+            </van-cell-group>
+            <van-action-sheet
+              show="{{ showTabs }}"
+              actions="{{ tabsOption }}"
+              bind:close="toggleActionSheet2"
+              bind:select="toggleActionSheet2"
+            />
+         </view> 
+
+      </view>
+     
+   </view>
+</view>

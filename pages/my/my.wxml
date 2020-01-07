@@ -99,12 +99,12 @@
               </view>
               <view>已购课程</view>
            </view>
-            <view class='item' data-url='/pages/order_list/index?status=3' bindtap='goPages'>
+            <view class='item' bindtap='goMyInfo'>
               <view class='pictrue'>
               <image src='/imgs/my/many.png'></image>
               <text class="order-status-num" wx:if="{{orderStatusNum.evaluated_count > 0}}">{{ orderStatusNum.evaluated_count }}</text>
               </view>
-              <view>历史</view>
+              <view>个人信息</view>
            </view>
            
         </view>
@@ -136,5 +136,4 @@
          </view>
       </view>
    </view>
-   <image src='/images/support.png' class='support'></image>
 </view>
