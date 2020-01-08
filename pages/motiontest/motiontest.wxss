@@ -9,7 +9,10 @@
   justify-content:center;
   height: 100%;
 }
-
+.video-css{
+  display: flex;
+  justify-content: center;
+}
 video{
 	width: 85%;
 	height: 1000rpx;/*调试设置，正式版本应设置为85%*/

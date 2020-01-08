@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/motiontest/motiontest",
     "pages/my/my",
     "pages/myinfor/myinfor",
-    "pages/motiontest/motiontest",
     "pages/index/index",
     "pages/logs/logs"
   ],
