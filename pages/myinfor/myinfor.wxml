@@ -1,24 +1,35 @@
 <!--pages/myinfor/myinfor.wxml-->
 <view class='user'>
-   <view class='header bg-color acea-row row-between-wrapper header-out-style'>
-      <view class='picTxt acea-row row-between-wrapper header-display'>
-          <view class='pictrue'>
-            <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-            <block wx:else>
-              <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-            </block>
+
+   <view class='header bg-color acea-row row-between-wrapper '>
+      <view class='header-have-arrow'>
+        <view class = 'arrow'>
+            <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick"/>
+        </view>
+        <view class="header-out-style">
+          <view class='picTxt acea-row row-between-wrapper header-display '>
+            <view class='pictrue'>
+              <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+              <block wx:else>
+                <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+              </block>
+          </view>
+          <view class='text'>
+              <view class='acea-row row-middle'>
+                <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
+                <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
+                <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
+              </view>
+              <!-- <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
+              <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view> -->
          </view>
-         <view class='text'>
-            <view class='acea-row row-middle'>
-               <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
-               <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
-               <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
-            </view>
-            <!-- <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
-            <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view> -->
-         </view>
+        </view>
+        </view>
+        
       </view>
-      <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
+          
+      
+      
    </view>
    <view class='wrapper'>
       <view class='nav'>
@@ -40,8 +51,10 @@
                 label="性别"
                 value="{{ sex }}"
                 border="{{ false }}"
-                bind:focus="toggleActionSheet1"
-              />
+                disabled="true"
+              >
+              <van-icon name="arrow" size="35rpx" bind:click="toggleActionSheet1" slot="button"/>
+              </van-field>
             </van-cell-group>
             <van-action-sheet
               show="{{ showSex }}"
@@ -57,8 +70,10 @@
                 label="出生日期"
                 value="{{ userDate }}"
                 border="{{ false }}"
-                bind:focus="showBottom"
-              />
+                disabled="true"
+              >
+              <van-icon name="arrow" size="35rpx" bind:click="showBottom" slot="button"/>
+              </van-field>
             </van-cell-group>
               <van-popup
                 show="{{ bottom }}"
@@ -83,8 +98,10 @@
                 label="标签"
                 value="{{ tabs }}"
                 border="{{ false }}"
-                bind:focus="toggleActionSheet2"
-              />
+                disabled="true"
+              >
+              <van-icon name="arrow" size="35rpx" bind:click="toggleActionSheet2" slot="button"/>
+              </van-field>
             </van-cell-group>
             <van-action-sheet
               show="{{ showTabs }}"

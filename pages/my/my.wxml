@@ -34,7 +34,7 @@
             <view class='num'>{{userInfo.integral || 0}}</view>
          </view> -->
          <view class='item' data-url='/pages/user_coupon/index' bindtap='goPages'>
-            <view>测试卡牌</view>
+            <view bindtap="testInfo">测试卡牌</view>
             <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
          </view>
       </view>
@@ -112,27 +112,15 @@
       <view class='myService'>
          <view class='title acea-row row-middle'>综合评价</view>
          <view class='serviceList acea-row row-middle'>
-            <view class='item' wx:for="{{MyMenus}}" wx:key bindtap='goPages' data-url='{{item.url}}' wx:if="{{item.url!='#' && item.url!='/pages/admin/index' && item.url!='/pages/service/index'}}">
-              <view class='pictrue'><image src='{{item.pic}}'></image></view>
-              <view>{{item.name}}</view>
-            </view>
-            <button class='item' open-type='contact' hover-class='none'>
-              <view class='pictrue'><image src='/images/customer.png'></image></view>
-              <view>表格</view>
-            </button>
+            
+            
          </view>
       </view>
       <view class='myService'>
          <view class='title acea-row row-middle'>指标分析</view>
          <view class='serviceList acea-row row-middle'>
-            <view class='item' wx:for="{{MyMenus}}" wx:key bindtap='goPages' data-url='{{item.url}}' wx:if="{{item.url!='#' && item.url!='/pages/admin/index' && item.url!='/pages/service/index'}}">
-              <view class='pictrue'><image src='{{item.pic}}'></image></view>
-              <view>{{item.name}}</view>
-            </view>
-            <button class='item' open-type='contact' hover-class='none'>
-              <view class='pictrue'><image src='/images/customer.png'></image></view>
-              <view>详细数据</view>
-            </button>
+            
+
          </view>
       </view>
    </view>

@@ -26,8 +26,8 @@ Page({
       }
       return value;
     },
-    minDate: new Date(1900, 1, 1).getTime(),
-    maxDate: new Date(2020, 1, 1).getTime(),
+    minDate: new Date(1980, 1, 1).getTime(),
+    maxDate: new Date(2021, 1, 1).getTime(),
     currentDate: null,
     userDate:'1997年1月1日',
     bottom: false,
@@ -102,5 +102,10 @@ Page({
   },
   hideTabs() {
     this.toggle('bottom', false);
+  },
+  backClick:function(){
+    wx.navigateBack({
+      delta:1
+    })
   }
 })

@@ -1,18 +1,24 @@
 //my.js 仿照 index.js
 //获取应用实例
+var WXBizDataCrypt = require('../../utils/WXBizDataCrypt.js')
 const app = getApp()
-
+const appSecert = '0d6c9a7583082f0f83a817a16a8555c9'
+const appID = 'wx4967a2d91998acc2'
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
+    openid: '',
+    session_key:'' 
   },
   //事件处理函数
   bindViewTap: function () {
     wx.navigateTo({
-      url: '../logs/logs'
+      // url: '../logs/logs'
+      url: '../myinfor/myinfor'
     })
   },
   onLoad: function () {
@@ -42,6 +48,44 @@ Page({
         }
       })
     }
+  },
+  getOpenIdTap: function () {
+    var that = this;
+    wx.login({
+      success: function (data) {
+        console.log(data);
+        wx.request({
+          //获取openid接口
+          url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appID + '&secret=' + appSecert + '&js_code=' + data.code + '&grant_type=authorization_code',
+          data: {},
+          method: 'GET',
+          success: function (res) {
+            console.log(res.data)
+            OPEN_ID = res.data.openid; //获取到的openid 
+            SESSION_KEY = res.data.session_key; //获取到session_key 
+            that.setData({
+              openid: OPEN_ID,
+              session_key: SESSION_KEY
+            });
+          }
+        })
+      }
+    })
+  },
+  testInfo:function(){
+    console.log("in test")
+    this.getOpenIdTap()
+    wx.getUserInfo({
+      success: res => {
+        app.globalData.userInfo = res.userInfo
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+        console.log(res.userInfo)
+      }
+    })
+
   },
   getUserInfo: function (e) {
     console.log(e)
