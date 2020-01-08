@@ -37,6 +37,8 @@ App({
   globalData: {
     userInfo: null,
     checkUserUrl: headUrl + '/wechat/login/',
+    getUserInfo:headUrl+'/xx/',
+    insertUpdateInfoUrl:headUrl+'/xx/',
     openid: '',
     session_key: '' 
   },
@@ -66,5 +68,22 @@ App({
         }
       }
     })
-  }
+  },
+  //获取用户信息
+  getUseInfoDetail: function () {
+
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.getUserInfo,
+      data: {
+        openid: getApp().globalData.openid,
+        session_key: getApp().globalData.session_key
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+
+      }
+    })
+  },
 })

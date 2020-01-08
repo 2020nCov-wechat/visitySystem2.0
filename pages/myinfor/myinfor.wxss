@@ -55,7 +55,13 @@
 .order-status-num {min-width: 18rpx;background-color: #fff;color: #ee5a52;border-radius: 15rpx;position: absolute;right: -5rpx;top: -16rpx;font-size: 23rpx;padding: 0 5rpx; border: 1rpx solid #ee5a52;}
 .user .binding{padding: 2rpx 18rpx; background-color: #ca1f10; border-radius: 50px;font-size: 22rpx;border: 1px solid #e8695e;color: #ffffff;}
 
-
+.btn-css{
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30rpx 0rpx;
+}
 
 
 .start.star5{background-position: 0 3rpx;}
