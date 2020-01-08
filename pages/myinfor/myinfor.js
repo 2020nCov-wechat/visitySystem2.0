@@ -1,6 +1,7 @@
 // pages/myinfor/myinfor.js
 const app = getApp()
 var time = require("../../utils/util.js")
+import Toast from '@vant/weapp/toast/toast';
 Page({
   data: {
     //性别
@@ -75,7 +76,7 @@ Page({
         }
       })
     }
-    app.getUseInfoDetail()
+    this.getUseInfoDetail()
   },
   getUserInfo: function (e) {
     console.log(e)
@@ -85,24 +86,69 @@ Page({
       hasUserInfo: true
     })
   },
-
+  //获取用户信息
+  getUseInfoDetail: function () {
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+    console.log(newopenid+ ' '+newSession_key)
+    var that = this
+    var timeTwo = time
+    console.log(time)
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.getUserInfo,
+      data: {
+        openid: newopenid,
+        session_key: newSession_key
+      },
+      method: 'GET',
+      success: function (res) {
+        // console.log(res.data)
+        // console.log(typeof res.data.birthday)
+        // console.log(timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'))
+        
+        that.setData({
+          currentDate: res.data.birthday,
+          userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
+          sex:res.data.gender ,
+          tabs: res.data.tabs,
+        })
+      }
+    })
+  },
   //修改个人信息
   confirmInfo:function(e){
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+    console.log(newopenid + ' ' + newSession_key)
     var that = this
+    Toast.loading({
+      mask: true,
+      message: '加载中...'
+    });
     wx.request({
       //获取openid接口
       url: getApp().globalData.insertUpdateInfoUrl,
       data: {
-        openid: getApp().globalData.openid,
-        sessionkey: getApp().globalData.sessionkey,
-        gender: that.data.gender,
+        openid: newopenid,
+        sessionkey: newSession_key,
+        gender: that.data.sex,
         birthday:that.data.currentDate,
         tabs:that.data.tabs
       },
-      method: 'GET',
+      method: 'POST',
       success: function (res) {
         console.log(res.data)
-       
+        console.log(res.data.errorCode)
+        if(res.data.errorCode == 200){
+          Toast.success('修改成功');
+        }else{
+          Toast.fail('修改文案');
+        }
       }
     })
   },
@@ -138,6 +184,8 @@ Page({
       currentDate: value.detail,
       userDate: time.formatTimeTwo(value.detail, 'Y年M月D日')
     })
+    // console.log(this.data.currentDate + ' ' + this.data.userDate)
+    // console.log(typeof this.data.currentDate)
     this.hideBottom()
   },
   cancelData: function () {

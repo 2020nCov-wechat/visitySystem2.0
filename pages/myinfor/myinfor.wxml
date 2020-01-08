@@ -39,6 +39,7 @@
                 label="用户名"
                 value="{{ userInfo.nickName }}"
                 border="{{ false }}"
+                disabled="true"
                 bind:change="onChange"
               />
             </van-cell-group>
@@ -117,3 +118,5 @@
     <van-button type="default" size="small" color="#1296DB" bindtap="confirmInfo">确定</van-button>
    </view>
 </view>
+
+<van-toast id="van-toast" />

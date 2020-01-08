@@ -8,7 +8,8 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-popup":"@vant/weapp/popup/index",
     "van-datetime-picker":"@vant/weapp/datetime-picker/index",
-    "van-icon": "@vant/weapp/icon/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "van-toast": "@vant/weapp/toast/index"
   },
   "navigationStyle": "custom"
 }

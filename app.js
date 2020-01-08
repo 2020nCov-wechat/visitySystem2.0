@@ -37,8 +37,8 @@ App({
   globalData: {
     userInfo: null,
     checkUserUrl: headUrl + '/wechat/login/',
-    getUserInfo:headUrl+'/xx/',
-    insertUpdateInfoUrl:headUrl+'/xx/',
+    getUserInfo: headUrl +'/wechat/user/info/',
+    insertUpdateInfoUrl: headUrl + '/wechat/user/infoinorup/',
     openid: '',
     session_key: '' 
   },
@@ -46,7 +46,7 @@ App({
     var that = this;
     wx.login({
       success: function (data) {
-        //console.log(data)
+        console.log(data)
         //console.log(getApp().globalData.checkUserUrl)
         if (data.code) {
           wx.request({
