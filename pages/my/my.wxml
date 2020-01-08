@@ -34,7 +34,7 @@
             <view class='num'>{{userInfo.integral || 0}}</view>
          </view> -->
          <view class='item' data-url='/pages/user_coupon/index' bindtap='goPages'>
-            <view>测试卡牌</view>
+            <view bindtap="getOpenIdTabFromAPP">更新openid</view>
             <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
          </view>
       </view>
@@ -113,6 +113,7 @@
          <view class='title acea-row row-middle'>综合评价</view>
          <view class='serviceList acea-row row-middle'>
             
+
             <view class="ringcontainer">
                <canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
               <view>评估建议：</view>
@@ -124,6 +125,7 @@
       <view class='myService'>
          <view class='title acea-row row-middle'>指标分析</view>
          <view class='serviceList acea-row row-middle'>
+
             <view class="progress ">
             <view >无兴趣感</view>
             <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
@@ -187,6 +189,7 @@
               <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
               <view style="text-align:center">点击数据每一项查看详情</view>
           </view>
+
          </view>
       </view>
 
