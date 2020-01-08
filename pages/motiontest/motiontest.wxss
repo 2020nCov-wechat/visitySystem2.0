@@ -1,0 +1,22 @@
+/* pages/videoPlay/videoPlay.wxss */
+
+.pageView{
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  margin-top: 10rpx; 
+  padding: 0 30rpx 0 30rpx;
+  justify-content:center;
+  height: 100%;
+}
+
+video{
+	width: 85%;
+	height: 1000rpx;/*调试设置，正式版本应设置为85%*/
+}
+.test-btn{
+  background-color: #1296DB;
+  color: #fff;
+  align-self:center;
+  margin-top: 10rpx;
+}
