@@ -9,10 +9,7 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
-    openid: '',
-    session_key:'' 
+    canIUse: wx.can
   },
   //事件处理函数
   bindViewTap: function () {
@@ -22,56 +19,68 @@ Page({
     })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
+    if (app.globalData.userInfo && app.globalData.openid) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
+    } else{
+      if (this.data.canIUse) {
+        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        // 所以此处加入 callback 以防止这种情况
+        app.userInfoReadyCallback = res => {
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
         }
-      })
-    }
+      } else {
+        // 在没有 open-type=getUserInfo 版本的兼容处理
+        wx.getUserInfo({
+          success: res => {
+            app.globalData.userInfo = res.userInfo
+            this.setData({
+              userInfo: res.userInfo,
+              hasUserInfo: true
+            })
+          }
+        })
+      }
+      app.updateOpenid()
+    } 
   },
+  //没用了
+  getOpenIdTabFromAPP:function(){
+    app.updateOpenid()
+  },
+  //没用了
   getOpenIdTap: function () {
     var that = this;
     wx.login({
       success: function (data) {
-        console.log(data);
-        wx.request({
-          //获取openid接口
-          url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appID + '&secret=' + appSecert + '&js_code=' + data.code + '&grant_type=authorization_code',
-          data: {},
-          method: 'GET',
-          success: function (res) {
-            console.log(res.data)
-            OPEN_ID = res.data.openid; //获取到的openid 
-            SESSION_KEY = res.data.session_key; //获取到session_key 
-            that.setData({
-              openid: OPEN_ID,
-              session_key: SESSION_KEY
-            });
-          }
-        })
+        //console.log(data)
+        //console.log(getApp().globalData.checkUserUrl)
+        if(data.code){
+          wx.request({
+            //获取openid接口
+            url: getApp().globalData.checkUserUrl,
+            data: {
+              code: data.code
+            },
+            method: 'GET',
+            success: function (res) {
+              console.log(res.data)
+              app.globalData.openid =  res.data.openid; //获取到的openid 
+              app.globalData.session_key = res.data.session_key; //获取到session_key 
+            }
+          })
+        }else{
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
   },
+  //没用了
   testInfo:function(){
     console.log("in test")
     this.getOpenIdTap()
@@ -85,7 +94,6 @@ Page({
         console.log(res.userInfo)
       }
     })
-
   },
   getUserInfo: function (e) {
     console.log(e)

@@ -1,4 +1,5 @@
 //app.js
+var headUrl = 'https://followup.aiwac.net'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -34,6 +35,36 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    checkUserUrl: headUrl + '/wechat/login/',
+    openid: '',
+    session_key: '' 
+  },
+  updateOpenid:function(){
+    var that = this;
+    wx.login({
+      success: function (data) {
+        //console.log(data)
+        //console.log(getApp().globalData.checkUserUrl)
+        if (data.code) {
+          wx.request({
+            //获取openid接口
+            url: getApp().globalData.checkUserUrl,
+            data: {
+              code: data.code
+            },
+            method: 'GET',
+            success: function (res) {
+              console.log(res.data)
+              getApp().globalData.openid = res.data.openid; //获取到的openid 
+              getApp().globalData.session_key = res.data.session_key; //获取到session_key 
+              //console.log(getApp().globalData.openid + ' ' + getApp().globalData.session_key)
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
   }
 })

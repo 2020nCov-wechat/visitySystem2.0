@@ -34,7 +34,7 @@
             <view class='num'>{{userInfo.integral || 0}}</view>
          </view> -->
          <view class='item' data-url='/pages/user_coupon/index' bindtap='goPages'>
-            <view bindtap="testInfo">测试卡牌</view>
+            <view bindtap="getOpenIdTabFromAPP">更新openid</view>
             <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
          </view>
       </view>
