@@ -39,6 +39,7 @@ App({
     checkUserUrl: headUrl + '/wechat/login/',
     getUserInfo: headUrl +'/wechat/user/info/',
     insertUpdateInfoUrl: headUrl + '/wechat/user/infoinorup/',
+    testResult: headUrl + '/wechat/chart/',
     openid: '',
     session_key: '' 
   },

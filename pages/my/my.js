@@ -7,32 +7,6 @@ var wxCharts = require('../../utils/wxcharts.js');
 
 var ringChart = null;
 var columnChart = null;
-var chartData = {
-  main: {
-    title: '综合得分',
-    data: [15, 20, 9, 2,0,11,12],
-    categories: ['周一', '周二', '周三', '周四','周五','周六','周日']
-  },
-  sub: [{
-    title: '周一记录',
-    data: [70, 40, 65, 100, 34, 18],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '周二记录',
-    data: [55, 30, 45, 36, 56, 13],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '周三记录',
-    data: [76, 45, 32, 74, 54, 35],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '周四记录',
-    data: [76, 54, 23, 12, 45, 65],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }]
-};
-
-
 
 const appSecert = '0d6c9a7583082f0f83a817a16a8555c9'
 const appID = 'wx4967a2d91998acc2'
@@ -46,6 +20,34 @@ Page({
     chartTitle: '综合得分',
     percent: 30,//进度条
     isMainChartDisplay: true,
+    level:'无抑郁',
+    score:'11',
+    suggestion:'早睡早起',
+    chartData : {
+      main: {
+        title: '综合得分',
+        data: [15, 20, 9, 2, 0, 11, 12],
+        categories: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+      },
+      sub: [{
+        title: '周一记录',
+        data: [70, 40, 65, 100, 34, 18],
+        categories: ['1', '2', '3', '4', '5', '6']
+      }, {
+        title: '周二记录',
+        data: [55, 30, 45, 36, 56, 13],
+        categories: ['1', '2', '3', '4', '5', '6']
+      }, {
+        title: '周三记录',
+        data: [76, 45, 32, 74, 54, 35],
+        categories: ['1', '2', '3', '4', '5', '6']
+      }, {
+        title: '周四记录',
+        data: [76, 54, 23, 12, 45, 65],
+        categories: ['1', '2', '3', '4', '5', '6']
+      }]
+    }
+
 
   },
  
@@ -98,20 +100,27 @@ Page({
     var that = this
     wx.request({
       //获取openid接口
-      url: getApp().globalData.checkUserUrl,
+      url: getApp().globalData.testResult,
       data: {
         openid: newopenid,
         session_key: newSession_key
       },
-      method: 'GET',
+      method: 'POST',
       success: function (res) {
-        
         console.log(res.data)
-        that.setData({
+        if (res.data.errorCode == 200) {
+          that.setData({
+            chartData: res.data.charData,
+            level: res.data.level,
+            score: res.data.score,
+            suggestion: res.data.suggestion
+          })
+        }else{
           
-        })
-      }
+        }
+      },
     })
+
   },
   //没用了
   getOpenIdTabFromAPP:function(){
@@ -180,7 +189,7 @@ Page({
   updateData: function () {
     ringChart.updateData({
       title: {
-        name: '11%'
+        name: this.data.score
       },
       subtitle: {
         color: '#ff0000'
@@ -190,14 +199,14 @@ Page({
 //柱状图
   backToMainChart: function () {
     this.setData({
-      chartTitle: chartData.main.title,
+      chartTitle: this.data.chartData.main.title,
       isMainChartDisplay: true
     });
     columnChart.updateData({
-      categories: chartData.main.categories,
+      categories: this.data.chartData.main.categories,
       series: [{
         name: '得分',
-        data: chartData.main.data,
+        data: this.data.chartData.main.data,
         format: function (val, name) {
           return val.toFixed(2) + '分';
         }
@@ -206,16 +215,16 @@ Page({
   },
   touchHandler: function (e) {
     var index = columnChart.getCurrentDataIndex(e);
-    if (index > -1 && index < chartData.sub.length && this.data.isMainChartDisplay) {
+    if (index > -1 && index < this.data.chartData.sub.length && this.data.isMainChartDisplay) {
       this.setData({
-        chartTitle: chartData.sub[index].title,
+        chartTitle: this.data.chartData.sub[index].title,
         isMainChartDisplay: false
       });
       columnChart.updateData({
-        categories: chartData.sub[index].categories,
+        categories: this.data.chartData.sub[index].categories,
         series: [{
           name: '得分',
-          data: chartData.sub[index].data,
+          data: this.data.chartData.sub[index].data,
           format: function (val, name) {
             return val.toFixed(2) + '分';
           }
@@ -244,12 +253,12 @@ Page({
         }
       },
       title: {
-        name: '11%',
+        name: this.data.score,
         color: '#7cb5ec',
         fontSize: 25
       },
       subtitle: {
-        name: '无抑郁',
+        name: this.data.level,
         color: '#666666',
         fontSize: 15
       },
@@ -278,15 +287,15 @@ Page({
       ringChart.stopAnimation();
     }, 500);
 
-
+    console.log(this.data.chartData.main.categories)
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
       animation: true,
-      categories: chartData.main.categories,
+      categories: this.data.chartData.main.categories,
       series: [{
         name: '得分',
-        data: chartData.main.data,
+        data: this.data.chartData.main.data,
         format: function (val, name) {
           return val.toFixed(2) + '分';
         }
@@ -317,30 +326,5 @@ Page({
     that.setData({
       percent: percent
     })
-  },
-  //获取抑郁程度及建议
-  getEvolution: function () {
-
-    var that = this
-    var timeTwo = time
-    console.log(time)
-    wx.request({
-      //获取openid接口
-      url: getApp().globalData.getUserInfo,
-      data: {
-        openid: newopenid,
-        session_key: newSession_key
-      },
-      method: 'GET',
-      success: function (res) {
-      
-        that.setData({
-          currentDate: res.data.birthday,
-          userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
-          sex: res.data.gender,
-          tabs: res.data.tabs,
-        })
-      }
-    })
-  },
+  }
 })
