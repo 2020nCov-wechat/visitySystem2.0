@@ -1,20 +1,22 @@
 //motiontest.js
 const util = require('../../utils/util.js')
 import Notify from '@vant/weapp/notify/notify';
-
+import Toast from '@vant/weapp/toast/toast';
+var app = getApp()
 //语音识别相关
 const plugin = requirePlugin("WechatSI")
 import { language } from '../../utils/voiceConf.js'
 // 获取**全局唯一**的语音识别管理器**recordRecoManager**
 const manager = plugin.getRecordRecognitionManager()
 
+var videoNum = 7;//测评视频数量
+
 var video_urls = {};  //视频url
-var videoPage;  //当前播放视频
-var pageArr = new Array()  //存储视频队列长度
-var isFinished; // 说话是否结束,需要算法监测
+var videoPage;  //当前播放视频index
+var isFinished; // 说话是否结束
 var isDefault; // 当前是否默认视频
 var btn_type; // 按钮类型，1-开始按钮，2-停止按钮
-var videoNum = 12;//测评视频数量
+
 var videoCommonUrl ="http://followup.aiwac.net/animations/";
 Page({
   data: {
@@ -28,17 +30,17 @@ Page({
 
   onLoad: function () {
 
+    this.initRecord()
+    // app.getRecordAuth()
+
     video_urls = {};  //视频url
-    videoPage = 0;  //当前播放视频
-    pageArr = new Array()  //存储视频队列长度
+    videoPage = 0;  
     isFinished = true; // 说话是否结束
-    isDefault = true; // 当前是否默认视频
+    isDefault = true; // 当前是否眨眼或开场视频
     btn_type = 1;//开始按钮
     if (btn_type == 1) { this.setData({ btn_txt: "开始测评", })}
 
-
-
-    //测评视频集合,v00为眨眼默认视频
+    //测评视频集合,v22、v23为眨眼默认视频
     for (var i = 0; i < videoNum; i++) {
       var indexStr = 'index' + (i)
       if(i<10){
@@ -48,28 +50,24 @@ Page({
       }
     }
     console.log(video_urls);
+    
     this.setData({
-      videUrl: '',
+      videUrl: video_urls['index22'],//默认播放眨眼视频
+      // videUrl: video_urls['index0'],
     });
-    this.setData({
-      videUrl: video_urls['index0'],//默认播放视频
-        });
     console.log("初始状态，播放" + this.data.videUrl);
-
+    
   },
 
   // 上一段播放完之后，自动播放下一段视频
   playEnd: function () {
     console.log(this.data.videUrl+" 结束，下一个")
-    if (videoPage >= videoNum-1) {
-      //当前播放的是最后一个视频
-      console.log("已播放至最后一个视频")
-      videoPage = 0;
+    if (videoPage >= videoNum-3) {
+      //当前播放的是最后结束视频，回到初始状态
+      console.log("已播放至结束视频")
       this.setData({
-        videUrl: ''
-      });
-      this.setData({
-        videUrl: video_urls['index0']
+        videUrl: video_urls['index22']
+        // videUrl: video_urls['index0']
       });
       console.log("播放" + this.data.videUrl);
       videoPage = 0;
@@ -78,56 +76,42 @@ Page({
       btn_type=1;
       this.setData({ btn_txt: "开始测评", });
     } else {
+
       if (isDefault) {
+        //当前是眨眼或者开场视频
         if (btn_type == 2 && isFinished) {
           //说话结束
           videoPage++;
           isDefault = false;
           var index = 'index' + videoPage;
           this.setData({
-            videUrl: ''
-          });
-          this.setData({
             videUrl: video_urls[index]
           });
           console.log("说话结束，播放" + this.data.videUrl);
         } else {
           //测评未开始或说话未结束，继续播放默认视频
+          var i = parseInt(this.data.videUrl.charAt(39));//当前眨眼视频序号2/3
           this.setData({
-            videUrl: '',
-          });
-          this.setData({
-            videUrl: video_urls['index0'],
+            videUrl: video_urls['index2'+(5-i)],
+            // videUrl: video_urls['index'+(1-i)]
           });
           this.videoContext.play();
-          console.log("播放" + this.data.videUrl);
+          console.log("播放眨眼视频：" + this.data.videUrl);
         }
+
       } else {
-        //一轮提问结束，播放默认视频等待回答
+        //一轮提问结束，播放眨眼视频等待回答
         isDefault = true;
+        isFinished = false;
         this.setData({
-          videUrl: ''
-        });
-        this.setData({
-          videUrl: video_urls['index0']
+          videUrl: video_urls['index22']
+          // videUrl: video_urls['index0']
         });
         console.log("等待说话，播放" + this.data.videUrl);
       }
 
     }
   },
-
-  // playUpdate:function(e){
-  //   console.log("timeUpdate");
-  //   wx.showToast({
-  //     title: 'timeUpdate',
-  //     icon: '',
-  //     image: '',
-  //     duration: 200,
-  //     mask: true,
-  //   })
-    
-  // },
   
   //按钮控制视频播放/停止
   testStart: function (e) {
@@ -141,11 +125,8 @@ Page({
         duration: 200,
         mask: true,
       })
-      videoPage++;
       this.videoContext.stop();
-      this.setData({
-        videUrl: ''
-      });
+     
       this.setData({
         videUrl: video_urls['index'+videoPage]
       });
@@ -158,10 +139,8 @@ Page({
       videoPage = 0;
       this.videoContext.stop();
       this.setData({
-        videUrl: ''
-      });
-      this.setData({
-        videUrl: video_urls['index'+videoPage]
+        videUrl: video_urls['index22']
+        // videUrl: video_urls['index0']
       });
       this.videoContext.play();
       console.log("测评停止，播放" + this.data.videUrl);
@@ -180,8 +159,8 @@ Page({
   * 按住按钮开始语音识别
   */
   streamRecord: function (e) {
-    console.log("按下按钮")
-    console.log(e)
+    // console.log("按下按钮")
+    // console.log(e)
     // console.log("streamrecord" ,e)
     // let detail = e.detail || {}
     // let buttonItem = detail.buttonItem || {}
@@ -205,8 +184,8 @@ Page({
   * 松开按钮结束语音录制，等待识别结果
   */
   streamRecordEnd: function (e) {
-    console.log("松开按钮")
-    console.log(e)
+    // console.log("松开按钮")
+    // console.log(e)
 
     // console.log("streamRecordEnd" ,e)
     // let detail = e.detail || {}  // 自定义组件触发事件时提供的detail对象
@@ -232,15 +211,12 @@ Page({
     
     //有新的识别内容返回，则会调用此事件
     manager.onRecognize = (res) => {
-
-      console.log("识别内容返回")
-      console.log(res)
       let currentData = res.result
       this.setData({
         currentTranslate: currentData,
       })
       //this.scrollToNew();
-      showResultByNotify(res.result)
+      this.showResultByNotify(res.result)
     }
 
     // 识别结束事件
@@ -248,12 +224,20 @@ Page({
 
       console.log("识别结束")
       console.log(res)
+      console.log(res.result)
+      this.showResultByNotify(res.result)
       let text = res.result
-
       if (text == '') {
         this.showRecordEmptyTip()
         return
+      }else{
+        sendResult(res.result, videoPage)
       }
+
+      this.setData({
+        recording: false,
+        bottomButtonDisabled: false,
+      })
 
       // let lastId = this.data.lastId + 1
 
@@ -299,8 +283,42 @@ Page({
 
     })
   },
+  /**
+ * 识别内容为空时的反馈
+ */
+  showRecordEmptyTip: function () {
+    this.setData({
+      recording: false,
+      bottomButtonDisabled: false,
+    })
+    Toast.fail('请说话');
+  },
+  //发送语音识别结果给后台
+  sendResult:function(resultMsg,videoPage){
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.getUserInfo,//gai url
+      data: {
+        openid: newopenid,
+        session_key: newSession_key,
+        question: videoPage,
+        result: resultMsg
+      },
+      method: 'GET',
+      success: function (res) {
+        if(res.data.errorCode==200){
+          isFinished=true
+        }
 
-
+        // that.setData({
+        //   currentDate: res.data.birthday,
+        //   userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
+        //   sex: res.data.gender,
+        //   tabs: res.data.tabs,
+        // })
+      }
+    })
+  },
   //展示通知内容
   showResultByNotify:function(msg){
     Notify({

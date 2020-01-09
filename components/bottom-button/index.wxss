@@ -63,6 +63,7 @@
   border-radius: 100rpx;
   left: 0;
   z-index: 1;
+  color: #FFFFFF;
 }
 
 .text-in-button {

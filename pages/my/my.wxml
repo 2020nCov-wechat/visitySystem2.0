@@ -213,8 +213,10 @@
               <view class='item acea-row row-right'>晚上21:15 </view>
            </view>
            </view>
-        
-        <view class='title acea-row row-between-wrapper'>
+      
+   </view>
+    <view class="myOrder">
+      <view class='title acea-row row-between-wrapper'>
            <view>周二</view>
            <view class='allOrder' >11月26日<text class='iconfont icon-jiantou'></text></view>
         </view>
@@ -230,7 +232,9 @@
            </view>
         
 
-        <view class='title acea-row row-between-wrapper'>
+    </view>
+    <view class="myOrder">
+      <view class='title acea-row row-between-wrapper'>
            <view>周五</view>
            <view class='allOrder' >11月26日<text class='iconfont icon-jiantou'></text></view>
         </view>
@@ -245,9 +249,10 @@
            </view>
            </view>
         </view>
+    </view>
+    
+        
 
 
 
-
-   </view>
 </view>

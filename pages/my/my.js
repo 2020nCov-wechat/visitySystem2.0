@@ -45,11 +45,13 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     chartTitle: '综合得分',
     percent: 30,//进度条
-    isMainChartDisplay: true
+    isMainChartDisplay: true,
+
   },
  
   //事件处理函数
   bindViewTap: function () {
+    
     wx.navigateTo({
       // url: '../logs/logs'
       url: '../myinfor/myinfor'
@@ -84,7 +86,32 @@ Page({
         })
       }
       app.updateOpenid()
+      this.updateChart()
     } 
+  },
+  //更新chart
+  updateChart:function(){
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+    var that = this
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.checkUserUrl,
+      data: {
+        openid: newopenid,
+        session_key: newSession_key
+      },
+      method: 'GET',
+      success: function (res) {
+        
+        console.log(res.data)
+        that.setData({
+          
+        })
+      }
+    })
   },
   //没用了
   getOpenIdTabFromAPP:function(){
@@ -280,7 +307,7 @@ Page({
           width: 15
         }
       },
-      width:330,
+      width:wx.getSystemInfoSync().windowWidth * 0.9,
       height: 200,
     });
   },

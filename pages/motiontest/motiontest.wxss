@@ -26,9 +26,11 @@ video{
 }
 
 .foot-group {
-  position: fixed;
   left: 0;
   bottom: 0;
   z-index: 40;
 }
-
+.speak-btn-css{
+  display: flex;
+  justify-content: center;
+}

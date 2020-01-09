@@ -1,20 +1,21 @@
 <view class="pageView">
   <view class="video-css">
-     <video id="TestVideo" objectFit="cover" controls="{{true}}" show-fullscreen-btn="{{false}}" enable-progress-gesture="{{true}}" enable-play-gesture="{{true}}" play-btn-position="center" bindended="playEnd" initial-time="0" bindtimeupdate="playUpdate" autoplay="{{true}}" src="{{videUrl}}">
+     <video id="TestVideo" objectFit="cover" controls="{{false}}" show-fullscreen-btn="{{false}}" enable-progress-gesture="{{false}}" enable-play-gesture="{{true}}" play-btn-position="center" bindended="playEnd" initial-time="0" autoplay="{{true}}" src="{{videUrl}}">
   	</video>
   </view>
   <view class="btn-css">
     <button class='test-btn' bindtap="testStart">{{btn_txt}}</button>
   </view>
-  <view class="btn-css">
-    <button class='test-btn' bindtap="showNotifyByType">长按说话</button>
+  <view class="btn-css speak-btn-css">
+    <view class="foot-group" catchlongpress="catchTapEvent">
+      <bottom-button button-disabled="{{bottomButtonDisabled}}"
+        bindrecordstart="streamRecord"
+        bindrecordend="streamRecordEnd"></bottom-button>
+    </view>
   </view>
   
-  <view class="foot-group" catchlongpress="catchTapEvent">
-    <bottom-button button-disabled="{{bottomButtonDisabled}}"
-      bindrecordstart="streamRecord"
-      bindrecordend="streamRecordEnd"></bottom-button>
-  </view>
+  
 </view>
 
+<van-toast id="van-toast" />
 <van-notify id="van-notify" />
