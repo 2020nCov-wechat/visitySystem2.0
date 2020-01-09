@@ -9,24 +9,24 @@ var ringChart = null;
 var columnChart = null;
 var chartData = {
   main: {
-    title: '总成交量',
-    data: [15, 20, 45, 37],
-    categories: ['2012', '2013', '2014', '2015']
+    title: '综合得分',
+    data: [15, 20, 9, 2,0,11,12],
+    categories: ['周一', '周二', '周三', '周四','周五','周六','周日']
   },
   sub: [{
-    title: '2012年度成交量',
+    title: '周一记录',
     data: [70, 40, 65, 100, 34, 18],
     categories: ['1', '2', '3', '4', '5', '6']
   }, {
-    title: '2013年度成交量',
+    title: '周二记录',
     data: [55, 30, 45, 36, 56, 13],
     categories: ['1', '2', '3', '4', '5', '6']
   }, {
-    title: '2014年度成交量',
+    title: '周三记录',
     data: [76, 45, 32, 74, 54, 35],
     categories: ['1', '2', '3', '4', '5', '6']
   }, {
-    title: '2015年度成交量',
+    title: '周四记录',
     data: [76, 54, 23, 12, 45, 65],
     categories: ['1', '2', '3', '4', '5', '6']
   }]
@@ -169,10 +169,10 @@ Page({
     columnChart.updateData({
       categories: chartData.main.categories,
       series: [{
-        name: '成交量',
+        name: '得分',
         data: chartData.main.data,
         format: function (val, name) {
-          return val.toFixed(2) + '万';
+          return val.toFixed(2) + '分';
         }
       }]
     });
@@ -187,10 +187,10 @@ Page({
       columnChart.updateData({
         categories: chartData.sub[index].categories,
         series: [{
-          name: '成交量',
+          name: '得分',
           data: chartData.sub[index].data,
           format: function (val, name) {
-            return val.toFixed(2) + '万';
+            return val.toFixed(2) + '分';
           }
         }]
       });
@@ -258,17 +258,17 @@ Page({
       animation: true,
       categories: chartData.main.categories,
       series: [{
-        name: '成交量',
+        name: '得分',
         data: chartData.main.data,
         format: function (val, name) {
-          return val.toFixed(2) + '万';
+          return val.toFixed(2) + '分';
         }
       }],
       yAxis: {
         format: function (val) {
-          return val + '万';
+          return val + '分';
         },
-        title: 'hello',
+        // title: 'hello',
         min: 0
       },
       xAxis: {
@@ -280,15 +280,40 @@ Page({
           width: 15
         }
       },
-      width: windowWidth,
+      width:330,
       height: 200,
     });
   },
   progress: function () {
-    let that = this;
-    let percent = xxx; //获取percent
+    var that = this;
+    var percent = xxx; //获取percent
     that.setData({
       percent: percent
     })
-  }
+  },
+  //获取抑郁程度及建议
+  getEvolution: function () {
+
+    var that = this
+    var timeTwo = time
+    console.log(time)
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.getUserInfo,
+      data: {
+        openid: newopenid,
+        session_key: newSession_key
+      },
+      method: 'GET',
+      success: function (res) {
+      
+        that.setData({
+          currentDate: res.data.birthday,
+          userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
+          sex: res.data.gender,
+          tabs: res.data.tabs,
+        })
+      }
+    })
+  },
 })
