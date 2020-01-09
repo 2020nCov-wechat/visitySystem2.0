@@ -17,7 +17,7 @@
 .user .wrapper .nav .item .num{margin-top:10rpx;font-size:36rpx;color:#282828;}
 .user .wrapper .myOrder{background-color:#fff;border-radius:10rpx;margin-top:15rpx;}
 .user .wrapper .myOrder .title,.user .wrapper .myService .title{
-  height:88rpx;
+  height:65rpx;
   padding:0 30rpx;
   border-bottom:1px dashed #ddd;
   font-size:30rpx;color:#282828;
@@ -129,7 +129,7 @@ button::after{border:0;}
     font-family: Helvetica,Arial,"Helvetica Neue","Droid Sans","Microsoft YaHei",sans-serif;
 }
 .canvas {
-    width: 560rpx;
+    width: 700rpx;
     height: 200px;
 }
 .canvas-css{
@@ -138,6 +138,9 @@ button::after{border:0;}
 }
 .canvas-text-css{
   text-align:center;
+  margin-top: 20rpx;
+	margin-bottom: 20rpx;
+   font-size:30rpx;
 }
 .title {
 	text-align: center;
