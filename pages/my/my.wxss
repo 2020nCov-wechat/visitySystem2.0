@@ -22,7 +22,7 @@
 .user .wrapper .myOrder .orderState{height:160rpx;}
 
 .user .wrapper .myOrder .State{height:60rpx;}
-.user .wrapper .myOrder .State .item{font-size:26rpx;color:#454545;text-align:left;flex:1;}
+.user .wrapper .myOrder .State .item{font-size:26rpx;color:#454545;text-align:center;flex:1;}
 .user .wrapper .myOrder .State .item .pictrue{width:49rpx;height:49rpx;margin:0 auto 18rpx auto;position: relative;}
 .user .wrapper .myOrder .State .item .pictrue image{width:100%;height:100%;}
 
