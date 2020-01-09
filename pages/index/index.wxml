@@ -11,6 +11,6 @@
     <text class="user-motto">{{motto}}</text>
   </view>
   <view class="usermotto">
-    <van-button type="primary">按钮</van-button>
+    <van-button type="primary" bindtap="clickBtn">按钮</van-button>
   </view>
 </view>
