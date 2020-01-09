@@ -449,7 +449,7 @@ Page({
     this.setData({toView: this.data.toView})
 
 
-    app.getRecordAuth()
+    // app.getRecordAuth()
   },
 
   onHide: function() {

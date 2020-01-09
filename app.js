@@ -1,4 +1,4 @@
-//app.js
+ //app.js
 var headUrl = 'https://followup.aiwac.net'
 App({
   onLaunch: function () {

@@ -129,8 +129,8 @@ button::after{border:0;}
     font-family: Helvetica,Arial,"Helvetica Neue","Droid Sans","Microsoft YaHei",sans-serif;
 }
 .canvas {
-    width: 700rpx;
-    height: 200px;
+  width:90vw;
+  height: 200px;
 }
 .canvas-css{
   display: flex;

@@ -30,7 +30,7 @@ Page({
   onLoad: function () {
 
     this.initRecord()
-    app.getRecordAuth()
+    // app.getRecordAuth()
 
     video_urls = {};  //视频url
     videoPage = 0;  //当前播放视频

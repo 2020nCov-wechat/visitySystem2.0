@@ -307,7 +307,7 @@ Page({
           width: 15
         }
       },
-      width:330,
+      width:wx.getSystemInfoSync().windowWidth * 0.9,
       height: 200,
     });
   },
