@@ -12,13 +12,13 @@ Unless required by applicable law or agreed to in writing, software distributed 
 let language = [
   {
     id: 0,
-    lang_name: "中文",
+    lang_name: "长按说话",
     lang_content: "zh_CN",
     lang_to: [ "en_US", ],
     max_length:300,
     source_language:"输入文字",
     target_language:"输出文字",
-    hold_talk:"长按说话",
+    hold_talk:"",
     keyboard_input:"键盘输入",
     type_here:"输入文字",
     bg_content:"请输入翻译内容",

@@ -2,7 +2,8 @@
   "navigationBarTitleText": "情绪测评",
   "usingComponents": {
     "van-notify": "@vant/weapp/notify/index",
-    "bottom-button": "/components/bottom-button/index"
+    "bottom-button": "/components/bottom-button/index",
+    "van-toast": "@vant/weapp/toast/index"
     },
   "disableScroll": true   
 }

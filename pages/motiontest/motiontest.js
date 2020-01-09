@@ -1,7 +1,8 @@
 //motiontest.js
 const util = require('../../utils/util.js')
 import Notify from '@vant/weapp/notify/notify';
-
+import Toast from '@vant/weapp/toast/toast';
+var app = getApp()
 //语音识别相关
 const plugin = requirePlugin("WechatSI")
 import { language } from '../../utils/voiceConf.js'
@@ -28,6 +29,9 @@ Page({
 
   onLoad: function () {
 
+    this.initRecord()
+    app.getRecordAuth()
+
     video_urls = {};  //视频url
     videoPage = 0;  //当前播放视频
     pageArr = new Array()  //存储视频队列长度
@@ -37,21 +41,21 @@ Page({
     if (btn_type == 1) { this.setData({ btn_txt: "开始测评", })}
 
 
-    // //测评视频集合,v00为眨眼默认视频
-    // for (var i = 0; i < videoNum; i++) {
-    //   var indexStr = 'index' + (i)
-    //   if(i<10){
-    //     video_urls[indexStr] = videoCommonUrl + 'v0'+(i)+'.mp4';
-    //   }else if(i<100){
-    //     video_urls[indexStr] = videoCommonUrl + 'v' + (i) + '.mp4';
-    //   }
-    // }
-    // this.setData({
-    //   videUrl: video_urls['index0'],//默认播放视频
-    // });
-    // this.setData({
-    //   videUrl: video_urls['index0'],//默认播放视频
-    //     });
+    //测评视频集合,v00为眨眼默认视频
+    for (var i = 0; i < videoNum; i++) {
+      var indexStr = 'index' + (i)
+      if(i<10){
+        video_urls[indexStr] = videoCommonUrl + 'v0'+(i)+'.mp4';
+      }else if(i<100){
+        video_urls[indexStr] = videoCommonUrl + 'v' + (i) + '.mp4';
+      }
+    }
+    this.setData({
+      videUrl: video_urls['index0'],//默认播放视频
+    });
+    this.setData({
+      videUrl: video_urls['index0'],//默认播放视频
+        });
   },
 
   // 上一段播放完之后，自动播放下一段视频
@@ -150,8 +154,8 @@ Page({
   * 按住按钮开始语音识别
   */
   streamRecord: function (e) {
-    console.log("按下按钮")
-    console.log(e)
+    // console.log("按下按钮")
+    // console.log(e)
     // console.log("streamrecord" ,e)
     // let detail = e.detail || {}
     // let buttonItem = detail.buttonItem || {}
@@ -175,8 +179,8 @@ Page({
   * 松开按钮结束语音录制，等待识别结果
   */
   streamRecordEnd: function (e) {
-    console.log("松开按钮")
-    console.log(e)
+    // console.log("松开按钮")
+    // console.log(e)
 
     // console.log("streamRecordEnd" ,e)
     // let detail = e.detail || {}  // 自定义组件触发事件时提供的detail对象
@@ -202,15 +206,12 @@ Page({
     
     //有新的识别内容返回，则会调用此事件
     manager.onRecognize = (res) => {
-
-      console.log("识别内容返回")
-      console.log(res)
       let currentData = res.result
       this.setData({
         currentTranslate: currentData,
       })
       //this.scrollToNew();
-      showResultByNotify(res.result)
+      this.showResultByNotify(res.result)
     }
 
     // 识别结束事件
@@ -218,12 +219,18 @@ Page({
 
       console.log("识别结束")
       console.log(res)
+      console.log(res.result)
+      this.showResultByNotify(res.result)
       let text = res.result
-
       if (text == '') {
         this.showRecordEmptyTip()
         return
       }
+
+      this.setData({
+        recording: false,
+        bottomButtonDisabled: false,
+      })
 
       // let lastId = this.data.lastId + 1
 
@@ -269,7 +276,16 @@ Page({
 
     })
   },
-
+  /**
+ * 识别内容为空时的反馈
+ */
+  showRecordEmptyTip: function () {
+    this.setData({
+      recording: false,
+      bottomButtonDisabled: false,
+    })
+    Toast.fail('请说话');
+  },
 
   //展示通知内容
   showResultByNotify:function(msg){
