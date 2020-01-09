@@ -26,7 +26,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.9.4",
 	"appid": "wx4967a2d91998acc2",
-	"projectname": "VisitSystem",
+	"projectname": "wechat-visitsystem",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

@@ -13,13 +13,21 @@
   display: flex;
   justify-content: center;
 }
+
 video{
 	width: 85%;
-	height: 1000rpx;/*调试设置，正式版本应设置为85%*/
+	height: 900rpx;/*调试设置，正式版本应设置为85%*/
 }
 .test-btn{
   background-color: #1296DB;
   color: #fff;
   align-self:center;
   margin-top: 10rpx;
+}
+
+.foot-group {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 40;
 }

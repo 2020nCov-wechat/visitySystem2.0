@@ -113,15 +113,136 @@
          <view class='title acea-row row-middle'>综合评价</view>
          <view class='serviceList acea-row row-middle'>
             
-            
+
+            <view class="ringcontainer">
+               <canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+              <view>评估建议：</view>
+              <!-- <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button> -->
+            </view>
+
          </view>
       </view>
       <view class='myService'>
          <view class='title acea-row row-middle'>指标分析</view>
          <view class='serviceList acea-row row-middle'>
-            
+
+            <view class="progress ">
+            <view >无兴趣感</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+             <view class="progress">
+            <view>心情沮丧</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+            <view class="progress">
+            <view>睡眠不佳</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+            <view class="progress">
+            <view>易疲倦</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+            <view class="progress">
+            <view>食欲不振</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+            <view class="progress">
+            <view>无价值感</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+            <view class="progress">
+            <view>不易专注</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+            <view class="progress">
+            <view>动作异常</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+            <view class="progress">
+            <view>自杀倾向</view>
+            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
+             stroke-width='10' bindtap="progress" show-info active >
+            </progress>
+            </view>
+          
+            <view class="ringcontainer">
+            <view class="title">
+              <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
+              {{chartTitle}}
+            </view>
+              <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
+              <view style="text-align:center">点击数据每一项查看详情</view>
+          </view>
 
          </view>
       </view>
+
+      <view class='myOrder'>
+        <view class='title acea-row row-between-wrapper'>
+           <view>周一</view>
+           <view class='allOrder' >11月25日<text class='iconfont icon-jiantou'></text></view>
+        </view>
+        <view class='State acea-row row-left'>
+           <view class='item acea-row row-left' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+              <view class='pictrue'>
+                <image src='/imgs/my/happy.png'></image>
+              </view>
+              <view class='item acea-row row-center'>综合得分：2 </view>
+              <view class='item acea-row row-center'>无抑郁</view>
+              <view class='item acea-row row-right'>晚上21:15 </view>
+           </view>
+           </view>
+        
+        <view class='title acea-row row-between-wrapper'>
+           <view>周二</view>
+           <view class='allOrder' >11月26日<text class='iconfont icon-jiantou'></text></view>
+        </view>
+        <view class='State acea-row row-left'>
+           <view class='item acea-row row-left' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+              <view class='pictrue'>
+                <image src='/imgs/my/sad.png'></image>
+              </view>
+              <view class='item acea-row row-center'>综合得分：15 </view>
+              <view class='item acea-row row-center'>中度抑郁</view>
+              <view class='item acea-row row-right'>晚上21:15 </view>
+           </view>
+           </view>
+        
+
+        <view class='title acea-row row-between-wrapper'>
+           <view>周五</view>
+           <view class='allOrder' >11月26日<text class='iconfont icon-jiantou'></text></view>
+        </view>
+        <view class='State acea-row row-left'>
+           <view class='item acea-row row-left' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+              <view class='pictrue'>
+                <image src='/imgs/my/normal.png'></image>
+              </view>
+              <view class='item acea-row row-center'>综合得分：5 </view>
+              <view class='item acea-row row-center'>轻度抑郁</view>
+              <view class='item acea-row row-right'>晚上21:15 </view>
+           </view>
+           </view>
+        </view>
+
+
+
+
    </view>
 </view>

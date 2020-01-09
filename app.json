@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/motiontest/motiontest",
     "pages/my/my",
+    "pages/voice/index/index",
+    "pages/voice/edit/edit",
+    "pages/motiontest/motiontest",
     "pages/myinfor/myinfor",
     "pages/index/index",
     "pages/logs/logs"
@@ -49,6 +51,10 @@
     "crypto": {
       "version": "0.0.003",
       "provider": "wxf25d506ff81e19fb"
+    },
+    "WechatSI": {
+      "version": "0.3.1",
+      "provider": "wx069ba97219f66d99"
     }
   }
 }

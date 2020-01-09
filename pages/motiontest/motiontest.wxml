@@ -6,5 +6,15 @@
   <view class="btn-css">
     <button class='test-btn' bindtap="testStart">{{btn_txt}}</button>
   </view>
+  <view class="btn-css">
+    <button class='test-btn' bindtap="showNotifyByType">长按说话</button>
+  </view>
   
+  <view class="foot-group" catchlongpress="catchTapEvent">
+    <bottom-button button-disabled="{{bottomButtonDisabled}}"
+      bindrecordstart="streamRecord"
+      bindrecordend="streamRecordEnd"></bottom-button>
+  </view>
 </view>
+
+<van-notify id="van-notify" />

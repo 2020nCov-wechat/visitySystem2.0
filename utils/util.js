@@ -13,6 +13,17 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+function recordTime(date) {
+
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+
+  var hour = date.getHours()
+  var minute = date.getMinutes()
+
+  return [month, day].map(formatNumber).join('/') + ' ' + [hour, minute].map(formatNumber).join(':')
+}
+
 /** 
  * 时间戳转化为年 月 日 时 分 秒 
  * number: 传入时间戳 
@@ -40,5 +51,6 @@ function formatTimeTwo(number, format) {
 
 module.exports = {
   formatTime: formatTime,
-  formatTimeTwo: formatTimeTwo
+  formatTimeTwo: formatTimeTwo,
+  recordTime: recordTime
 }
