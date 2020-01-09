@@ -37,40 +37,51 @@ Page({
     if (btn_type == 1) { this.setData({ btn_txt: "开始测评", })}
 
 
-    // //测评视频集合,v00为眨眼默认视频
-    // for (var i = 0; i < videoNum; i++) {
-    //   var indexStr = 'index' + (i)
-    //   if(i<10){
-    //     video_urls[indexStr] = videoCommonUrl + 'v0'+(i)+'.mp4';
-    //   }else if(i<100){
-    //     video_urls[indexStr] = videoCommonUrl + 'v' + (i) + '.mp4';
-    //   }
-    // }
-    // this.setData({
-    //   videUrl: video_urls['index0'],//默认播放视频
-    // });
-    // this.setData({
-    //   videUrl: video_urls['index0'],//默认播放视频
-    //     });
+
+    //测评视频集合,v00为眨眼默认视频
+    for (var i = 0; i < videoNum; i++) {
+      var indexStr = 'index' + (i)
+      if(i<10){
+        video_urls[indexStr] = videoCommonUrl + 'v0'+(i)+'.mp4';
+      }else if(i<100){
+        video_urls[indexStr] = videoCommonUrl + 'v' + (i) + '.mp4';
+      }
+    }
+    console.log(video_urls);
+    this.setData({
+      videUrl: '',
+    });
+    this.setData({
+      videUrl: video_urls['index0'],//默认播放视频
+        });
+    console.log("初始状态，播放" + this.data.videUrl);
+
   },
 
   // 上一段播放完之后，自动播放下一段视频
   playEnd: function () {
-    console.log("结束，下一个"+this.data.videUrl)
-    if (videoPage >= video_urls.length) {
+    console.log(this.data.videUrl+" 结束，下一个")
+    if (videoPage >= videoNum-1) {
       //当前播放的是最后一个视频
-      videoPage = 1;
+      console.log("已播放至最后一个视频")
+      videoPage = 0;
       this.setData({
         videUrl: ''
       });
       this.setData({
         videUrl: video_urls['index0']
       });
+      console.log("播放" + this.data.videUrl);
+      videoPage = 0;
+      isDefault = true;
+      isFinished = true;
+      btn_type=1;
+      this.setData({ btn_txt: "开始测评", });
     } else {
-      videoPage++;
       if (isDefault) {
         if (btn_type == 2 && isFinished) {
           //说话结束
+          videoPage++;
           isDefault = false;
           var index = 'index' + videoPage;
           this.setData({
@@ -79,14 +90,17 @@ Page({
           this.setData({
             videUrl: video_urls[index]
           });
+          console.log("说话结束，播放" + this.data.videUrl);
         } else {
           //测评未开始或说话未结束，继续播放默认视频
           this.setData({
-            videUrl: ''
+            videUrl: '',
           });
           this.setData({
-            videUrl: video_urls['index0']
+            videUrl: video_urls['index0'],
           });
+          this.videoContext.play();
+          console.log("播放" + this.data.videUrl);
         }
       } else {
         //一轮提问结束，播放默认视频等待回答
@@ -97,10 +111,23 @@ Page({
         this.setData({
           videUrl: video_urls['index0']
         });
+        console.log("等待说话，播放" + this.data.videUrl);
       }
 
     }
   },
+
+  // playUpdate:function(e){
+  //   console.log("timeUpdate");
+  //   wx.showToast({
+  //     title: 'timeUpdate',
+  //     icon: '',
+  //     image: '',
+  //     duration: 200,
+  //     mask: true,
+  //   })
+    
+  // },
   
   //按钮控制视频播放/停止
   testStart: function (e) {
@@ -114,27 +141,30 @@ Page({
         duration: 200,
         mask: true,
       })
+      videoPage++;
       this.videoContext.stop();
       this.setData({
         videUrl: ''
       });
       this.setData({
-        videUrl: video_urls['index1']
+        videUrl: video_urls['index'+videoPage]
       });
       this.videoContext.play();
+      console.log("测评开始，播放" + this.data.videUrl);
       btn_type = 2;
       this.setData({ btn_txt: "停止测评", }) 
     }else{
       //停止测评，恢复初始状态，播放默认视频
+      videoPage = 0;
       this.videoContext.stop();
       this.setData({
         videUrl: ''
       });
       this.setData({
-        videUrl: video_urls['index0']
+        videUrl: video_urls['index'+videoPage]
       });
       this.videoContext.play();
-      videoPage=0;
+      console.log("测评停止，播放" + this.data.videUrl);
       isDefault=true;
       isFinished=true;
       btn_type = 1;

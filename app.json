@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/motiontest/motiontest",
     "pages/my/my",
     "pages/voice/index/index",
     "pages/voice/edit/edit",
-    "pages/motiontest/motiontest",
     "pages/myinfor/myinfor",
     "pages/index/index",
     "pages/logs/logs"

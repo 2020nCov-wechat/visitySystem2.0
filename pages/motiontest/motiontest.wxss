@@ -4,9 +4,9 @@
   display: flex;
   background-color: #fff;
   flex-direction: column;
+  justify-content:center;
   margin-top: 10rpx; 
   padding: 0 30rpx 0 30rpx;
-  justify-content:center;
   height: 100%;
 }
 .video-css{
@@ -31,3 +31,4 @@ video{
   bottom: 0;
   z-index: 40;
 }
+
