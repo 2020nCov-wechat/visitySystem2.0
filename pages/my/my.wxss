@@ -16,7 +16,13 @@
 .user .wrapper .nav .item~.item{border-left:1px solid #eee;}
 .user .wrapper .nav .item .num{margin-top:10rpx;font-size:36rpx;color:#282828;}
 .user .wrapper .myOrder{background-color:#fff;border-radius:10rpx;margin-top:15rpx;}
-.user .wrapper .myOrder .title,.user .wrapper .myService .title{height:88rpx;padding:0 30rpx;border-bottom:1px dashed #ddd;font-size:30rpx;color:#282828;}
+.user .wrapper .myOrder .title,.user .wrapper .myService .title{
+  height:88rpx;
+  padding:0 30rpx;
+  border-bottom:1px dashed #ddd;
+  font-size:30rpx;color:#282828;
+  
+  }
 .user .wrapper .myOrder .title .allOrder{font-size:26rpx;color:#666;}
 .user .wrapper .myOrder .title .allOrder .iconfont{font-size:30rpx;margin-left:7rpx;}
 .user .wrapper .myOrder .orderState{height:160rpx;}
@@ -46,7 +52,9 @@
 .order-status-num {min-width: 18rpx;background-color: #fff;color: #ee5a52;border-radius: 15rpx;position: absolute;right: -5rpx;top: -16rpx;font-size: 23rpx;padding: 0 5rpx; border: 1rpx solid #ee5a52;}
 .user .binding{padding: 2rpx 18rpx; background-color: #ca1f10; border-radius: 50px;font-size: 22rpx;border: 1px solid #e8695e;color: #ffffff;}
 
-
+.msg-css{
+  padding: 0 30rpx;
+}
 
 
 .start.star5{background-position: 0 3rpx;}
@@ -121,8 +129,15 @@ button::after{border:0;}
     font-family: Helvetica,Arial,"Helvetica Neue","Droid Sans","Microsoft YaHei",sans-serif;
 }
 .canvas {
-    width: 100%;
+    width: 560rpx;
     height: 200px;
+}
+.canvas-css{
+  display: flex;
+  justify-content: center;
+}
+.canvas-text-css{
+  text-align:center;
 }
 .title {
 	text-align: center;

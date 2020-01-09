@@ -43,7 +43,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    //chartTitle: '总成交量',
+    chartTitle: '综合得分',
     percent: 30,//进度条
     isMainChartDisplay: true
   },

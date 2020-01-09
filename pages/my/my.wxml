@@ -181,18 +181,23 @@
             </progress>
             </view>
           
-            <view class="ringcontainer">
-            <view class="title">
-              <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
-              {{chartTitle}}
-            </view>
-              <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
-              <view style="text-align:center">点击数据每一项查看详情</view>
-          </view>
+           
 
          </view>
       </view>
-
+      <view class='myOrder'>
+        <view class="ringcontainer">
+              <view class="title">
+                <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
+                  {{chartTitle}}
+              </view>
+              <view class="canvas-css">
+                <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
+              </view>
+              <view class="canvas-text-css">点击数据每一项查看详情</view>
+        </view>
+      </view>
+       
       <view class='myOrder'>
         <view class='title acea-row row-between-wrapper'>
            <view>周一</view>
@@ -213,14 +218,14 @@
            <view>周二</view>
            <view class='allOrder' >11月26日<text class='iconfont icon-jiantou'></text></view>
         </view>
-        <view class='State acea-row row-left'>
+        <view class='State acea-row row-left msg-css '>
            <view class='item acea-row row-left' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
               <view class='pictrue'>
                 <image src='/imgs/my/sad.png'></image>
               </view>
               <view class='item acea-row row-center'>综合得分：15 </view>
               <view class='item acea-row row-center'>中度抑郁</view>
-              <view class='item acea-row row-center'>晚上21:15 </view>
+              <view class='item acea-row row-right'>晚上21:15 </view>
            </view>
            </view>
         
