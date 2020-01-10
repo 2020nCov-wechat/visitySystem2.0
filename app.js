@@ -42,8 +42,10 @@ App({
     testResult: headUrl + '/wechat/chart/',
     sendResultUrl: headUrl + '/answer/submit/',
     checkOrEndUrl: headUrl + '/answer/query/',
+    uploadPicVidUrl: headUrl + '/XXX/',
     openid: '',
-    session_key: '' 
+    session_key: '' ,
+    takePhotoTime:5000,//拍照间隔
   },
   updateOpenid:function(){
     var that = this;
