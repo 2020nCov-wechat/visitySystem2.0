@@ -10,7 +10,7 @@ import { language } from '../../utils/voiceConf.js'
 // 获取**全局唯一**的语音识别管理器**recordRecoManager**
 const manager = plugin.getRecordRecognitionManager()
 
-var videoNum = 24;//测评视频数量
+// var videoNum = 24;//测评视频数量
 
 var video_urls = {};  //视频url
 var videoPage;  //当前播放视频index
@@ -28,6 +28,7 @@ Page({
     bottomButtonDisabled: false, // 底部按钮disabled
     currentTranslate:'',//语音识别结果
     haveDBResult:false,//用于等待后台返回查询结果题号
+    // videoNum: 24//测评视频数量
   },
 
   onLoad: function () {
@@ -37,13 +38,14 @@ Page({
 
     video_urls = {};  //视频url
     videoPage = 0;  
+    // videoNum = 24
     isFinished = true; // 说话是否结束
     isDefault = true; // 当前是否眨眼或开场视频
     btn_type = 1;//开始按钮
     if (btn_type == 1) { this.setData({ btn_txt: "开始测评", })}
 
     //测评视频集合,v22、v23为眨眼默认视频
-    for (var i = 0; i < videoNum; i++) {
+    for (var i = 0; i < getApp().globalData.videoNum; i++) {
       var indexStr = 'index' + (i)
       if(i<10){
         video_urls[indexStr] = videoCommonUrl + 'v0'+(i)+'.mp4';
@@ -65,7 +67,8 @@ Page({
   playEnd: function () {
     console.log(this.data.videUrl+" 结束，下一个")
     console.log(this.videoPage)
-    if (videoPage >= videoNum-3) {
+    console.log(getApp().globalData.videoNum)
+    if (this.videoPage >= getApp().globalData.videoNum-3) {
       //当前播放的是最后结束视频，回到初始状态
       console.log("已播放至结束视频")
       this.setData({
@@ -439,7 +442,7 @@ Page({
 
     //结束事件
     if(checkCode == 2 || checkCode == 3){
-      this.videoPage=0;
+      //this.videoPage=0;
     }
   },
   //发送语音识别结果给后台
@@ -465,10 +468,17 @@ Page({
         if(res.data.errorCode==200){
           isFinished=true
         }
-        //最后一道题目，发送checkExam(3)给后台
-        if(videoPage==that.videoNum-2){
-          checkExam(3)
+        if(res.data.errorCode==504){
+          if (res.data.nextQuestion>1){
+            that.videoPage = res.data.nextQuestion-1;
+            isFinished = true;
+          }
           
+        }
+        //最后一道题目，发送checkExam(3)给后台
+        if(videoPage==20){
+          console.log("最后一道题目send 3 ");
+          that.checkExam(3)
         }
       }
     })

@@ -43,7 +43,8 @@ App({
     sendResultUrl: headUrl + '/answer/submit/',
     checkOrEndUrl: headUrl + '/answer/query/',
     openid: '',
-    session_key: '' 
+    session_key: '',
+    videoNum:24 
   },
   updateOpenid:function(){
     var that = this;
