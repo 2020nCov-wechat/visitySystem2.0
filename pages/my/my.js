@@ -110,14 +110,25 @@ Page({
         console.log(res.data)
         if (res.data.errorCode == 200) {
           that.setData({
-            chartData: res.data.charData,
+            chart: res.data.data,
             level: res.data.level,
             score: res.data.score,
-            suggestion: res.data.suggestion
+            suggestion: res.data.suggestion,
+            
           })
+         
+          for(var i=0;i<chart.length;i++){
+            chartData.sub[i].data = chart.data;
+            chartData.main.categories[i]=chart.day;
+            chartData.main.data[i] = chart.title;
+            console.log(chartData.main.categories);
+
+          }
+
         }else{
           
         }
+        
       },
     })
 
@@ -220,8 +231,11 @@ Page({
         chartTitle: this.data.chartData.sub[index].title,
         isMainChartDisplay: false
       });
+      console.log(this.data.chartData.sub[index].categories),
       columnChart.updateData({
         categories: this.data.chartData.sub[index].categories,
+        
+
         series: [{
           name: '得分',
           data: this.data.chartData.sub[index].data,
@@ -264,7 +278,7 @@ Page({
       },
       series: [{
         name: '成交量1',
-        data: 11,
+        data: this.data.score,
         stroke: false
       }, {
         name: '成交量2',
@@ -288,6 +302,8 @@ Page({
     }, 500);
 
     console.log(this.data.chartData.main.categories)
+    console.log(this.data.chartData.sub[1].categories)
+   
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
