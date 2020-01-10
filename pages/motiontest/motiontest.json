@@ -4,6 +4,5 @@
     "van-notify": "@vant/weapp/notify/index",
     "bottom-button": "/components/bottom-button/index",
     "van-toast": "@vant/weapp/toast/index"
-    },
-  "disableScroll": true   
+    }
 }

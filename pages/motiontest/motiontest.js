@@ -9,7 +9,7 @@ import { language } from '../../utils/voiceConf.js'
 // 获取**全局唯一**的语音识别管理器**recordRecoManager**
 const manager = plugin.getRecordRecognitionManager()
 
-var videoNum = 7;//测评视频数量
+var videoNum = 24;//测评视频数量
 
 var video_urls = {};  //视频url
 var videoPage;  //当前播放视频index
