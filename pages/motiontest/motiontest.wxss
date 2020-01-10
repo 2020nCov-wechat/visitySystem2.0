@@ -4,24 +4,25 @@
   display: flex;
   background-color: #fff;
   flex-direction: column;
-  margin-top: 10rpx; 
-  padding: 0 30rpx 0 30rpx;
-  justify-content:center;
+  justify-content:center; 
+  padding: 20rpx 75rpx;
+  margin-top: 15rpt;
   height: 100%;
 }
 .video-css{
-  display: flex;
+  /* display: flex; */
   justify-content: center;
 }
 
 video{
-	width: 85%;
-	height: 900rpx;/*调试设置，正式版本应设置为85%*/
+	width: 100%;
+  height: 950rpx
 }
 .test-btn{
   background-color: #1296DB;
   color: #fff;
   align-self:center;
+  justify-content: center;
   margin-top: 10rpx;
 }
 
@@ -30,6 +31,7 @@ video{
   bottom: 0;
   z-index: 40;
 }
+
 .speak-btn-css{
   display: flex;
   justify-content: center;

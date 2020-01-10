@@ -1,5 +1,5 @@
  //app.js
-var headUrl = 'https://followup.aiwac.net'
+var headUrl = 'http://followup.aiwac.net'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -40,6 +40,8 @@ App({
     getUserInfo: headUrl +'/wechat/user/info/',
     insertUpdateInfoUrl: headUrl + '/wechat/user/infoinorup/',
     testResult: headUrl + '/wechat/chart/',
+    sendResultUrl: headUrl + '/answer/submit/',
+    checkOrEndUrl: headUrl + '/answer/query/',
     openid: '',
     session_key: '' 
   },

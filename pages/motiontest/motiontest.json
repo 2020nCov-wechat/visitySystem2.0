@@ -3,7 +3,7 @@
   "usingComponents": {
     "van-notify": "@vant/weapp/notify/index",
     "bottom-button": "/components/bottom-button/index",
-    "van-toast": "@vant/weapp/toast/index"
-    },
-  "disableScroll": true   
+    "van-toast": "@vant/weapp/toast/index",
+    "van-dialog": "@vant/weapp/dialog/index"
+    }
 }

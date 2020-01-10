@@ -1,6 +1,6 @@
 <view class="pageView">
   <view class="video-css">
-     <video id="TestVideo" objectFit="cover" controls="{{false}}" show-fullscreen-btn="{{false}}" enable-progress-gesture="{{false}}" enable-play-gesture="{{true}}" play-btn-position="center" bindended="playEnd" autoplay="{{true}}" src="{{videUrl}}">
+     <video id="TestVideo" objectFit="cover" controls="{{false}}" show-fullscreen-btn="{{false}}" enable-progress-gesture="{{false}}" enable-play-gesture="{{true}}" play-btn-position="center" bindended="playEnd" custom-cache="{{false}}" autoplay="{{true}}" src="{{videUrl}}">
   	</video>
   </view>
   <view class="btn-css">
@@ -19,3 +19,4 @@
 
 <van-toast id="van-toast" />
 <van-notify id="van-notify" />
+<van-dialog id="van-dialog" />
