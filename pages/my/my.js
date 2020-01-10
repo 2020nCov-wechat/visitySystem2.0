@@ -87,8 +87,12 @@ Page({
           }
         })
       }
+      //更新openid
       app.updateOpenid()
-      this.updateChart()
+      var that = this
+      var time = setTimeout(function(){
+        that.updateChart()
+      },1000)
     } 
   },
   //更新chart
@@ -97,6 +101,7 @@ Page({
     var newSession_key = app.globalData.session_key
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
+    console.log("in update chart")
     var that = this
     wx.request({
       //获取openid接口
