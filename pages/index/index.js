@@ -50,5 +50,40 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  clickBtn:function(){
+    this.sendResult("是的，我很开心！",1)
+  },
+  //发送语音识别结果给后台
+  sendResult: function (resultMsg, videoPage) {
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+    console.log(newopenid + ' ' + newSession_key)
+    var that = this
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.sendResultUrl,//gai url
+      data: {
+        openid: newopenid,
+        session_key: newSession_key,
+        question: videoPage,
+        answer: resultMsg
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data)
+        if (res.data.errorCode == 200) {
+          //isFinished = true
+        }
+        // that.setData({
+        //   currentDate: res.data.birthday,
+        //   userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
+        //   sex: res.data.gender,
+        //   tabs: res.data.tabs,
+        // })
+      }
+    })
+  },
 })

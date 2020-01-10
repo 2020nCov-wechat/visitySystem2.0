@@ -4,8 +4,8 @@
   display: flex;
   background-color: #fff;
   flex-direction: column;
-  justify-content:space-between; 
-  padding: 10rpx 75rpx;
+  justify-content:center; 
+  padding: 20rpx 75rpx;
   margin-top: 15rpt;
   height: 100%;
 }

@@ -1,7 +1,8 @@
 //motiontest.js
 const util = require('../../utils/util.js')
 import Notify from '@vant/weapp/notify/notify';
-import Toast from '@vant/weapp/toast/toast';
+import Toast from '@vant/weapp/toast/toast'; 
+import Dialog from '@vant/weapp/dialog/dialog';
 var app = getApp()
 //语音识别相关
 const plugin = requirePlugin("WechatSI")
@@ -17,7 +18,7 @@ var isFinished; // 说话是否结束
 var isDefault; // 当前是否默认视频
 var btn_type; // 按钮类型，1-开始按钮，2-停止按钮
 
-var videoCommonUrl ="http://followup.aiwac.net/animations/";
+var videoCommonUrl = "http://followup.aiwac.net/animations/";
 Page({
   data: {
     tips_language: language[0], // 目前只有中文
@@ -26,12 +27,13 @@ Page({
     currentTranslateVoice: '', // 当前播放语音路径
     bottomButtonDisabled: false, // 底部按钮disabled
     currentTranslate:'',//语音识别结果
+    haveDBResult:false,//用于等待后台返回查询结果题号
   },
 
   onLoad: function () {
 
     this.initRecord()
-    // app.getRecordAuth()
+    //app.getRecordAuth()
 
     video_urls = {};  //视频url
     videoPage = 0;  
@@ -62,6 +64,7 @@ Page({
   // 上一段播放完之后，自动播放下一段视频
   playEnd: function () {
     console.log(this.data.videUrl+" 结束，下一个")
+    console.log(this.videoPage)
     if (videoPage >= videoNum-3) {
       //当前播放的是最后结束视频，回到初始状态
       console.log("已播放至结束视频")
@@ -70,20 +73,27 @@ Page({
         // videUrl: video_urls['index0']
       });
       console.log("播放" + this.data.videUrl);
-      videoPage = 0;
+      this.videoPage = 0;
       isDefault = true;
       isFinished = true;
       btn_type=1;
       this.setData({ btn_txt: "开始测评", });
+
+      //提示用户
+      Toast.success('情绪评测结束！')
+      
     } else {
 
       if (isDefault) {
         //当前是眨眼或者开场视频
+        console.log(isFinished);
         if (btn_type == 2 && isFinished) {
           //说话结束
-          videoPage++;
+          this.videoPage++;
+
+          console.log(this.videoPage)
           isDefault = false;
-          var index = 'index' + videoPage;
+          var index = 'index' + this.videoPage;
           this.setData({
             videUrl: video_urls[index]
           });
@@ -115,39 +125,113 @@ Page({
   
   //按钮控制视频播放/停止
   testStart: function (e) {
+    var that = this
     if(btn_type==1){
-      //开始情绪测评
-      console.log("开始情绪测评");
-      wx.showToast({
-        title: '开始情绪测评',
-        icon: '',
-        image: '',
-        duration: 200,
-        mask: true,
+      //检查上一次情绪评测的结果：
+      //this.checkExam(1)
+      //this.checkExam(1)
+      var newopenid = app.globalData.openid
+      var newSession_key = app.globalData.session_key
+      newSession_key = newSession_key.replace(/ +/g, '%2B')
+      newopenid = newopenid.replace(/ +/g, '%2B')
+      util.requestPromise(
+        app.globalData.checkOrEndUrl,
+        {
+          openid: newopenid,
+          session_key: newSession_key,
+          checkOrEnd: 1
+        },
+        'POST'
+      ).then(res=>{
+        console.log(res.data)
+        if (res.data.errorCode == 200) {
+          if (res.data.nextQuestion == -1) {
+            that.setData({
+              haveDBResult: true,
+            })
+            that.videoPage = 0
+
+          }
+          if (res.data.nextQuestion > 1) {
+
+            that.videoPage = res.data.nextQuestion
+          }
+          if (res.data.nextQuestion == 1) {
+
+            that.videoPage = 0
+          }
+
+          // if (that.videoPage > 1) {
+          //   Dialog.alert({
+          //     title: '温馨提示',
+          //     message: '继续您上一次的回答，请回答第：' + that.videoPage + ' 题'
+          //   }).then(() => {
+          //     // on close
+          //   });
+          // }
+
+          if (this.videoPage > 1) {
+            Dialog.alert({
+              title: '温馨提示',
+              message: '继续您上一次的回答，请回答第：' + this.videoPage + ' 题'
+            }).then(() => {
+              // on close
+            });
+            isDefault = false;
+          }
+          //开始情绪测评
+          console.log("开始情绪测评");
+          // wx.showToast({
+          //   title: '开始情绪测评',
+          //   icon: '',
+          //   image: '',
+          //   duration: 200,
+          //   mask: true,
+          // })
+          this.videoContext.stop();
+          this.setData({
+            videUrl: video_urls['index'+this.videoPage]
+          });
+          this.videoContext.play();
+          console.log("测评开始，播放" + this.data.videUrl);
+          
+          btn_type = 2;
+          this.setData({ btn_txt: "停止测评", }) 
+        }
       })
-      this.videoContext.stop();
-     
-      this.setData({
-        videUrl: video_urls['index'+videoPage]
-      });
-      this.videoContext.play();
-      console.log("测评开始，播放" + this.data.videUrl);
-      btn_type = 2;
-      this.setData({ btn_txt: "停止测评", }) 
+
+
+
+
     }else{
-      //停止测评，恢复初始状态，播放默认视频
-      videoPage = 0;
-      this.videoContext.stop();
-      this.setData({
-        videUrl: video_urls['index22']
-        // videUrl: video_urls['index0']
+      //停止测评，主动停止，
+      Dialog.confirm({
+        title: '退出提示',
+        message: '提前退出评测，之前的回答就不会保存哦！'
+      }).then(() => {
+        // on confirm 确认退出评测
+        console.log("confirm exam exit")
+        //需要发送提前停止信息，让后台删除数据
+        this.checkExam(2)
+        //恢复初始状态，播放默认视频
+        this.videoPage = 0;
+        this.videoContext.stop();
+        this.setData({
+          videUrl: video_urls['index22']
+          // videUrl: video_urls['index0']
+        });
+        this.videoContext.play();
+        console.log("测评停止，播放" + this.data.videUrl);
+        isDefault = true;
+        isFinished = true;
+        btn_type = 1;
+        this.setData({ btn_txt: "开始测评", })
+      }).catch(() => {
+        // on cancel
+        console.log("cancel exam exit")
+        return
       });
-      this.videoContext.play();
-      console.log("测评停止，播放" + this.data.videUrl);
-      isDefault=true;
-      isFinished=true;
-      btn_type = 1;
-      this.setData({ btn_txt: "开始测评", })
+      
     }
   },
   onReady: function () {
@@ -184,8 +268,8 @@ Page({
   * 松开按钮结束语音录制，等待识别结果
   */
   streamRecordEnd: function (e) {
-    // console.log("松开按钮")
-    // console.log(e)
+    console.log("松开按钮")
+    console.log(e)
 
     // console.log("streamRecordEnd" ,e)
     // let detail = e.detail || {}  // 自定义组件触发事件时提供的detail对象
@@ -208,9 +292,11 @@ Page({
   * 绑定语音播放开始事件
   */
   initRecord: function () {
-    
+    console.log("init record")
     //有新的识别内容返回，则会调用此事件
     manager.onRecognize = (res) => {
+      console.log("on reg")
+      console.log(res)
       let currentData = res.result
       this.setData({
         currentTranslate: currentData,
@@ -231,7 +317,8 @@ Page({
         this.showRecordEmptyTip()
         return
       }else{
-        sendResult(res.result, videoPage)
+        //发送识别结果给后台
+        this.sendResult(res.result, this.videoPage)
       }
 
       this.setData({
@@ -293,29 +380,96 @@ Page({
     })
     Toast.fail('请说话');
   },
-  //发送语音识别结果给后台
-  sendResult:function(resultMsg,videoPage){
+  
+  /**
+   * 查询当前测试的状态
+   * 发送参数：
+   *        checkOrEnd:1：查询
+   *                   2：提前结束，非正常结束，删除本次数据
+   *                   3：正常结束，标志位设置为1，评测结束
+   * 返回1-22：正常题目
+   * 返回-1：超时，直接删标志位为0的数据，小程序会从第一题开始发起回答
+   */
+  checkExam:function(checkCode){
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+    var that = this
     wx.request({
       //获取openid接口
-      url: getApp().globalData.getUserInfo,//gai url
+      url: getApp().globalData.checkOrEndUrl,
       data: {
         openid: newopenid,
         session_key: newSession_key,
-        question: videoPage,
-        result: resultMsg
+        checkOrEnd: checkCode
       },
-      method: 'GET',
+      method: 'POST',
       success: function (res) {
-        if(res.data.errorCode==200){
-          isFinished=true
+        console.log(res.data)
+        if (res.data.errorCode == 200) {
+          if(res.data.nextQuestion==-1){
+            that.setData({
+              haveDBResult:true,
+              
+            })
+            that.videoPage=1
+          }
+          if (res.data.nextQuestion >=1) {
+            that.setData({
+              haveDBResult:true,
+              
+            })
+            that.videoPage=res.data.nextQuestion
+          }
+        } else {
+          console.log()
+          that.showResultByNotify('错误码：' + res.data.errorCode)
+          //Toast.fail('错误码：' + res.data.errorCode);
+          //Toast.fail('未识别，请重新回答');
         }
-
         // that.setData({
         //   currentDate: res.data.birthday,
         //   userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
         //   sex: res.data.gender,
         //   tabs: res.data.tabs,
         // })
+      }
+    })
+
+    //结束事件
+    if(checkCode == 2 || checkCode == 3){
+      this.videoPage=0;
+    }
+  },
+  //发送语音识别结果给后台
+  sendResult:function(resultMsg,videoPage){
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+    console.log(resultMsg + ' ' + videoPage)
+    var that = this
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.sendResultUrl,//gai url
+      data: {
+        openid: newopenid,
+        session_key: newSession_key,
+        question: videoPage,
+        answer: resultMsg
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data)
+        if(res.data.errorCode==200){
+          isFinished=true
+        }
+        //最后一道题目，发送checkExam(3)给后台
+        if(videoPage==that.videoNum-2){
+          checkExam(3)
+          
+        }
       }
     })
   },
