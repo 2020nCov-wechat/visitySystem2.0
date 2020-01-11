@@ -110,6 +110,9 @@ Page({
       },1000)
     } 
   },
+  updateChartClick:function(){
+    this.updateChart()
+  },
   //更新chart
   updateChart:function(){
     
@@ -141,6 +144,7 @@ Page({
           for (var i = 0; i < that.data.chart.length; i++) {
             console.log(that.data.chart[i])
             that.data.chartData.sub[i].data = that.data.chart[i].data
+            that.data.chartData.sub[i].title = that.data.chart[i].day
             that.data.chartData.main.categories[i] = that.data.chart[i].day
             that.data.chartData.main.data[i] = that.data.chart[i].title
           }
@@ -160,6 +164,7 @@ Page({
     })
 
   },
+  
   //没用了
   getOpenIdTabFromAPP:function(){
     app.updateOpenid()
@@ -262,11 +267,9 @@ Page({
         chartTitle: this.data.chartData.sub[index].title,
         isMainChartDisplay: false
       });
-      console.log(this.data.chartData.sub[index].categories),
+     // console.log(this.data.chartData.sub[index].categories),
       columnChart.updateData({
         categories: this.data.chartData.sub[index].categories,
-        
-
         series: [{
           name: '得分',
           data: this.data.chartData.sub[index].data,
@@ -298,7 +301,7 @@ Page({
         }
       },
       title: {
-        name: this.data.score,
+        name: this.data.score+'%',
         color: '#7cb5ec',
         fontSize: 25
       },
