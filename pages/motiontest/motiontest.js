@@ -4,13 +4,15 @@ import Notify from '@vant/weapp/notify/notify';
 import Toast from '@vant/weapp/toast/toast'; 
 import Dialog from '@vant/weapp/dialog/dialog';
 var app = getApp()
+//拍照定时器
+var time = null;
 //语音识别相关
 const plugin = requirePlugin("WechatSI")
 import { language } from '../../utils/voiceConf.js'
 // 获取**全局唯一**的语音识别管理器**recordRecoManager**
 const manager = plugin.getRecordRecognitionManager()
 
-var videoNum = 24;//测评视频数量
+// var videoNum = 24;//测评视频数量
 
 var video_urls = {};  //视频url
 var videoPage;  //当前播放视频index
@@ -28,6 +30,7 @@ Page({
     bottomButtonDisabled: false, // 底部按钮disabled
     currentTranslate:'',//语音识别结果
     haveDBResult:false,//用于等待后台返回查询结果题号
+    // videoNum: 24//测评视频数量
   },
 
   onLoad: function () {
@@ -37,13 +40,14 @@ Page({
 
     video_urls = {};  //视频url
     videoPage = 0;  
+    // videoNum = 24
     isFinished = true; // 说话是否结束
     isDefault = true; // 当前是否眨眼或开场视频
     btn_type = 1;//开始按钮
     if (btn_type == 1) { this.setData({ btn_txt: "开始测评", })}
 
     //测评视频集合,v22、v23为眨眼默认视频
-    for (var i = 0; i < videoNum; i++) {
+    for (var i = 0; i < getApp().globalData.videoNum; i++) {
       var indexStr = 'index' + (i)
       if(i<10){
         video_urls[indexStr] = videoCommonUrl + 'v0'+(i)+'.mp4';
@@ -59,12 +63,20 @@ Page({
     });
     console.log("初始状态，播放" + this.data.videUrl);
     
+    //拍照定时
+    if (app.globalData.takePhotoAuto){
+      console.log('显示')
+      //定时器
+      this.setTime();
+    }
   },
 
   // 上一段播放完之后，自动播放下一段视频
   playEnd: function () {
     console.log(this.data.videUrl+" 结束，下一个")
-    if (videoPage >= videoNum-3) {
+    console.log(this.videoPage)
+    console.log(getApp().globalData.videoNum)
+    if (this.videoPage >= getApp().globalData.videoNum-3) {
       //当前播放的是最后结束视频，回到初始状态
       console.log("已播放至结束视频")
       this.setData({
@@ -72,7 +84,7 @@ Page({
         // videUrl: video_urls['index0']
       });
       console.log("播放" + this.data.videUrl);
-      videoPage = 0;
+      this.videoPage = 0;
       isDefault = true;
       isFinished = true;
       btn_type=1;
@@ -80,16 +92,19 @@ Page({
 
       //提示用户
       Toast.success('情绪评测结束！')
-      this.checkExam(3)
+      
     } else {
 
       if (isDefault) {
         //当前是眨眼或者开场视频
+        console.log(isFinished);
         if (btn_type == 2 && isFinished) {
           //说话结束
-          videoPage++;
+          this.videoPage++;
+
+          console.log(this.videoPage)
           isDefault = false;
-          var index = 'index' + videoPage;
+          var index = 'index' + this.videoPage;
           this.setData({
             videUrl: video_urls[index]
           });
@@ -121,36 +136,84 @@ Page({
   
   //按钮控制视频播放/停止
   testStart: function (e) {
+    var that = this
     if(btn_type==1){
       //检查上一次情绪评测的结果：
-      this.checkExam(1)
-      
-      if(this.videoPage>1){
-        Dialog.alert({
-          title: '温馨提示',
-          message: '继续您上一次的回答，请回答第：'+videoPage+' 题'
-        }).then(() => {
-          // on close
-        });
-      }
-      //开始情绪测评
-      console.log("开始情绪测评");
-      wx.showToast({
-        title: '开始情绪测评',
-        icon: '',
-        image: '',
-        duration: 200,
-        mask: true,
+      //this.checkExam(1)
+      //this.checkExam(1)
+      var newopenid = app.globalData.openid
+      var newSession_key = app.globalData.session_key
+      newSession_key = newSession_key.replace(/ +/g, '%2B')
+      newopenid = newopenid.replace(/ +/g, '%2B')
+      util.requestPromise(
+        app.globalData.checkOrEndUrl,
+        {
+          openid: newopenid,
+          session_key: newSession_key,
+          checkOrEnd: 1
+        },
+        'POST'
+      ).then(res=>{
+        console.log(res.data)
+        if (res.data.errorCode == 200) {
+          if (res.data.nextQuestion == -1) {
+            that.setData({
+              haveDBResult: true,
+            })
+            that.videoPage = 0
+
+          }
+          if (res.data.nextQuestion > 1) {
+
+            that.videoPage = res.data.nextQuestion
+          }
+          if (res.data.nextQuestion == 1) {
+
+            that.videoPage = 0
+          }
+
+          // if (that.videoPage > 1) {
+          //   Dialog.alert({
+          //     title: '温馨提示',
+          //     message: '继续您上一次的回答，请回答第：' + that.videoPage + ' 题'
+          //   }).then(() => {
+          //     // on close
+          //   });
+          // }
+
+          if (this.videoPage > 1) {
+            Dialog.alert({
+              title: '温馨提示',
+              message: '继续您上一次的回答，请回答第：' + this.videoPage + ' 题'
+            }).then(() => {
+              // on close
+            });
+            isDefault = false;
+          }
+          //开始情绪测评
+          console.log("开始情绪测评");
+          // wx.showToast({
+          //   title: '开始情绪测评',
+          //   icon: '',
+          //   image: '',
+          //   duration: 200,
+          //   mask: true,
+          // })
+          this.videoContext.stop();
+          this.setData({
+            videUrl: video_urls['index'+this.videoPage]
+          });
+          this.videoContext.play();
+          console.log("测评开始，播放" + this.data.videUrl);
+          
+          btn_type = 2;
+          this.setData({ btn_txt: "停止测评", }) 
+        }
       })
-      this.videoContext.stop();
-     
-      this.setData({
-        videUrl: video_urls['index'+videoPage]
-      });
-      this.videoContext.play();
-      console.log("测评开始，播放" + this.data.videUrl);
-      btn_type = 2;
-      this.setData({ btn_txt: "停止测评", }) 
+
+
+
+
     }else{
       //停止测评，主动停止，
       Dialog.confirm({
@@ -162,7 +225,7 @@ Page({
         //需要发送提前停止信息，让后台删除数据
         this.checkExam(2)
         //恢复初始状态，播放默认视频
-        videoPage = 0;
+        this.videoPage = 0;
         this.videoContext.stop();
         this.setData({
           videUrl: video_urls['index22']
@@ -266,7 +329,7 @@ Page({
         return
       }else{
         //发送识别结果给后台
-        this.sendResult(res.result, videoPage)
+        this.sendResult(res.result, this.videoPage)
       }
 
       this.setData({
@@ -335,7 +398,7 @@ Page({
    *        checkOrEnd:1：查询
    *                   2：提前结束，非正常结束，删除本次数据
    *                   3：正常结束，标志位设置为1，评测结束
-   * 返回1-20：正常题目
+   * 返回1-22：正常题目
    * 返回-1：超时，直接删标志位为0的数据，小程序会从第一题开始发起回答
    */
   checkExam:function(checkCode){
@@ -356,21 +419,31 @@ Page({
       success: function (res) {
         console.log(res.data)
         if (res.data.errorCode == 200) {
-          if(res.data.nextAnswer==-1){
+          if(res.data.nextQuestion==-1){
             that.setData({
               haveDBResult:true,
-              videoPage: 1
+              
             })
+            that.videoPage=1
           }
-          if (res.data.nextAnswer >=1) {
+          if (res.data.nextQuestion >=1) {
             that.setData({
               haveDBResult:true,
-              videoPage:res.data.nextAnswer
+              
             })
+            that.videoPage=res.data.nextQuestion
           }
         } else {
           console.log()
           that.showResultByNotify('错误码：' + res.data.errorCode)
+          //登录过期
+          if (res.data.errorCode == 500) {
+            //更新openid
+            getApp().updateOpenid()
+            var time = setTimeout(function () {
+              that.checkExam(checkCode)
+            }, 1000)
+          }
           //Toast.fail('错误码：' + res.data.errorCode);
           //Toast.fail('未识别，请重新回答');
         }
@@ -385,9 +458,7 @@ Page({
 
     //结束事件
     if(checkCode == 2 || checkCode == 3){
-      this.setData({
-        videoPage:1
-      })
+      //this.videoPage=0;
     }
   },
   //发送语音识别结果给后台
@@ -413,15 +484,101 @@ Page({
         if(res.data.errorCode==200){
           isFinished=true
         }
-        // that.setData({
-        //   currentDate: res.data.birthday,
-        //   userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
-        //   sex: res.data.gender,
-        //   tabs: res.data.tabs,
-        // })
+        if(res.data.errorCode==504){
+          if (res.data.nextQuestion>1){
+            that.videoPage = res.data.nextQuestion-1;
+            isFinished = true;
+          }
+          
+        }
+        //登录过期
+        if(res.data.errorCode == 500){
+          //更新openid
+          getApp().updateOpenid()
+          var time = setTimeout(function () {
+            that.sendResult(resultMsg, videoPage)
+          }, 1000)
+        }
+        //最后一道题目，发送checkExam(3)给后台
+        if(videoPage==20){
+          console.log("最后一道题目send 3 ");
+          that.checkExam(3)
+        }
       }
     })
   },
+  //==============================拍照相关========================
+  //定时器拍照
+  setTime: function () {
+    let that = this
+    let ctx = wx.createCameraContext()
+    time = setInterval(function () {
+      console.log('拍照')
+      //拍照
+      ctx.takePhoto({
+        quality: 'high',
+        success: (res) => {
+          console.log(res.tempImagePath)
+          that.setData({
+            src: res.tempImagePath
+          })
+          that.localhostimgesupdata(res.tempImagePath)
+        }
+      })
+    }, getApp().globalData.takePhotoTime) //循环间隔 单位ms
+  },
+  //图片上传
+  localhostimgesupdata: function (imgPath) {
+    console.log('图片上传')
+    
+    wx.uploadFile({
+      url: getApp().globalData.uploadPicVidUrl, //图片上传服务器真实的接口地址
+      filePath: imgPath,
+      name: 'fileName',
+      success: function (res) {
+        console.log(res)
+        if (getApp().globalData.showPicUpload){
+          wx.showToast({
+            title: '图片上传成功',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+        
+      }
+    })
+  },
+  //关闭定时器
+  stoptime: function () {
+    console.log('定时停止')
+    clearInterval(time)
+  },
+  //拍照函数
+  takePhoto: function () {
+    let that = this
+    let ctx = wx.createCameraContext()
+    ctx.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        console.log(res.tempImagePath)
+        that.setData({
+          src: res.tempImagePath
+        })
+        wx.showToast({
+          title: '拍照',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    })
+  },
+  //开启定时器
+  startime: function () {
+    console.log('开启拍照')
+    this.setTime();
+  },
+
+
   //展示通知内容
   showResultByNotify:function(msg){
     Notify({

@@ -54,15 +54,20 @@ function formatTimeTwo(number, format) {
  * @param：{string} myUrl 接口地址
  * @return: Promise实例对象
  */
-const requestPromise = myUrl => {
+const requestPromise = (myUrl, myData, myMethod) => {
   // 返回一个Promise实例对象
   return new Promise((resolve, reject) => {
+    console.log("in promise")
+    console.log(myUrl + ' ' + myData)
     wx.request({
       url: myUrl,
+      data: myData,
+      method: myMethod,
       success: res => resolve(res)
     })
   })
 }
+
 
 module.exports = {
   formatTime: formatTime,

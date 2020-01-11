@@ -5,6 +5,5 @@
     "bottom-button": "/components/bottom-button/index",
     "van-toast": "@vant/weapp/toast/index",
     "van-dialog": "@vant/weapp/dialog/index"
-    },
-  "disableScroll": true   
+    }
 }
