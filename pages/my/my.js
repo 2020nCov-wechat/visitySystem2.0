@@ -4,6 +4,7 @@ var WXBizDataCrypt = require('../../utils/WXBizDataCrypt.js')
 const app = getApp()
 
 var wxCharts = require('../../utils/wxcharts.js');
+var time = require('../../utils/util.js');
 
 var ringChart = null;
 var columnChart = null;
@@ -46,7 +47,20 @@ Page({
         title: '周四记录',
         data: [76, 54, 23, 12, 45, 65],
         categories: ['1', '2', '3', '4', '5', '6']
-      }]
+      }, {
+          title: '周五记录',
+          data: [76, 54, 23, 12, 45, 65],
+          categories: ['1', '2', '3', '4', '5', '6']
+      }, {
+          title: '周六记录',
+          data: [76, 54, 23, 12, 45, 65],
+          categories: ['1', '2', '3', '4', '5', '6']
+      }, {
+          title: '周日记录',
+          data: [76, 54, 23, 12, 45, 65],
+          categories: ['1', '2', '3', '4', '5', '6']
+        }
+      ]
     }
 
 
@@ -98,6 +112,7 @@ Page({
   },
   //更新chart
   updateChart:function(){
+    
     var newopenid = app.globalData.openid
     var newSession_key = app.globalData.session_key
     newSession_key = newSession_key.replace(/ +/g, '%2B')
@@ -116,29 +131,29 @@ Page({
         if (res.data.errorCode == 200) {
           that.setData({
             chart: res.data.data,
-            //level: res.data.level,
+            level: res.data.level,
             score: res.data.score,
             suggestion: res.data.suggestion,
             
           })
           that.updateAllChart()
-          // for(var i=0;i<chart.length;i++){
-          //   chartData.sub[i].data = chart.data;
-          //   chartData.main.categories[i]=chart.day;
-          //   chartData.main.data[i] = chart.title;
-          //   console.log(chartData.main.categories);
-
-          // }
+          console.log(that.data.chart.length)
+          for (var i = 0; i < that.data.chart.length; i++) {
+            console.log(that.data.chart[i])
+            that.data.chartData.sub[i].data = that.data.chart[i].data
+            that.data.chartData.main.categories[i] = that.data.chart[i].day
+            that.data.chartData.main.data[i] = that.data.chart[i].title
+          }
 
         }else{
           //登录过期
-          if(res.data.errCode == 500){
-            //更新openid
-            getApp().updateOpenid()
-            var time = setTimeout(function () {
-              that.updateChart()
-            }, 1000)
-          }
+          // if(res.data.errCode == 500){
+          //   //更新openid
+          //   getApp().updateOpenid()
+          //   var time = setTimeout(function () {
+          //     that.updateChart()
+          //   }, 1000)
+          // }
         }
         
       },
@@ -213,13 +228,13 @@ Page({
   },
   updateData: function () {
     var that = this
-    console.log(that.data.score)
+   // console.log(that.data.score)
     ringChart.updateData({
       title: {
-        name: that.data.score
+        name: that.data.score+'%'
       },
       subtitle: {
-        color: '#ff0000'
+        name: that.data.level
       }
     });
   },

@@ -1,31 +1,31 @@
 <view class='user'>
-   <view class='header bg-color acea-row row-between-wrapper'>
-      <view class='picTxt acea-row row-between-wrapper'>
-          <view class='pictrue'>
-            <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-            <block wx:else>
-              <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-            </block>
-         </view>
-         <view class='text'>
-            <view class='acea-row row-middle'>
-               <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
-               <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
-               <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
-            </view>
-            <!-- <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
-            <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view> -->
-         </view>
+  <view class='header bg-color acea-row row-between-wrapper'>
+    <view class='picTxt acea-row row-between-wrapper'>
+      <view class='pictrue'>
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <block wx:else>
+          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        </block>
       </view>
-      <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
-   </view>
-   <view class='wrapper'>
-      <view class='nav acea-row row-middle'>
-         <view class='item' data-url='/pages/user_money/index' bindtap='goPages'>
-            <view>测试卡牌</view>
-            <view class='num'>{{userInfo.now_money || 0}}</view>
-         </view>
-         <!-- <view class='item' wx:if="{{userInfo.is_promoter || userInfo.statu==2}}" data-url='/pages/user_spread_user/index' bindtap='goPages'>
+      <view class='text'>
+        <view class='acea-row row-middle'>
+          <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
+          <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
+            <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
+        </view>
+        <!-- <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
+            <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view> -->
+      </view>
+    </view>
+    <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
+  </view>
+  <view class='wrapper'>
+    <view class='nav acea-row row-middle'>
+      <view class='item' data-url='/pages/user_money/index' bindtap='goPages'>
+        <view>测试卡牌</view>
+        <view class='num'>{{userInfo.now_money || 0}}</view>
+      </view>
+      <!-- <view class='item' wx:if="{{userInfo.is_promoter || userInfo.statu==2}}" data-url='/pages/user_spread_user/index' bindtap='goPages'>
             <view>当前佣金</view>
             <view class='num'>{{userInfo.brokerage_price || 0}}</view>
          </view>
@@ -33,226 +33,247 @@
             <view>当前积分</view>
             <view class='num'>{{userInfo.integral || 0}}</view>
          </view> -->
-         <view class='item' data-url='/pages/user_coupon/index' bindtap='goPages'>
-            <view bindtap="getOpenIdTabFromAPP">更新openid</view>
-            <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
-         </view>
+      <view class='item' data-url='/pages/user_coupon/index' bindtap='goPages'>
+        <view bindtap="getOpenIdTabFromAPP">更新openid</view>
+        <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
       </view>
-      <view class='myOrder'>
-        <view class='title acea-row row-between-wrapper'>
-           <view>我的服务</view>
-           <view class='allOrder' data-url='/pages/order_list/index' bindtap='goPages'>更多<text class='iconfont icon-jiantou'></text></view>
-        </view>
-        <!-- 第一排 -->
-        <view class='orderState acea-row row-middle'>
-           <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
-              <view class='pictrue'>
-                <image src='/imgs/my/health_data.png'></image>
-                <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
-              </view>
-              <view>健康数据</view>
-           </view>
-            <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
-              <view class='pictrue'>
-                <image src='/imgs/my/hospital.png'></image>
-                <text class="order-status-num" wx:if="{{orderStatusNum.unshipped_count > 0}}">{{ orderStatusNum.unshipped_count }}</text>
-              </view>
-              <view>药物购买</view>
-           </view>
-            <view class='item' data-url='/pages/order_list/index?status=2' bindtap='goPages'>
-              <view class='pictrue'>
-              <image src='/imgs/my/doctor.png'></image>
-              <text class="order-status-num" wx:if="{{orderStatusNum.received_count > 0}}">{{ orderStatusNum.received_count }}</text>
-              </view>
-              <view>医生预约</view>
-           </view>
-            <view class='item' data-url='/pages/order_list/index?status=3' bindtap='goPages'>
-              <view class='pictrue'>
-              <image src='/imgs/my/account.png'></image>
-              <text class="order-status-num" wx:if="{{orderStatusNum.evaluated_count > 0}}">{{ orderStatusNum.evaluated_count }}</text>
-              </view>
-              <view>账户余额</view>
-           </view>
-           
-        </view>
-        
-        <!-- 第二排 -->
-         <view class='orderState acea-row row-middle'>
-           <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
-              <view class='pictrue'>
-                <image src='/imgs/my/question.png'></image>
-                <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
-              </view>
-              <view>我的问答</view>
-           </view>
-            <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
-              <view class='pictrue'>
-                <image src='/imgs/my/look.png'></image>
-                <text class="order-status-num" wx:if="{{orderStatusNum.unshipped_count > 0}}">{{ orderStatusNum.unshipped_count }}</text>
-              </view>
-              <view>最近浏览</view>
-           </view>
-            <view class='item' data-url='/pages/order_list/index?status=2' bindtap='goPages'>
-              <view class='pictrue'>
-              <image src='/imgs/my/chart.png'></image>
-              <text class="order-status-num" wx:if="{{orderStatusNum.received_count > 0}}">{{ orderStatusNum.received_count }}</text>
-              </view>
-              <view>已购课程</view>
-           </view>
-            <view class='item' bindtap='goMyInfo'>
-              <view class='pictrue'>
-              <image src='/imgs/my/many.png'></image>
-              <text class="order-status-num" wx:if="{{orderStatusNum.evaluated_count > 0}}">{{ orderStatusNum.evaluated_count }}</text>
-              </view>
-              <view>个人信息</view>
-           </view>
-           
+    </view>
+    <view class='myOrder'>
+      <view class='title acea-row row-between-wrapper'>
+        <view>我的服务</view>
+        <view class='allOrder' data-url='/pages/order_list/index' bindtap='goPages'>更多
+          <text class='iconfont icon-jiantou'></text>
         </view>
       </view>
-      <view class='myService'>
-         <view class='title acea-row row-middle'>综合评价</view>
-         <view class='serviceList acea-row row-middle'>
-            
+      <!-- 第一排 -->
+      <view class='orderState acea-row row-middle'>
+        <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/health_data.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
+          </view>
+          <view>健康数据</view>
+        </view>
+        <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/hospital.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.unshipped_count > 0}}">{{ orderStatusNum.unshipped_count }}</text>
+          </view>
+          <view>药物购买</view>
+        </view>
+        <view class='item' data-url='/pages/order_list/index?status=2' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/doctor.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.received_count > 0}}">{{ orderStatusNum.received_count }}</text>
+          </view>
+          <view>医生预约</view>
+        </view>
+        <view class='item' data-url='/pages/order_list/index?status=3' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/account.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.evaluated_count > 0}}">{{ orderStatusNum.evaluated_count }}</text>
+          </view>
+          <view>账户余额</view>
+        </view>
 
-            <view class="ringcontainer">
-               <canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
-              <view>评估建议：</view>
-              <!-- <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button> -->
-            </view>
-
-         </view>
       </view>
-      <view class='myService'>
-         <view class='title acea-row row-middle'>指标分析</view>
-         <view class='serviceList acea-row row-middle'>
 
-            <view class="progress ">
-            <view >无兴趣感</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-             <view class="progress">
-            <view>心情沮丧</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-            <view class="progress">
-            <view>睡眠不佳</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-            <view class="progress">
-            <view>易疲倦</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-            <view class="progress">
-            <view>食欲不振</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-            <view class="progress">
-            <view>无价值感</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-            <view class="progress">
-            <view>不易专注</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-            <view class="progress">
-            <view>动作异常</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-            <view class="progress">
-            <view>自杀倾向</view>
-            <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" 
-             stroke-width='10' bindtap="progress" show-info active >
-            </progress>
-            </view>
-          
-           
+      <!-- 第二排 -->
+      <view class='orderState acea-row row-middle'>
+        <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/question.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
+          </view>
+          <view>我的问答</view>
+        </view>
+        <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/look.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.unshipped_count > 0}}">{{ orderStatusNum.unshipped_count }}</text>
+          </view>
+          <view>最近浏览</view>
+        </view>
+        <view class='item' data-url='/pages/order_list/index?status=2' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/chart.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.received_count > 0}}">{{ orderStatusNum.received_count }}</text>
+          </view>
+          <view>已购课程</view>
+        </view>
+        <view class='item' bindtap='goMyInfo'>
+          <view class='pictrue'>
+            <image src='/imgs/my/many.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.evaluated_count > 0}}">{{ orderStatusNum.evaluated_count }}</text>
+          </view>
+          <view>个人信息</view>
+        </view>
 
-         </view>
       </view>
-      <view class='myOrder'>
+    </view>
+    <view class='myService'>
+      <view class='title acea-row row-middle'>综合评价</view>
+      <view class='serviceList acea-row row-middle'>
+
+
         <view class="ringcontainer">
-              <view class="title">
-                <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
-                  {{chartTitle}}
-              </view>
-              <view class="canvas-css">
-                <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
-              </view>
-              <view class="canvas-text-css">点击数据每一项查看详情</view>
+          <canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+         
+          <!-- <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button> -->
+        </view>
+        <view>评估建议：</view>
+        <view suggestion="{{suggestion}}" class='acea-row'>{{suggestion}}</view>
+
+      </view>
+    </view>
+    <!-- <view class='myService'>
+      <view class='title acea-row row-middle'>指标分析</view>
+      <view class='serviceList acea-row row-middle'>
+
+        <view class="progress ">
+          <view>无兴趣感</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+        <view class="progress">
+          <view>心情沮丧</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+        <view class="progress">
+          <view>睡眠不佳</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+        <view class="progress">
+          <view>易疲倦</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+        <view class="progress">
+          <view>食欲不振</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+        <view class="progress">
+          <view>无价值感</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+        <view class="progress">
+          <view>不易专注</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+        <view class="progress">
+          <view>动作异常</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+        <view class="progress">
+          <view>自杀倾向</view>
+          <progress percent="{{percent}}" backgroundColor="#EAEAEA" activeColor="#7cb5ec" duration="30" stroke-width='10' bindtap="progress" show-info active>
+          </progress>
+        </view>
+
+
+
+      </view>
+    </view> -->
+    <view class='myOrder'>
+      <view class="ringcontainer">
+        <view class="title">
+          <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
+          {{chartTitle}}
+        </view>
+        <view class="canvas-css">
+          <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
+        </view>
+        <view class="canvas-text-css">点击数据每一项查看详情</view>
+      </view>
+    </view>
+
+    <!-- <view class='myOrder'>
+      <view class='title acea-row row-between-wrapper'>
+        <view>周一</view>
+        <view class='allOrder'>11月25日
+          <text class='iconfont icon-jiantou'></text>
         </view>
       </view>
+      <view class='State acea-row row-left msg-css'>
+        <view class='item acea-row row-center' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/happy.png'></image>
+          </view>
+          <view class='item acea-row row-center'>综合得分：2 </view>
+          <view class='item acea-row row-center'>无抑郁</view>
+          <view class='item acea-row row-right'>晚上21:15 </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="myOrder">
+      <view class='title acea-row row-between-wrapper'>
+        <view>周二</view>
+        <view class='allOrder'>11月26日
+          <text class='iconfont icon-jiantou'></text>
+        </view>
+      </view>
+      <view class='State acea-row row-left msg-css '>
+        <view class='item acea-row row-left' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/sad.png'></image>
+          </view>
+          <view class='item acea-row row-center'>综合得分：15 </view>
+          <view class='item acea-row row-center'>中度抑郁</view>
+          <view class='item acea-row row-right'>晚上21:15 </view>
+        </view>
+      </view>
+
+
+    </view>
+    <view class="myOrder">
+      <view class='title acea-row row-between-wrapper'>
+        <view>周五</view>
+        <view class='allOrder'>11月26日
+          <text class='iconfont icon-jiantou'></text>
+        </view>
+      </view>
+      <view class='State acea-row row-left msg-css'>
+        <view class='item acea-row row-left' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/normal.png'></image>
+          </view>
+          <view class='item acea-row row-center'>综合得分：5 </view>
+          <view class='item acea-row row-center'>轻度抑郁</view>
+          <view class='item acea-row row-right'>晚上21:15 </view>
+        </view>
+      </view>
+    </view> -->
+
+    <view class="myOrder" wx:for="{{chart}}" wx:key="idx">
+    <view class='title acea-row row-between-wrapper'>
+     <wxs module="filter" src="../../utils/filter.wxs"></wxs>
+      <view>{{item.day}}</view>
+      <view class='allOrder'>{{filter.formatDate(item.time)}}
+        <text class='iconfont icon-jiantou'></text>
+      </view>
+    </view>
+    <view class='State acea-row row-left msg-css'>
+      <view class='item acea-row row-left'>
+        <view class='pictrue'>
+          <image src='/imgs/my/normal.png'></image>
+        </view>
+        <view class='item acea-row row-center'>综合得分：{{item.title}}</view>
+        <view class='item acea-row row-center'>轻度抑郁</view>
        
-      <view class='myOrder'>
-        <view class='title acea-row row-between-wrapper'>
-           <view>周一</view>
-           <view class='allOrder' >11月25日<text class='iconfont icon-jiantou'></text></view>
-        </view>
-        <view class='State acea-row row-left msg-css'>
-           <view class='item acea-row row-center' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
-              <view class='pictrue'>
-                <image src='/imgs/my/happy.png'></image>
-              </view>
-              <view class='item acea-row row-center'>综合得分：2 </view>
-              <view class='item acea-row row-center'>无抑郁</view>
-              <view class='item acea-row row-right'>晚上21:15 </view>
-           </view>
-           </view>
-      
-   </view>
-    <view class="myOrder">
-      <view class='title acea-row row-between-wrapper'>
-           <view>周二</view>
-           <view class='allOrder' >11月26日<text class='iconfont icon-jiantou'></text></view>
-        </view>
-        <view class='State acea-row row-left msg-css '>
-           <view class='item acea-row row-left' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
-              <view class='pictrue'>
-                <image src='/imgs/my/sad.png'></image>
-              </view>
-              <view class='item acea-row row-center'>综合得分：15 </view>
-              <view class='item acea-row row-center'>中度抑郁</view>
-              <view class='item acea-row row-right'>晚上21:15 </view>
-           </view>
-           </view>
-        
-
+        <view class='item acea-row row-right' >{{filter.formatTime(item.time)}}</view>
+      </view>
     </view>
-    <view class="myOrder">
-      <view class='title acea-row row-between-wrapper'>
-           <view>周五</view>
-           <view class='allOrder' >11月26日<text class='iconfont icon-jiantou'></text></view>
-        </view>
-        <view class='State acea-row row-left msg-css'>
-           <view class='item acea-row row-left' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
-              <view class='pictrue'>
-                <image src='/imgs/my/normal.png'></image>
-              </view>
-              <view class='item acea-row row-center'>综合得分：5 </view>
-              <view class='item acea-row row-center'>轻度抑郁</view>
-              <view class='item acea-row row-right'>晚上21:15 </view>
-           </view>
-           </view>
-        </view>
-    </view>
-    
-        
+  </view>
 
+
+  </view>
 
 
 </view>
