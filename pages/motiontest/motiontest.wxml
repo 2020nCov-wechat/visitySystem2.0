@@ -1,7 +1,12 @@
 <view class="page-body">
   <view class="page-body-wrapper">
+<!--     拍照V1 --弃用
     <camera device-position="front" flash="off" binderror="error" class="camera" bindstop='bindstop' binderror='binderror'>
       <cover-view class='border_writh'></cover-view>
+    </camera> -->
+    <camera device-position="front" flash="off" binderror="error"
+      style="width: 1rpx; height: 1rpx;">
+      <cover-view></cover-view>
     </camera>
   </view>
 </view>

@@ -4,8 +4,11 @@ import Notify from '@vant/weapp/notify/notify';
 import Toast from '@vant/weapp/toast/toast'; 
 import Dialog from '@vant/weapp/dialog/dialog';
 var app = getApp()
+var ctx //摄像头
 //拍照定时器
 var time = null;
+var timeVideoStart = null;//定时开启拍摄
+var timeVideoStop = null;//定时开启结束拍摄并上传
 //语音识别相关
 const plugin = requirePlugin("WechatSI")
 import { language } from '../../utils/voiceConf.js'
@@ -37,6 +40,7 @@ Page({
 
     this.initRecord()
     //app.getRecordAuth()
+    ctx = wx.createCameraContext()
 
     video_urls = {};  //视频url
     videoPage = 0;  
@@ -507,7 +511,9 @@ Page({
       }
     })
   },
-  //==============================拍照相关========================
+
+  //弃用
+  //==============================拍照v1========================
   //定时器拍照
   setTime: function () {
     let that = this
@@ -577,6 +583,70 @@ Page({
     console.log('开启拍照')
     this.setTime();
   },
+  //==============================拍照v1========================
+
+  //==============================视频拍摄========================
+  //拍照
+  takePhotoV2() {
+    this.ctx.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        this.setData({
+          picInVSrc: res.tempImagePath
+        })
+      }
+    })
+  },
+  //开启视频录制
+  startRecordV2() {
+    this.ctx.startRecord({
+      success: (res) => {
+        console.log('startRecord')
+      }
+    })
+  },
+  //停止录制视频，获得视频路径
+  stopRecordV2() {
+    this.ctx.stopRecord({
+      success: (res) => {
+        this.setData({
+          picInVSrc: res.tempThumbPath,//视频封面
+          videoInVSrc: res.tempVideoPath
+        })
+      }
+    })
+  },
+  error(e) {
+    console.log(e.detail)
+  },
+  //视频上传
+  uploadVideo: function (videoPath) {
+    console.log('上传')
+    wx.uploadFile({
+      url: getApp().globalData.uploadPicVidUrl, //图片上传服务器真实的接口地址
+      filePath: videoPath,
+      name: 'video',
+      success: function (res) {
+        console.log(res)
+        wx.showToast({
+          title: '视频上传成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    })
+  },
+  // //定时器摄像
+  // setTimeVIdeo: function () {
+  //   let that = this
+  //   timeVideoStart = setInterval(function () {
+  //     console.log('开始拍摄')
+  //     //拍照
+  //     that.startRecordV2()
+      
+  //   }, getApp().globalData.takePhotoTime) //循环间隔 单位ms
+  // },
+  //==============================视频拍摄========================
 
 
   //展示通知内容

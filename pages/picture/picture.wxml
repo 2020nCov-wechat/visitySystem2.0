@@ -17,6 +17,9 @@
   </view>
   <view class="btn-area">
     <view class="btn" >
+      <van-button type="primary" bindtap="takeVideo">拍摄视频</van-button>
+    </view>
+    <view class="btn" >
       <van-button type="primary" bindtap="stoptime">停止拍照</van-button>
     </view>
     <view class="btn" >

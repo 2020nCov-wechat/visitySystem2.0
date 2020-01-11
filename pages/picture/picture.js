@@ -1,5 +1,6 @@
 // pages/picture/picture.js
 var app = getApp()
+var utils = require("../../utils/util.js")
 var time = null;
 Page({
 
@@ -92,6 +93,24 @@ Page({
       }
     })
   },
+  takeVideo:function(){
+    utils.chooseVideo()
+      .then(d => {
+        console.log(d);
+        let { tempFilePath, thumbTempFilePath, size } = d;
+        this.setData({
+          // tempThumbPath: thumbTempFilePath,
+          tempVideoPath: tempFilePath,
+        });
+        //return wechat.uploadFile("https://xx.xxxxxx.cn/api/upload", tempFilePath, "tempVideoPath");
+      })
+      .then(d => {
+        console.log(d);
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  },
   startime:function(){
     console.log('开启拍照')
     this.setTime();
@@ -108,7 +127,7 @@ Page({
   onShow: function() {
     console.log('显示')
     //定时器
-    this.setTime();
+    //this.setTime();
   },
   /**
   * 生命周期函数--监听页面隐藏
