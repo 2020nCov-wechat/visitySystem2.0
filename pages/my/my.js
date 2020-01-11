@@ -4,6 +4,7 @@ var WXBizDataCrypt = require('../../utils/WXBizDataCrypt.js')
 const app = getApp()
 
 var wxCharts = require('../../utils/wxcharts.js');
+var time = require('../../utils/util.js');
 
 var ringChart = null;
 var columnChart = null;
@@ -21,8 +22,9 @@ Page({
     percent: 30,//进度条
     isMainChartDisplay: true,
     level:'无抑郁',
-    score:'11',
+    score:11,
     suggestion:'早睡早起',
+    chart:null,
     chartData : {
       main: {
         title: '综合得分',
@@ -45,7 +47,20 @@ Page({
         title: '周四记录',
         data: [76, 54, 23, 12, 45, 65],
         categories: ['1', '2', '3', '4', '5', '6']
-      }]
+      }, {
+          title: '周五记录',
+          data: [76, 54, 23, 12, 45, 65],
+          categories: ['1', '2', '3', '4', '5', '6']
+      }, {
+          title: '周六记录',
+          data: [76, 54, 23, 12, 45, 65],
+          categories: ['1', '2', '3', '4', '5', '6']
+      }, {
+          title: '周日记录',
+          data: [76, 54, 23, 12, 45, 65],
+          categories: ['1', '2', '3', '4', '5', '6']
+        }
+      ]
     }
 
 
@@ -97,11 +112,11 @@ Page({
   },
   //更新chart
   updateChart:function(){
+    
     var newopenid = app.globalData.openid
     var newSession_key = app.globalData.session_key
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
-    console.log("in update chart")
     var that = this
     wx.request({
       //获取openid接口
@@ -121,13 +136,13 @@ Page({
             suggestion: res.data.suggestion,
             
           })
-         
-          for(var i=0;i<chart.length;i++){
-            chartData.sub[i].data = chart.data;
-            chartData.main.categories[i]=chart.day;
-            chartData.main.data[i] = chart.title;
-            console.log(chartData.main.categories);
-
+          that.updateAllChart()
+          console.log(that.data.chart.length)
+          for (var i = 0; i < that.data.chart.length; i++) {
+            console.log(that.data.chart[i])
+            that.data.chartData.sub[i].data = that.data.chart[i].data
+            that.data.chartData.main.categories[i] = that.data.chart[i].day
+            that.data.chartData.main.data[i] = that.data.chart[i].title
           }
 
         }else{
@@ -205,18 +220,22 @@ Page({
      url: "../myinfor/myinfor",
     })
   },
-
+  updateAllChart(){
+    this.updateData()
+  },
 //环形图
   touchHandler: function (e) {
     console.log(ringChart.getCurrentDataIndex(e));
   },
   updateData: function () {
+    var that = this
+   // console.log(that.data.score)
     ringChart.updateData({
       title: {
-        name: this.data.score
+        name: that.data.score+'%'
       },
       subtitle: {
-        color: '#ff0000'
+        name: that.data.level
       }
     });
   },
@@ -290,12 +309,12 @@ Page({
         fontSize: 15
       },
       series: [{
-        name: '成交量1',
+        name: '得分',
         data: this.data.score,
         stroke: false
       }, {
         name: '成交量2',
-        data: 89,
+          data: 100-this.data.score,
         stroke: false,
           color:'#EAEAEA'
       }],

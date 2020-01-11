@@ -7,7 +7,7 @@
   justify-content:center; 
   padding: 20rpx 75rpx;
   margin-top: 15rpt;
-  height: 100vh;
+  height: 100%;
 }
 .video-css{
   /* display: flex; */
@@ -16,7 +16,7 @@
 
 video{
 	width: 100%;
-  height: 75vh
+  height: 950rpx
 }
 .test-btn{
   background-color: #1296DB;
