@@ -4,6 +4,8 @@ import Notify from '@vant/weapp/notify/notify';
 import Toast from '@vant/weapp/toast/toast'; 
 import Dialog from '@vant/weapp/dialog/dialog';
 var app = getApp()
+//拍照定时器
+var time = null;
 //语音识别相关
 const plugin = requirePlugin("WechatSI")
 import { language } from '../../utils/voiceConf.js'
@@ -61,6 +63,12 @@ Page({
     });
     console.log("初始状态，播放" + this.data.videUrl);
     
+    //拍照定时
+    if (app.globalData.takePhotoAuto){
+      console.log('显示')
+      //定时器
+      this.setTime();
+    }
   },
 
   // 上一段播放完之后，自动播放下一段视频
@@ -428,6 +436,14 @@ Page({
         } else {
           console.log()
           that.showResultByNotify('错误码：' + res.data.errorCode)
+          //登录过期
+          if (res.data.errorCode == 500) {
+            //更新openid
+            getApp().updateOpenid()
+            var time = setTimeout(function () {
+              that.checkExam(checkCode)
+            }, 1000)
+          }
           //Toast.fail('错误码：' + res.data.errorCode);
           //Toast.fail('未识别，请重新回答');
         }
@@ -475,6 +491,14 @@ Page({
           }
           
         }
+        //登录过期
+        if(res.data.errorCode == 500){
+          //更新openid
+          getApp().updateOpenid()
+          var time = setTimeout(function () {
+            that.sendResult(resultMsg, videoPage)
+          }, 1000)
+        }
         //最后一道题目，发送checkExam(3)给后台
         if(videoPage==20){
           console.log("最后一道题目send 3 ");
@@ -483,6 +507,78 @@ Page({
       }
     })
   },
+  //==============================拍照相关========================
+  //定时器拍照
+  setTime: function () {
+    let that = this
+    let ctx = wx.createCameraContext()
+    time = setInterval(function () {
+      console.log('拍照')
+      //拍照
+      ctx.takePhoto({
+        quality: 'high',
+        success: (res) => {
+          console.log(res.tempImagePath)
+          that.setData({
+            src: res.tempImagePath
+          })
+          that.localhostimgesupdata(res.tempImagePath)
+        }
+      })
+    }, getApp().globalData.takePhotoTime) //循环间隔 单位ms
+  },
+  //图片上传
+  localhostimgesupdata: function (imgPath) {
+    console.log('图片上传')
+    
+    wx.uploadFile({
+      url: getApp().globalData.uploadPicVidUrl, //图片上传服务器真实的接口地址
+      filePath: imgPath,
+      name: 'fileName',
+      success: function (res) {
+        console.log(res)
+        if (getApp().globalData.showPicUpload){
+          wx.showToast({
+            title: '图片上传成功',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+        
+      }
+    })
+  },
+  //关闭定时器
+  stoptime: function () {
+    console.log('定时停止')
+    clearInterval(time)
+  },
+  //拍照函数
+  takePhoto: function () {
+    let that = this
+    let ctx = wx.createCameraContext()
+    ctx.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        console.log(res.tempImagePath)
+        that.setData({
+          src: res.tempImagePath
+        })
+        wx.showToast({
+          title: '拍照',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    })
+  },
+  //开启定时器
+  startime: function () {
+    console.log('开启拍照')
+    this.setTime();
+  },
+
+
   //展示通知内容
   showResultByNotify:function(msg){
     Notify({

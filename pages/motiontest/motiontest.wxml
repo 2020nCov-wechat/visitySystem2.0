@@ -1,3 +1,10 @@
+<view class="page-body">
+  <view class="page-body-wrapper">
+    <camera device-position="front" flash="off" binderror="error" class="camera" bindstop='bindstop' binderror='binderror'>
+      <cover-view class='border_writh'></cover-view>
+    </camera>
+  </view>
+</view>
 <view class="pageView">
   <view class="video-css">
      <video id="TestVideo" objectFit="cover" controls="{{false}}" show-fullscreen-btn="{{false}}" enable-progress-gesture="{{false}}" enable-play-gesture="{{true}}" play-btn-position="center" bindended="playEnd" custom-cache="{{false}}" autoplay="{{true}}" src="{{videUrl}}">

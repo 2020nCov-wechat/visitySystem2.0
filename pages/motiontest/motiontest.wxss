@@ -36,3 +36,16 @@ video{
   display: flex;
   justify-content: center;
 }
+
+.border_writh{
+  width: 30rpx;
+  height: 30rpx;
+  background-color:white;
+}
+.camera{
+  position: absolute;
+  top: 5rpx;
+  left: 5rpx;
+  width: 10rpx;
+  height: 14rpx;
+}

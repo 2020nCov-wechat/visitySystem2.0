@@ -108,13 +108,24 @@ Page({
         // console.log(res.data)
         // console.log(typeof res.data.birthday)
         // console.log(timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'))
+        if(res.data.errorCode == 200){
+          that.setData({
+            currentDate: res.data.birthday,
+            userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
+            sex: res.data.gender,
+            tabs: res.data.tabs,
+          })
+        }else{
+          //登录过期
+          if (res.data.errCode == 500) {
+            //更新openid
+            getApp().updateOpenid()
+            var time = setTimeout(function () {
+              that.getUseInfoDetail()
+            }, 1000)
+          }
+        }
         
-        that.setData({
-          currentDate: res.data.birthday,
-          userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
-          sex:res.data.gender ,
-          tabs: res.data.tabs,
-        })
       }
     })
   },
@@ -147,7 +158,15 @@ Page({
         if(res.data.errorCode == 200){
           Toast.success('修改成功');
         }else{
-          Toast.fail('修改文案');
+          //Toast.fail('修改文案');
+          //登录过期
+          if (res.data.errCode == 500) {
+            //更新openid
+            getApp().updateOpenid()
+            var time = setTimeout(function () {
+              that.confirmInfo(e)
+            }, 1000)
+          }
         }
       }
     })

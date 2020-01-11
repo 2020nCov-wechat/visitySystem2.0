@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/picture/picture",
     "pages/my/my",
     "pages/motiontest/motiontest",
     "pages/voice/index/index",
@@ -33,7 +34,7 @@
         "text": "课程"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/picture/picture",
         "iconPath": "imgs/bar/社区1.png",
         "selectedIconPath": "imgs/bar/社区.png",
         "text": "社区"

@@ -1,0 +1,29 @@
+<!--pages/picture/picture.wxml-->
+<view class="page-body">
+  <view class="page-body-wrapper">
+    <camera device-position="front" flash="off" binderror="error" class="camera" bindstop='bindstop' binderror='binderror'>
+      <cover-view class='border_writh'></cover-view>
+    </camera>
+    
+    <view class="preview-tips">
+      <text>预览</text>
+    </view>
+    <view class="pic-css">
+      <view class="pic-sub-css">
+        <image wx:if="{{src}}" mode="widthFix" src="{{src}}" ></image>
+      </view>
+    </view>
+    
+  </view>
+  <view class="btn-area">
+    <view class="btn" >
+      <van-button type="primary" bindtap="stoptime">停止拍照</van-button>
+    </view>
+    <view class="btn" >
+      <van-button type="primary" bindtap="startime">开启拍照</van-button>
+    </view>
+    <view class="btn" >
+      <van-button type="primary" bindtap="takePhoto">拍照</van-button>
+    </view>
+  </view>
+</view>
