@@ -10,7 +10,7 @@
 .border_writh{
   width: 30rpx;
   height: 30rpx;
-  background-color:#1aad19;
+  background-color:white;
 }
 .camera{
   position: absolute;
