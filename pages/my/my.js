@@ -21,8 +21,9 @@ Page({
     percent: 30,//进度条
     isMainChartDisplay: true,
     level:'无抑郁',
-    score:'11',
+    score:11,
     suggestion:'早睡早起',
+    chart:null,
     chartData : {
       main: {
         title: '综合得分',
@@ -116,7 +117,7 @@ Page({
         if (res.data.errorCode == 200) {
           that.setData({
             chart: res.data.data,
-            level: res.data.level,
+            //level: res.data.level,
             score: res.data.score,
             suggestion: res.data.suggestion,
             
@@ -287,7 +288,7 @@ Page({
         stroke: false
       }, {
         name: '成交量2',
-        data: 89,
+          data: 100-this.data.score,
         stroke: false,
           color:'#EAEAEA'
       }],
