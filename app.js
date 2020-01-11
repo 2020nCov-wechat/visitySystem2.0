@@ -33,6 +33,8 @@ App({
         }
       }
     })
+
+    //worker = wx.createWorker('workers/request/index.js') // 文件名指定 worker 的入口文件路径，绝对路径
   },
   globalData: {
     userInfo: null,
@@ -42,7 +44,7 @@ App({
     testResult: headUrl + '/wechat/chart/',
     sendResultUrl: headUrl + '/answer/submit/',
     checkOrEndUrl: headUrl + '/answer/query/',
-    uploadPicVidUrl: headUrl + '/XXX/',
+    uploadPicVidUrl: headUrl + '/upload/',
     openid: '',
     session_key: '' ,
     takePhotoTime:5000,//拍照间隔

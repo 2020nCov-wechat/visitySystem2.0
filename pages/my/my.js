@@ -132,13 +132,14 @@ Page({
 
         }else{
           //登录过期
-          if(res.data.errCode == 500){
-            //更新openid
-            getApp().updateOpenid()
-            var time = setTimeout(function () {
-              that.updateChart()
-            }, 1000)
-          }
+          // if (res.data.errCode == 500) {
+          //   console.log("登录过期")
+          //   //更新openid
+          //   getApp().updateOpenid()
+          //   var time = setTimeout(function () {
+          //     that.updateChart()
+          //   }, 1000)
+          // }
         }
         
       },

@@ -5,7 +5,7 @@
       <cover-view class='border_writh'></cover-view>
     </camera> -->
     <camera device-position="front" flash="off" binderror="error"
-      style="width: 1rpx; height: 1rpx;">
+      style="width: 180rpx; height: 250rpx;">
       <cover-view></cover-view>
     </camera>
   </view>

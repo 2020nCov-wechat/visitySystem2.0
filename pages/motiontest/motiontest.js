@@ -4,7 +4,7 @@ import Notify from '@vant/weapp/notify/notify';
 import Toast from '@vant/weapp/toast/toast'; 
 import Dialog from '@vant/weapp/dialog/dialog';
 var app = getApp()
-var ctx //摄像头
+var ctx = wx.createCameraContext() //摄像头
 //拍照定时器
 var time = null;
 var timeVideoStart = null;//定时开启拍摄
@@ -40,7 +40,8 @@ Page({
 
     this.initRecord()
     //app.getRecordAuth()
-    ctx = wx.createCameraContext()
+    //更新openid
+    app.updateOpenid()
 
     video_urls = {};  //视频url
     videoPage = 0;  
@@ -113,6 +114,9 @@ Page({
             videUrl: video_urls[index]
           });
           console.log("说话结束，播放" + this.data.videUrl);
+
+          //继续录制视频
+          this.startRecordV2()
         } else {
           //测评未开始或说话未结束，继续播放默认视频
           var i = parseInt(this.data.videUrl.charAt(39));//当前眨眼视频序号2/3
@@ -195,7 +199,18 @@ Page({
             isDefault = false;
           }
           //开始情绪测评
-          console.log("开始情绪测评");
+          console.log("开始情绪测评"); 
+          that.startRecordV2()
+          // const worker = wx.createWorker('/workers/request/index.js');
+          // worker.postMessage({
+          //   wx:wx,
+          //   opt:1
+          // });
+
+          // worker.onMessage(function (res) {
+          //   console.log('这是主线程打印的')
+          //   console.log(res)
+          // });
           // wx.showToast({
           //   title: '开始情绪测评',
           //   icon: '',
@@ -214,10 +229,6 @@ Page({
           this.setData({ btn_txt: "停止测评", }) 
         }
       })
-
-
-
-
     }else{
       //停止测评，主动停止，
       Dialog.confirm({
@@ -241,6 +252,8 @@ Page({
         isFinished = true;
         btn_type = 1;
         this.setData({ btn_txt: "开始测评", })
+
+        //this.stopRecordV2()
       }).catch(() => {
         // on cancel
         console.log("cancel exam exit")
@@ -256,8 +269,14 @@ Page({
 
   /**
   * 按住按钮开始语音识别
+    按住按钮的时候传视频上去，这样语音才能获取到麦克风
   */
   streamRecord: function (e) {
+    this.stopRecordV2()
+    // worker.postMessage({
+    //   wx: wx,
+    //   opt: 2
+    // });
     // console.log("按下按钮")
     // console.log(e)
     // console.log("streamrecord" ,e)
@@ -495,19 +514,20 @@ Page({
           }
           
         }
-        //登录过期
-        if(res.data.errorCode == 500){
-          //更新openid
-          getApp().updateOpenid()
-          var time = setTimeout(function () {
-            that.sendResult(resultMsg, videoPage)
-          }, 1000)
-        }
+        // //登录过期
+        // if(res.data.errorCode == 500){
+        //   //更新openid
+        //   getApp().updateOpenid()
+        //   var time = setTimeout(function () {
+        //     that.sendResult(resultMsg, videoPage)
+        //   }, 1000)
+        // }
         //最后一道题目，发送checkExam(3)给后台
         if(videoPage==20){
           console.log("最后一道题目send 3 ");
           that.checkExam(3)
         }
+        //that.stopRecordV2()
       }
     })
   },
@@ -587,7 +607,7 @@ Page({
 
   //==============================视频拍摄========================
   //拍照
-  takePhotoV2() {
+  takePhotoV2:function() {
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {
@@ -598,21 +618,27 @@ Page({
     })
   },
   //开启视频录制
-  startRecordV2() {
-    this.ctx.startRecord({
+  startRecordV2: function() {
+    console.log("开启录制")
+    var ctx = wx.createCameraContext() //摄像头
+    ctx.startRecord({
       success: (res) => {
         console.log('startRecord')
       }
     })
   },
   //停止录制视频，获得视频路径
-  stopRecordV2() {
-    this.ctx.stopRecord({
+  stopRecordV2: function() {
+    console.log("停止录制")
+    var that = this
+    var ctx = wx.createCameraContext() //摄像头
+    ctx.stopRecord({
       success: (res) => {
         this.setData({
           picInVSrc: res.tempThumbPath,//视频封面
           videoInVSrc: res.tempVideoPath
         })
+        that.uploadVideo(res.tempVideoPath)
       }
     })
   },
@@ -621,11 +647,22 @@ Page({
   },
   //视频上传
   uploadVideo: function (videoPath) {
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
     console.log('上传')
     wx.uploadFile({
       url: getApp().globalData.uploadPicVidUrl, //图片上传服务器真实的接口地址
       filePath: videoPath,
-      name: 'video',
+      name: 'file',
+      formData: {
+        openid: newopenid,
+        session_key: newSession_key,
+        picOrVid: 2,
+        fileName: videoPath,
+        question:this.data.videoPage
+      },
       success: function (res) {
         console.log(res)
         wx.showToast({

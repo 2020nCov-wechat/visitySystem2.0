@@ -34,6 +34,8 @@ Page({
     })
   },
   onLoad() {
+    //更新openid
+    getApp().updateOpenid()
   },
   //定时器拍照
   setTime: function () {

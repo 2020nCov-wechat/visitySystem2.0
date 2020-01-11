@@ -117,13 +117,13 @@ Page({
           })
         }else{
           //登录过期
-          if (res.data.errCode == 500) {
-            //更新openid
-            getApp().updateOpenid()
-            var time = setTimeout(function () {
-              that.getUseInfoDetail()
-            }, 1000)
-          }
+          // if (res.data.errCode == 500) {
+          //   //更新openid
+          //   getApp().updateOpenid()
+          //   var time = setTimeout(function () {
+          //     that.getUseInfoDetail()
+          //   }, 1000)
+          // }
         }
         
       }
@@ -149,7 +149,8 @@ Page({
         sessionkey: newSession_key,
         gender: that.data.sex,
         birthday:that.data.currentDate,
-        tabs:that.data.tabs
+        tabs:that.data.tabs,
+        username: that.data.userInfo.vip_name
       },
       method: 'POST',
       success: function (res) {
@@ -160,13 +161,13 @@ Page({
         }else{
           //Toast.fail('修改文案');
           //登录过期
-          if (res.data.errCode == 500) {
-            //更新openid
-            getApp().updateOpenid()
-            var time = setTimeout(function () {
-              that.confirmInfo(e)
-            }, 1000)
-          }
+          // if (res.data.errCode == 500) {
+          //   //更新openid
+          //   getApp().updateOpenid()
+          //   var time = setTimeout(function () {
+          //     that.confirmInfo(e)
+          //   }, 1000)
+          // }
         }
       }
     })
