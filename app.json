@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/picture/picture",
     "pages/my/my",
+    "pages/picture/picture",
     "pages/motiontest/motiontest",
     "pages/voice/index/index",
     "pages/voice/edit/edit",

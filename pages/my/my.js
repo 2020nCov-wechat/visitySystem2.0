@@ -102,7 +102,6 @@ Page({
     var newSession_key = app.globalData.session_key
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
-    console.log("in update chart")
     var that = this
     wx.request({
       //获取openid接口
@@ -122,14 +121,14 @@ Page({
             suggestion: res.data.suggestion,
             
           })
-         
-          for(var i=0;i<chart.length;i++){
-            chartData.sub[i].data = chart.data;
-            chartData.main.categories[i]=chart.day;
-            chartData.main.data[i] = chart.title;
-            console.log(chartData.main.categories);
+          that.updateAllChart()
+          // for(var i=0;i<chart.length;i++){
+          //   chartData.sub[i].data = chart.data;
+          //   chartData.main.categories[i]=chart.day;
+          //   chartData.main.data[i] = chart.title;
+          //   console.log(chartData.main.categories);
 
-          }
+          // }
 
         }else{
           //登录过期
@@ -205,15 +204,19 @@ Page({
      url: "../myinfor/myinfor",
     })
   },
-
+  updateAllChart(){
+    this.updateData()
+  },
 //环形图
   touchHandler: function (e) {
     console.log(ringChart.getCurrentDataIndex(e));
   },
   updateData: function () {
+    var that = this
+    console.log(that.data.score)
     ringChart.updateData({
       title: {
-        name: this.data.score
+        name: that.data.score
       },
       subtitle: {
         color: '#ff0000'
@@ -290,7 +293,7 @@ Page({
         fontSize: 15
       },
       series: [{
-        name: '成交量1',
+        name: '得分',
         data: this.data.score,
         stroke: false
       }, {
