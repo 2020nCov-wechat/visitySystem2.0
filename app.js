@@ -1,5 +1,5 @@
  //app.js
-var headUrl = 'http://followup.aiwac.net'
+var headUrl = 'https://follwup.aiwac.net'
 App({
   onLaunch: function () {
     // 展示本地存储能力

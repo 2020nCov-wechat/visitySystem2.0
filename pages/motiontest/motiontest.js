@@ -23,7 +23,7 @@ var isFinished; // 说话是否结束
 var isDefault; // 当前是否默认视频
 var btn_type; // 按钮类型，1-开始按钮，2-停止按钮
 
-var videoCommonUrl = "http://followup.aiwac.net/animations/";
+var videoCommonUrl = "https://follwup.aiwac.net/animations/";
 Page({
   data: {
     tips_language: language[0], // 目前只有中文
@@ -623,28 +623,28 @@ Page({
   },
   //开启视频录制
   startRecordV2: function() {
-    console.log("开启录制")
-    var ctx = wx.createCameraContext() //摄像头
-    ctx.startRecord({
-      success: (res) => {
-        console.log('startRecord')
-      }
-    })
+    // console.log("开启录制")
+    // var ctx = wx.createCameraContext() //摄像头
+    // ctx.startRecord({
+    //   success: (res) => {
+    //     console.log('startRecord')
+    //   }
+    // })
   },
   //停止录制视频，获得视频路径
   stopRecordV2: function() {
-    console.log("停止录制")
-    var that = this
-    var ctx = wx.createCameraContext() //摄像头
-    ctx.stopRecord({
-      success: (res) => {
-        this.setData({
-          picInVSrc: res.tempThumbPath,//视频封面
-          videoInVSrc: res.tempVideoPath
-        })
-        that.uploadVideo(res.tempVideoPath)
-      }
-    })
+    // console.log("停止录制")
+    // var that = this
+    // var ctx = wx.createCameraContext() //摄像头
+    // ctx.stopRecord({
+    //   success: (res) => {
+    //     this.setData({
+    //       picInVSrc: res.tempThumbPath,//视频封面
+    //       videoInVSrc: res.tempVideoPath
+    //     })
+    //     that.uploadVideo(res.tempVideoPath)
+    //   }
+    // })
   },
   error(e) {
     console.log(e.detail)
@@ -656,6 +656,7 @@ Page({
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
     console.log('上传')
+    var that = this
     wx.uploadFile({
       url: getApp().globalData.uploadPicVidUrl, //图片上传服务器真实的接口地址
       filePath: videoPath,
@@ -665,15 +666,16 @@ Page({
         session_key: newSession_key,
         picOrVid: 2,
         fileName: videoPath,
-        question:this.data.videoPage
+        question:this.videoPage
       },
       success: function (res) {
+        console.log('视频上传成功')
         console.log(res)
-        wx.showToast({
-          title: '视频上传成功',
-          icon: 'success',
-          duration: 2000
-        })
+        // wx.showToast({
+        //   title: '视频上传成功',
+        //   icon: 'success',
+        //   duration: 2000
+        // })
       }
     })
   },
