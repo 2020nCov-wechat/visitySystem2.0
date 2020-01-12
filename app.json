@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/my/my",
+    "pages/community/community",
+    "pages/cources/cources",
 
     "pages/video/video",
     "pages/picture/picture",
@@ -30,13 +32,13 @@
         "text": "情绪测评"
       },
       {
-        "pagePath": "pages/voice/index/index",
+        "pagePath": "pages/cources/cources",
         "iconPath": "imgs/bar/课程.png",
         "selectedIconPath": "imgs/bar/课程1.png",
         "text": "课程"
       },
       {
-        "pagePath": "pages/video/video",
+        "pagePath": "pages/community/community",
         "iconPath": "imgs/bar/社区1.png",
         "selectedIconPath": "imgs/bar/社区.png",
         "text": "社区"

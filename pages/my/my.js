@@ -5,6 +5,7 @@ const app = getApp()
 
 var wxCharts = require('../../utils/wxcharts.js');
 var time = require('../../utils/util.js');
+import Toast from '@vant/weapp/toast/toast';
 
 var ringChart = null;
 var columnChart = null;
@@ -377,5 +378,8 @@ Page({
     that.setData({
       percent: percent
     })
+  },
+  goPages:function(){
+    Toast('暂未开放');
   }
 })
