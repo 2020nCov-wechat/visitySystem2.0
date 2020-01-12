@@ -141,6 +141,7 @@ Page({
       mask: true,
       message: '加载中...'
     });
+
     wx.request({
       //获取openid接口
       url: getApp().globalData.insertUpdateInfoUrl,
@@ -150,7 +151,7 @@ Page({
         gender: that.data.sex,
         birthday:that.data.currentDate,
         tabs:that.data.tabs,
-        username: that.data.userInfo.vip_name
+        username: that.data.userInfo.nickName
       },
       method: 'POST',
       success: function (res) {

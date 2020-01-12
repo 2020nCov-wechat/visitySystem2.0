@@ -41,7 +41,7 @@ Page({
     this.initRecord()
     //app.getRecordAuth()
     //更新openid
-    app.updateOpenid()
+    //app.updateOpenid()
 
     video_urls = {};  //视频url
     videoPage = 0;  
@@ -458,15 +458,15 @@ Page({
           }
         } else {
           console.log()
-          that.showResultByNotify('错误码：' + res.data.errorCode)
+          //that.showResultByNotify('错误码：' + res.data.errorCode)
           //登录过期
-          if (res.data.errorCode == 500) {
-            //更新openid
-            getApp().updateOpenid()
-            var time = setTimeout(function () {
-              that.checkExam(checkCode)
-            }, 1000)
-          }
+          // if (res.data.errorCode == 500) {
+          //   //更新openid
+          //   getApp().updateOpenid()
+          //   var time = setTimeout(function () {
+          //     that.checkExam(checkCode)
+          //   }, 1000)
+          // }
           //Toast.fail('错误码：' + res.data.errorCode);
           //Toast.fail('未识别，请重新回答');
         }
@@ -513,6 +513,9 @@ Page({
             isFinished = true;
           }
           
+        }
+        if (res.data.errorCode == 500) {
+          Toast.fail('我听不清楚，请重新说话哦！');
         }
         // //登录过期
         // if(res.data.errorCode == 500){
@@ -564,11 +567,12 @@ Page({
       success: function (res) {
         console.log(res)
         if (getApp().globalData.showPicUpload){
-          wx.showToast({
-            title: '图片上传成功',
-            icon: 'success',
-            duration: 2000
-          })
+          console.log("上传成功")
+          // wx.showToast({
+          //   title: '图片上传成功',
+          //   icon: 'success',
+          //   duration: 2000
+          // })
         }
         
       }
