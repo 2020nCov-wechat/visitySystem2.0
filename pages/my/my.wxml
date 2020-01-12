@@ -53,7 +53,7 @@
           </view>
           <view>健康数据</view>
         </view>
-        <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
+        <!-- <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/hospital.png'></image>
             <text class="order-status-num" wx:if="{{orderStatusNum.unshipped_count > 0}}">{{ orderStatusNum.unshipped_count }}</text>
@@ -73,12 +73,33 @@
             <text class="order-status-num" wx:if="{{orderStatusNum.evaluated_count > 0}}">{{ orderStatusNum.evaluated_count }}</text>
           </view>
           <view>账户余额</view>
+        </view> -->
+        <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/question.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
+          </view>
+          <view>我的问答</view>
+        </view>
+        <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
+          <view class='pictrue'>
+            <image src='/imgs/my/look.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.unshipped_count > 0}}">{{ orderStatusNum.unshipped_count }}</text>
+          </view>
+          <view>最近浏览</view>
+        </view>
+        <view class='item' bindtap='goMyInfo'>
+          <view class='pictrue'>
+            <image src='/imgs/my/many.png'></image>
+            <text class="order-status-num" wx:if="{{orderStatusNum.evaluated_count > 0}}">{{ orderStatusNum.evaluated_count }}</text>
+          </view>
+          <view>个人信息</view>
         </view>
 
       </view>
 
       <!-- 第二排 -->
-      <view class='orderState acea-row row-middle'>
+      <!-- <view class='orderState acea-row row-middle'>
         <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/question.png'></image>
@@ -108,7 +129,7 @@
           <view>个人信息</view>
         </view>
 
-      </view>
+      </view> -->
     </view>
     <view class='myService'>
       <view class='title acea-row row-middle'>综合评价</view>
@@ -182,22 +203,20 @@
 
       </view>
     </view> -->
-    <view class='myOrder'>
+
+    <!-- 暂时不显示 -->
+    <!-- <view class='myOrder'>
       <view class="ringcontainer">
         <view class="title">
           <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
           {{chartTitle}}
         </view>
-        <!-- <block wx:for="{{chart}}" wx:key="idx">
-        <block wx:if="{{item.time}}"> -->
         <view class="canvas-css">
           <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
         </view>
-        <!-- </block>
-        </block> -->
         <view class="canvas-text-css">点击数据每一项查看详情</view>
       </view>
-    </view>
+    </view> -->
 
     <!-- <view class='myOrder'>
       <view class='title acea-row row-between-wrapper'>
@@ -257,7 +276,9 @@
       </view>
     </view> -->
 
-    <view class="myOrder" wx:for="{{chart}}" wx:key="idx">
+
+    <!-- 暂时不显示 -->
+    <!-- <view class="myOrder" wx:for="{{chart}}" wx:key="idx">
       <block wx:if="{{item.time}}">
         <view class='title acea-row row-between-wrapper'>
           <wxs module="filter" src="../../utils/filter.wxs"></wxs>
@@ -288,7 +309,7 @@
         </view>
       </block>
 
-    </view>
+    </view> -->
 
 
   </view>
