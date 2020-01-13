@@ -54,3 +54,7 @@ video{
   padding-left: 50rpx;
   z-index: 1
 }
+.camera-btn-css{
+  height: 50rpx;
+  width: 50rpx;
+}

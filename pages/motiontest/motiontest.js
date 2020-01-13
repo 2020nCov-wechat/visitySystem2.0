@@ -34,6 +34,7 @@ Page({
     currentTranslate:'',//语音识别结果
     haveDBResult:false,//用于等待后台返回查询结果题号
     // videoNum: 24//测评视频数量
+    cameraShow:"",//摄像头隐藏
   },
 
   onLoad: function () {
@@ -689,6 +690,12 @@ Page({
       
   //   }, getApp().globalData.takePhotoTime) //循环间隔 单位ms
   // },
+  hindCamera:function(){
+    console.log("hind")
+    this.setData({
+      cameraShow:"hide",
+    })
+  },
   //==============================视频拍摄========================
 
 

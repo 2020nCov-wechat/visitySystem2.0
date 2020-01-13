@@ -1,12 +1,11 @@
 {
   "pages": [
     "pages/my/my",
+    "pages/motiontest/motiontest",
     "pages/community/community",
     "pages/cources/cources",
-
     "pages/video/video",
     "pages/picture/picture",
-    "pages/motiontest/motiontest",
     "pages/voice/index/index",
     "pages/voice/edit/edit",
     "pages/myinfor/myinfor",
@@ -31,18 +30,7 @@
         "selectedIconPath": "imgs/bar/测评.png",
         "text": "情绪测评"
       },
-      {
-        "pagePath": "pages/cources/cources",
-        "iconPath": "imgs/bar/课程.png",
-        "selectedIconPath": "imgs/bar/课程1.png",
-        "text": "课程"
-      },
-      {
-        "pagePath": "pages/community/community",
-        "iconPath": "imgs/bar/社区1.png",
-        "selectedIconPath": "imgs/bar/社区.png",
-        "text": "社区"
-      },
+
       {
         "pagePath": "pages/my/my",
         "iconPath": "imgs/bar/我的1.png",
