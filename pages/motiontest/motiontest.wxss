@@ -51,10 +51,19 @@ video{
 }
 .page-body{
   position: absolute;
+  padding-left: 30rpx;
+  z-index: 2
+}
+.page-body-wrapper{
   padding-left: 50rpx;
-  z-index: 1
 }
 .camera-btn-css{
   height: 50rpx;
   width: 50rpx;
+}
+
+.camera-css{
+  position: absolute;
+  padding-left: 30rpx;
+  z-index: 3
 }

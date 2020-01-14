@@ -1,0 +1,13 @@
+<!--pages/cources/cources.wxml-->
+<view class="container">
+  <view class="userinfo">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="/imgs/header.png" mode="cover"></image>
+      <view class="userinfo-nickname">
+        <van-button type="primary" bindtap="clickBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</van-button>
+      </view>
+      <view class="userinfo-nickname">
+         <text>我们需要获取您的头像、微信名，以及摄像头麦克风权限才可以使用哦</text>
+      </view>
+       
+  </view>
+</view>

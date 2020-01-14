@@ -1,9 +1,8 @@
 {
   "pages": [
     "pages/my/my",
+    "pages/auth/auth",
     "pages/motiontest/motiontest",
-    "pages/community/community",
-    "pages/cources/cources",
     "pages/video/video",
     "pages/picture/picture",
     "pages/voice/index/index",
