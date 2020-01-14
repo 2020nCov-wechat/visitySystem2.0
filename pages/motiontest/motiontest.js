@@ -30,7 +30,7 @@ Page({
     recording: false,  // 正在录音
     recordStatus: 0,   // 状态： 0 - 录音中 1- 翻译中 2 - 翻译完成/二次翻译
     currentTranslateVoice: '', // 当前播放语音路径
-    bottomButtonDisabled: false, // 底部按钮disabled
+    bottomButtonDisabled: true, // 底部按钮disabled
     currentTranslate:'',//语音识别结果
     haveDBResult:false,//用于等待后台返回查询结果题号
     // videoNum: 24//测评视频数量
@@ -86,7 +86,8 @@ Page({
       //当前播放的是最后结束视频，回到初始状态
       console.log("已播放至结束视频")
       this.setData({
-        videUrl: video_urls['index22']
+        videUrl: video_urls['index22'],
+        bottomButtonDisabled: true,
         // videUrl: video_urls['index0']
       });
       console.log("播放" + this.data.videUrl);
@@ -94,10 +95,13 @@ Page({
       isDefault = true;
       isFinished = true;
       btn_type=1;
-      this.setData({ btn_txt: "开始测评", });
+      this.setData({ btn_txt: "开始测评", 
+        bottomButtonDisabled: true,});
 
       //提示用户
       Toast.success('情绪评测结束！')
+      //跳转至结果
+      wx.switchTab({ url: "/pages/my/my" });
       
     } else {
 
@@ -112,17 +116,27 @@ Page({
           isDefault = false;
           var index = 'index' + this.videoPage;
           this.setData({
-            videUrl: video_urls[index]
+            videUrl: video_urls[index],
+            bottomButtonDisabled: true,
           });
           console.log("说话结束，播放" + this.data.videUrl);
 
           //继续录制视频
           this.startRecordV2()
         } else {
-          //测评未开始或说话未结束，继续播放默认视频
-          var i = parseInt(this.data.videUrl.charAt(39));//当前眨眼视频序号2/3
+          //测评未开始或说话未结束
+          var i = parseInt(this.data.videUrl.charAt(39));//当前眨眼视频序号 2/3
+          if(btn_type==1){
+            this.setData({
+              bottomButtonDisabled: true,//测评未开始，不可点击说话
+            });
+          }else{
+            this.setData({
+              bottomButtonDisabled: false,
+            });
+          }
           this.setData({
-            videUrl: video_urls['index2'+(5-i)],
+            videUrl: video_urls['index2'+(5-i)], 
             // videUrl: video_urls['index'+(1-i)]
           });
           this.videoContext.play();
@@ -134,7 +148,8 @@ Page({
         isDefault = true;
         isFinished = false;
         this.setData({
-          videUrl: video_urls['index22']
+          videUrl: video_urls['index22'],
+          bottomButtonDisabled: false, 
           // videUrl: video_urls['index0']
         });
         console.log("等待说话，播放" + this.data.videUrl);
@@ -227,7 +242,7 @@ Page({
           console.log("测评开始，播放" + this.data.videUrl);
           
           btn_type = 2;
-          this.setData({ btn_txt: "停止测评", }) 
+          this.setData({ btn_txt: "停止测评",}) 
         }
       })
     }else{
@@ -240,6 +255,8 @@ Page({
         console.log("confirm exam exit")
         //需要发送提前停止信息，让后台删除数据
         this.checkExam(2)
+        //跳转到测评结果页面
+        wx.switchTab({ url: "/pages/my/my" });
         //恢复初始状态，播放默认视频
         this.videoPage = 0;
         this.videoContext.stop();
@@ -252,9 +269,9 @@ Page({
         isDefault = true;
         isFinished = true;
         btn_type = 1;
-        this.setData({ btn_txt: "开始测评", })
-
-        //this.stopRecordV2()
+        this.setData({ btn_txt: "开始测评", 
+          bottomButtonDisabled: true,})
+        this.stopRecordV2()
       }).catch(() => {
         // on cancel
         console.log("cancel exam exit")
