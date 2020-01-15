@@ -256,8 +256,6 @@ Page({
         console.log("confirm exam exit")
         //需要发送提前停止信息，让后台删除数据
         this.checkExam(2)
-        //跳转到测评结果页面
-        wx.switchTab({ url: "/pages/my/my" });
         //恢复初始状态，播放默认视频
         this.videoPage = 0;
         this.videoContext.stop();
