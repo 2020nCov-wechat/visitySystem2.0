@@ -165,3 +165,17 @@ button::after{border:0;}
 .btn-color{
   color: black;
 }
+.result-img-view{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.img-view{
+  display: flex;
+  justify-content: center;
+}
+.result-img{
+  justify-content: center;
+  height: 650rpx;
+  width: 400rpx;
+}

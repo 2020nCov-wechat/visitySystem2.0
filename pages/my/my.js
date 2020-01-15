@@ -25,6 +25,7 @@ Page({
     level:'无抑郁',
     score:11,
     suggestion:'早睡早起',
+    imgPath:'../../imgs/result/noResult.png',
     chart:null,
     chartData : {
       main: {
@@ -62,9 +63,13 @@ Page({
           categories: ['1', '2', '3', '4', '5', '6']
         }
       ]
-    }
-
-
+    },
+    advice:[
+      '状态不错，吃好喝好，继续保持!',
+      '多出去走走，晒晒太阳，听听音乐，约上几个朋友聊聊天!',
+      '尽量不要一个人待着，注意作息规律，身处逆境时需要善待自己哦~',
+      '小艾希望你尽快向医生朋友们寻求一下帮助，他们可以让你更加开心快乐!'
+    ]
   },
  
   //事件处理函数
@@ -137,9 +142,10 @@ Page({
             chart: res.data.data,
             level: res.data.level,
             score: res.data.score,
-            suggestion: res.data.suggestion,
-            
           })
+          //更新建议
+          that.updateSuggession(res.data.level)
+
           that.updateAllChart()
           console.log(that.data.chart.length)
           for (var i = 0; i < that.data.chart.length; i++) {
@@ -166,7 +172,27 @@ Page({
     })
 
   },
-  
+  //更新建议
+  updateSuggession:function(level){
+    console.log("suggession update")
+    var sugges = ''
+    if (level == '无抑郁倾向') {
+      sugges = '状态不错，吃好喝好，继续保持!'
+    }
+    if (level == '轻度抑郁') {
+      sugges = '多出去走走，晒晒太阳，听听音乐，约上几个朋友聊聊天!'
+    }
+    if (level == '中度抑郁') {
+      sugges = '尽量不要一个人待着，注意作息规律，身处逆境时需要善待自己哦~'
+    }
+    if (level == '重度抑郁') {
+      sugges = '小艾希望你尽快向医生朋友们寻求一下帮助，他们可以让你更加开心快乐!'
+    }
+    this.setData({
+      suggestion:sugges,
+      imgPath: '../../imgs/result/haveResult.png'
+    })
+  },
   //没用了
   getOpenIdTabFromAPP:function(){
     app.updateOpenid()
