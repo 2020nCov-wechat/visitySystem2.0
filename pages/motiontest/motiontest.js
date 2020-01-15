@@ -102,7 +102,14 @@ Page({
       //提示用户
       Toast.success('情绪评测结束！')
       //跳转至结果
-      wx.switchTab({ url: "/pages/my/my" });
+      wx.switchTab({
+        url: "/pages/my/my",
+        success() {
+          var page = getCurrentPages().pop();
+          if (page == undefined || page == null) return;
+          page.updateChart();
+        }
+      });
       
     } else {
 
@@ -708,6 +715,7 @@ Page({
   // },
   hindCamera:function(){
     console.log("hind")
+    
     var ctx = wx.createCameraContext(this)
     this.checkAuth()
     this.setData({

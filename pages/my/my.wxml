@@ -306,8 +306,10 @@
             <view class='pictrue' wx:elif="{{item.level=='重度抑郁'}}">
               <image src='/imgs/my/sad.png'></image>
             </view>
-            <!-- <view class='item acea-row row-center'>综合得分：{{item.title}}</view>
-            <view class='item acea-row row-center'>{{item.level}}</view> -->
+            <!-- <view class='item acea-row row-center'>综合得分：{{item.title}}</view> -->
+            
+            <!-- <view class='item acea-row row-center'>{{item.level}}</view> -->
+            <view class='item acea-row row-center'>完成测评</view>
 
             <view class='item acea-row row-right'>{{filter.formatTime(item.time)}}</view>
           </view>
