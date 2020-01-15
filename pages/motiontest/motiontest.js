@@ -34,11 +34,12 @@ Page({
     currentTranslate:'',//语音识别结果
     haveDBResult:false,//用于等待后台返回查询结果题号
     // videoNum: 24//测评视频数量
-    cameraShow:"",//摄像头隐藏
+    a:"",//摄像头隐藏
   },
 
   onLoad: function () {
 
+    this.checkAuth()
     this.initRecord()
     //app.getRecordAuth()
     //更新openid
@@ -707,11 +708,110 @@ Page({
   // },
   hindCamera:function(){
     console.log("hind")
+    var ctx = wx.createCameraContext(this)
+    this.checkAuth()
     this.setData({
       cameraShow:"hide",
     })
   },
   //==============================视频拍摄========================
+
+  //==============================权限========================
+  checkAuth:function(){
+    var that = this
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        if (!res.authSetting['scope.camera']) {     //获取摄像头权限
+          wx.authorize({
+            scope: 'scope.camera',
+            success() {
+              console.log('授权成功')
+            }, 
+            fail() {
+              wx.showModal({
+                title: '提示',
+                content: '请允许小艾使用摄像头，否则无法对您进行准确评测哦~~~同意后，请重启小程序生效',
+                showCancel: false,
+                success(res) {
+                  if (res.confirm) {
+                    console.log('用户点击确定')
+                    wx.openSetting({      //这里的方法是调到一个添加权限的页面，可以自己尝试
+                      success: (res) => {
+                        if (!res.authSetting['scope.camera']) {
+                          wx.authorize({
+                            scope: 'scope.camera',
+                            success() {
+                              console.log('授权成功')
+                              wx.navigateTo({
+                                url: '',
+                              })
+                            }, fail() {
+                              console.log('用户点击取消')
+                            }
+                          })
+                        }
+                      },
+                      fail: function () {
+                        console.log("授权设置摄像头失败");
+                      }
+                    })
+
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            }
+          })
+        }else if (!res.authSetting['scope.record']) {     //获取录音权限
+          wx.authorize({
+            scope: 'scope.record',
+            success() {
+              console.log('授权成功')
+            }, 
+            fail() {
+              wx.showModal({
+                title: '提示',
+                content: '请允许小艾使用麦克风，否则无法对您进行准确评测哦~',
+                showCancel: false,
+                success(res) {
+                  if (res.confirm) {
+                    wx.openSetting({
+                      success: (res) => {
+                        if (!res.authSetting['scope.record']) {
+                          wx.authorize({
+                            scope: 'scope.record',
+                            success() {
+                              console.log('授权成功')
+                            }, fail() {
+                              console.log('用户点击取消')
+                            }
+                          })
+                        }
+                      },
+                      fail: function () {
+                        console.log("授权设置录音失败");
+                      }
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            }
+          })
+        }else{
+          wx.reLaunch({
+            url: 'pages/motiontest/motiontest',
+          })
+        }
+      },
+      fail(res) {
+      }
+    })
+  },
+  //==============================权限========================
 
 
   //展示通知内容

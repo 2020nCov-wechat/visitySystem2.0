@@ -21,7 +21,7 @@
   </view>
   <view class='wrapper'>
     <view class='nav acea-row row-middle'>
-      <view class='item' data-url='/pages/user_money/index' bindtap='goPages'>
+      <view class='item' data-url='/pages/user_money/index'>
         <view bindtap="updateChartClick" class="btn-color">刷新图表</view>
       </view>
       <!-- <view class='item' wx:if="{{userInfo.is_promoter || userInfo.statu==2}}" data-url='/pages/user_spread_user/index' bindtap='goPages'>
@@ -32,7 +32,7 @@
             <view>当前积分</view>
             <view class='num'>{{userInfo.integral || 0}}</view>
          </view> -->
-      <view class='item' data-url='/pages/user_coupon/index' bindtap='goPages'>
+      <view class='item' data-url='/pages/user_coupon/index'>
         <view bindtap="getOpenIdTabFromAPP" class="btn-color">刷新登录状态</view>
         <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
       </view>
