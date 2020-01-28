@@ -37,22 +37,22 @@
         <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
       </view>
     </view>
-    <view class='myOrder'>
+    <!-- <view class='myOrder'>
       <view class='title acea-row row-between-wrapper'>
         <view>我的服务</view>
         <view class='allOrder' data-url='/pages/order_list/index' bindtap='goPages'>
           <text class='iconfont icon-jiantou'>更多</text>
         </view>
-      </view>
+      </view> -->
       <!-- 第一排 -->
-      <view class='orderState acea-row row-middle'>
+      <!-- <view class='orderState acea-row row-middle'>
         <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/health_data.png'></image>
             <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
           </view>
           <view>健康数据</view>
-        </view>
+        </view> -->
         <!-- <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/hospital.png'></image>
@@ -74,7 +74,7 @@
           </view>
           <view>账户余额</view>
         </view> -->
-        <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+        <!-- <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/question.png'></image>
             <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
@@ -96,7 +96,7 @@
           <view>个人信息</view>
         </view>
 
-      </view>
+      </view> -->
 
       <!-- 第二排 -->
       <!-- <view class='orderState acea-row row-middle'>
@@ -130,7 +130,7 @@
         </view>
 
       </view> -->
-    </view>
+    <!-- </view> -->
     <view class='myService'>
       <view class='title acea-row row-middle'>综合评价</view>
       <view class='serviceList acea-row row-middle'>
