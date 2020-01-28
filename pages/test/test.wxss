@@ -1,0 +1,26 @@
+.scroll_box {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 40rpx;
+}
+.scroll-view_x {
+  padding-left:30rpx;
+}
+ 
+.item_list {
+  width: 420rpx;
+  height: auto;
+  margin-right: 15rpx;
+  display: inline-block;
+}
+ 
+.item_list .title {
+  font-size: 26rpx;
+  color: #777;
+  text-indent: 10rpx;
+}
+ 
+.item_book_img {
+  width: 420rpx;
+}

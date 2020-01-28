@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/question/question",
+    "pages/test/test",
     "pages/my/my",
     "pages/auth/auth",
     "pages/motiontest/motiontest",
@@ -24,10 +26,10 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/motiontest/motiontest",
+        "pagePath": "pages/question/question",
         "iconPath": "imgs/bar/测评1.png",
         "selectedIconPath": "imgs/bar/测评.png",
-        "text": "情绪测评"
+        "text": "问卷调查"
       },
 
       {
@@ -49,5 +51,24 @@
       "provider": "wx069ba97219f66d99"
     }
   },
-  "workers":"workers"
+  "workers":"workers",
+
+  "usingComponents": {
+    "van-notify": "@vant/weapp/notify/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-button": "@vant/weapp/button",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "bottom-button": "/components/bottom-button/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index"
+  }
 }

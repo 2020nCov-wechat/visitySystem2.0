@@ -1,0 +1,20 @@
+<view class="scroll_box" >    
+    <scroll-view class="scroll-view_x" scroll-x style="width: 100%;overflow:hidden;">
+      <view class="item_list">
+          <image src="../../imgs/header.png" class="item_book_img" mode="widthFix"></image>
+          <view class='title'>标题1</view>
+      </view>
+      <view class="item_list">
+          <image  src="../../imgs/header.png" class="item_book_img" mode="widthFix"></image>
+          <view class='title'>标题2</view>
+      </view>
+      <view class="item_list">
+          <image src="../../imgs/header.png" class="item_book_img" mode="widthFix"></image>
+          <view class='title'>标题3</view>
+      </view>
+      <view class="item_list">
+          <image  src="../../imgs/header.png"  class="item_book_img" mode="widthFix"></image>
+          <view class='title'>标题4</view>
+      </view>
+    </scroll-view>
+</view>
