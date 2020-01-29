@@ -1,0 +1,75 @@
+<!--pages/myinfor/myinfor.wxml-->
+<view class='user'>
+
+  <view class='header bg-color acea-row row-between-wrapper '>
+    <view class='header-have-arrow'>
+      <view class='arrow'>
+        <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
+      </view>
+      <view class="header-out-style">
+        <view class='picTxt acea-row row-between-wrapper header-display '>
+          <view class='pictrue'>
+            <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+            <block wx:else>
+              <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            </block>
+          </view>
+          <view class='text'>
+            <view class='acea-row row-middle'>
+              <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
+              <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
+                <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
+            </view>
+            <!-- <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
+              <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view> -->
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+
+
+  </view>
+  <view class='wrapper'>
+    <view class='nav acea-row row-middle title-padding'>
+<text>
+尊敬的一线医务工作者：
+</text>
+<text space="ensp">
+    您好，首先感谢您为抗击新型冠状病毒肺炎做出的巨大贡献！
+</text>
+<text space="ensp">
+    病毒无情人有情。您在抗击新型冠状病毒时，我们也在关心着您的心理健康。本次问卷旨在为抗击新型冠状病毒中一线医务工作者提供心理健康评估，并依据结果为您提供个体化心理支持及干预方案，与您携手共度难关！
+</text>
+<text space="ensp">
+    本次调查问卷由武汉大学人民医院精神卫生中心、浙江大学医学院附属第一医院精神卫生中心、西安交通大学第一附属医院精神心理科、北京大学第六医院、华中科技大学计算机学院相关研究团队设计，为匿名问卷，请您按照您的情况如实填写，提交问卷后会有一个初步的报告供参考。您可以在任何时候中止或退出本次问卷调研。
+</text>
+<text space="ensp">
+    谢谢！
+</text>
+    </view>
+      <view class="item_list">
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>您是医护人员吗？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ radio }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">是的</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">不是</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="wrapper btn-css">
+    <van-button type="default" size="small" color="#1296DB" bindtap="confirmInfo">下一页</van-button>
+  </view>
+</view>
+<van-toast id="van-toast" />
