@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/que/doctornear/doctornear",
     "pages/que/doctorinfo/doctorinfo",
     "pages/que/first/first",
-    "pages/que/doctornear/doctornear",
     "pages/que/doctor/doctor",
     "pages/que/user/user",
     "pages/que/userinfo/userinfo",
@@ -78,6 +78,8 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
-    "van-picker": "@vant/weapp/picker/index"
+    "van-picker": "@vant/weapp/picker/index",
+   "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index"
   }
 }
