@@ -30,47 +30,48 @@ Page({
     chartData : {
       main: {
         title: '综合得分',
-        data: [15, 20, 9, 2, 0, 11, 12],
-        categories: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        data: [15, 17, 10, 42],
+        categories: ['抑郁症筛查量表', '广泛性焦虑障碍量表', '失眠严重指数', '事件影响量表']
       },
-      sub: [{
-        title: '周一记录',
-        data: [70, 40, 65, 100, 34, 18],
-        categories: ['1', '2', '3', '4', '5', '6']
-      }, {
-        title: '周二记录',
-        data: [55, 30, 45, 36, 56, 13],
-        categories: ['1', '2', '3', '4', '5', '6']
-      }, {
-        title: '周三记录',
-        data: [76, 45, 32, 74, 54, 35],
-        categories: ['1', '2', '3', '4', '5', '6']
-      }, {
-        title: '周四记录',
-        data: [76, 54, 23, 12, 45, 65],
-        categories: ['1', '2', '3', '4', '5', '6']
-      }, {
-          title: '周五记录',
-          data: [76, 54, 23, 12, 45, 65],
-          categories: ['1', '2', '3', '4', '5', '6']
-      }, {
-          title: '周六记录',
-          data: [76, 54, 23, 12, 45, 65],
-          categories: ['1', '2', '3', '4', '5', '6']
-      }, {
-          title: '周日记录',
-          data: [76, 54, 23, 12, 45, 65],
-          categories: ['1', '2', '3', '4', '5', '6']
-        }
-      ]
-    },
+    //   sub: [{
+    //     title: '周一记录',
+    //     data: [70, 40, 65, 100, 34, 18],
+    //     categories: ['1', '2', '3', '4', '5', '6']
+    //   }, {
+    //     title: '周二记录',
+    //     data: [55, 30, 45, 36, 56, 13],
+    //     categories: ['1', '2', '3', '4', '5', '6']
+    //   }, {
+    //     title: '周三记录',
+    //     data: [76, 45, 32, 74, 54, 35],
+    //     categories: ['1', '2', '3', '4', '5', '6']
+    //   }, {
+    //     title: '周四记录',
+    //     data: [76, 54, 23, 12, 45, 65],
+    //     categories: ['1', '2', '3', '4', '5', '6']
+    //   }, {
+    //       title: '周五记录',
+    //       data: [76, 54, 23, 12, 45, 65],
+    //       categories: ['1', '2', '3', '4', '5', '6']
+    //   }, {
+    //       title: '周六记录',
+    //       data: [76, 54, 23, 12, 45, 65],
+    //       categories: ['1', '2', '3', '4', '5', '6']
+    //   }, {
+    //       title: '周日记录',
+    //       data: [76, 54, 23, 12, 45, 65],
+    //       categories: ['1', '2', '3', '4', '5', '6']
+    //     }
+    //   ]
+     },
     advice:[
       '状态不错，吃好喝好，继续保持!',
       '多出去走走，晒晒太阳，听听音乐，约上几个朋友聊聊天!',
       '尽量不要一个人待着，注意作息规律，身处逆境时需要善待自己哦~',
       '小艾希望你尽快向医生朋友们寻求一下帮助，他们可以让你更加开心快乐!'
     ],
-    result:''
+    result:'',
+    max:0
   },
   setResult:function(result){
     var da = this.data.result+'\n'+result
@@ -145,21 +146,27 @@ Page({
         console.log(res.data)
         if (res.data.errorCode == 200) {
           that.setData({
-            chart: res.data.data,
-            level: res.data.level,
-            score: res.data.score,
+            // chart: res.data.data,
+            // level: res.data.level,
+            // score: res.data.score,
+            chart: res.data.scaleResults,
           })
           //更新建议
-          that.updateSuggession(res.data.level)
+          that.updateSuggession(res.data.scaleResults)
 
           that.updateAllChart()
           console.log(that.data.chart.length)
           for (var i = 0; i < that.data.chart.length; i++) {
             console.log(that.data.chart[i])
-            that.data.chartData.sub[i].data = that.data.chart[i].data
-            that.data.chartData.sub[i].title = that.data.chart[i].day
-            that.data.chartData.main.categories[i] = that.data.chart[i].day
-            that.data.chartData.main.data[i] = that.data.chart[i].title
+            // that.data.chartData.sub[i].  data = that.data.chart[i].data
+            // that.data.chartData.sub[i].title = that.data.chart[i].day
+            that.data.chartData.main.categories[i] = that.data.chart[i].title
+            that.data.chartData.main.data[i] = that.data.chart[i].score
+            if (that.data.chart[i].score>that.data.max)
+              that.data.max = that.data.chart[i].score;
+            else
+              that.data.max = 0.1;
+            
           }
 
         }else{
@@ -370,8 +377,8 @@ Page({
     }, 500);
 
     console.log(this.data.chartData.main.categories)
-    console.log(this.data.chartData.sub[1].categories)
-   
+   //console.log(this.data.chartData.sub[1].categories)
+
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
@@ -388,8 +395,10 @@ Page({
         format: function (val) {
           return val + '分';
         },
+        min: 0,
+        max: this.data.max,
         // title: 'hello',
-        min: 0
+        
       },
       xAxis: {
         disableGrid: false,

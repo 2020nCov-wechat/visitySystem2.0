@@ -44,8 +44,8 @@
           <text class='iconfont icon-jiantou'>更多</text>
         </view>
       </view> -->
-      <!-- 第一排 -->
-      <!-- <view class='orderState acea-row row-middle'>
+    <!-- 第一排 -->
+    <!-- <view class='orderState acea-row row-middle'>
         <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/health_data.png'></image>
@@ -53,7 +53,7 @@
           </view>
           <view>健康数据</view>
         </view> -->
-        <!-- <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
+    <!-- <view class='item' data-url='/pages/order_list/index?status=1' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/hospital.png'></image>
             <text class="order-status-num" wx:if="{{orderStatusNum.unshipped_count > 0}}">{{ orderStatusNum.unshipped_count }}</text>
@@ -74,7 +74,7 @@
           </view>
           <view>账户余额</view>
         </view> -->
-        <!-- <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
+    <!-- <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/question.png'></image>
             <text class="order-status-num" wx:if="{{orderStatusNum.unpaid_count > 0}}">{{ orderStatusNum.unpaid_count }}</text>
@@ -98,8 +98,8 @@
 
       </view> -->
 
-      <!-- 第二排 -->
-      <!-- <view class='orderState acea-row row-middle'>
+    <!-- 第二排 -->
+    <!-- <view class='orderState acea-row row-middle'>
         <view class='item' data-url='/pages/order_list/index?status=0' bindtap='goPages'>
           <view class='pictrue'>
             <image src='/imgs/my/question.png'></image>
@@ -134,9 +134,32 @@
     <view class='myService'>
       <view class='title acea-row row-middle'>量表分析</view>
       <view class='serviceList acea-row row-middle'>
-        <view class="suggess-css">
-          <text>评估建议：{{result}}</text>
+        <view class='myOrder'>
+          <view class="ringcontainer">
+            <view class="title">
+              <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
+              {{chartTitle}}
+            </view>
+            <view class="canvas-css">
+              <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
+            </view>
+          </view>
         </view>
+
+       <view class="serviceList" wx:for="{{chart}}" wx:key="idx">
+        <view class="suggess-css">
+          <text>{{item.title}}：{{item.level}}</text>
+        </view>
+        <!-- <view class="suggess-css">   
+          <text>广泛性焦虑障碍量表：{{result}}</text>
+        </view>
+        <view class="suggess-css">   
+          <text>失眠严重指数：{{result}}</text>
+        </view>
+        <view class="suggess-css">   
+          <text>事件影响量表：{{result}}</text>
+        </view> -->
+      </view>
 
 
       </view>
@@ -155,7 +178,7 @@
 
         <view class="ringcontainer">
           <!-- <canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas> -->
-          
+
           <!-- <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button> -->
         </view>
         <view class="suggess-css">
@@ -319,7 +342,7 @@
               <image src='/imgs/my/sad.png'></image>
             </view>
             <!-- <view class='item acea-row row-center'>综合得分：{{item.title}}</view> -->
-            
+
             <!-- <view class='item acea-row row-center'>{{item.level}}</view> -->
             <view class='item acea-row row-center'>完成测评</view>
 

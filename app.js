@@ -41,7 +41,7 @@ App({
     checkUserUrl: headUrl + '/wechat/login/',
     getUserInfo: headUrl +'/wechat/user/info/',
     insertUpdateInfoUrl: headUrl + '/wechat/user/infoinorup/',
-    testResult: headUrl + '/wechat/chart/',
+    testResult: headUrl + '/ncov/getresults/',
     sendResultUrl: headUrl + '/answer/submit/',
     checkOrEndUrl: headUrl + '/answer/query/',
     uploadPicVidUrl: headUrl + '/upload/',
