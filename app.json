@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/que/first/first",
-    "pages/question/question",
     "pages/que/quefour/quefour",
+    "pages/my/my",
+    "pages/question/question",
+    "pages/que/first/first",
     "pages/que/usernear/usernear",
     "pages/que/userinfo/userinfo",
-    "pages/my/my",
     "pages/que/doctornear/doctornear",
     "pages/que/doctorinfo/doctorinfo",
     "pages/que/doctor/doctor",
