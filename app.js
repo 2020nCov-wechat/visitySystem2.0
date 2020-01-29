@@ -45,6 +45,8 @@ App({
     sendResultUrl: headUrl + '/answer/submit/',
     checkOrEndUrl: headUrl + '/answer/query/',
     uploadPicVidUrl: headUrl + '/upload/',
+    getScale: headUrl +'/ncov/getscale/',
+    submitScale: headUrl +'/ncov/submitscale/',
     openid: '',
     session_key: '' ,
     takePhotoTime:5000,//拍照间隔
