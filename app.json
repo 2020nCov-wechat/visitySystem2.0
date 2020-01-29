@@ -1,9 +1,9 @@
 {
   "pages": [
-"pages/que/quefour/quefour",
-    "pages/que/first/first",
-    "pages/que/doctor/doctor",
     "pages/que/user/user",
+    "pages/que/first/first",
+    "pages/que/quefour/quefour",
+    "pages/que/doctor/doctor",
     "pages/my/my",
     "pages/question/question",
     "pages/test/test",

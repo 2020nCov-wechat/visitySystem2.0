@@ -51,7 +51,7 @@
     </view>
       <view class="item_list">
       <view class='myService'>
-        <view class='title acea-row row-middle title-height'>您是医护人员吗？</view>
+        <view class='title acea-row row-middle title-height'>1.您是医护人员吗？</view>
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
@@ -69,7 +69,7 @@
     </view>
   </view>
   <view class="wrapper btn-css">
-    <van-button type="default" size="small" color="#1296DB" bindtap="confirmInfo">下一页</van-button>
+    <van-button type="default" size="small" color="#1296DB" bindtap="nextPage">下一页</van-button>
   </view>
 </view>
 <van-toast id="van-toast" />

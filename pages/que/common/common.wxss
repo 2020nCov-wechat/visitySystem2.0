@@ -33,6 +33,22 @@
 .user .wrapper .nav .item .num{margin-top:10rpx;font-size:36rpx;color:#282828;}
 .user .wrapper .myOrder{background-color:#fff;border-radius:10rpx;margin-top:15rpx;}
 .user .wrapper .myOrder .title,.user .wrapper .myService .title{height:88rpx;padding:0 30rpx;border-bottom:1px dashed #ddd;font-size:30rpx;color:#282828;}
+
+.user .wrapper .myService .title2{
+  height:130rpx;
+  padding:0 30rpx;
+  border-bottom:1px dashed #ddd;
+  font-size:30rpx;
+  color:#282828;
+}
+.user .wrapper .myService .title3{
+  height:180rpx;
+  padding:0 30rpx;
+  border-bottom:1px dashed #ddd;
+  font-size:30rpx;
+  color:#282828;
+}
+
 .user .wrapper .myOrder .title .allOrder{font-size:26rpx;color:#666;}
 .user .wrapper .myOrder .title .allOrder .iconfont{font-size:30rpx;margin-left:7rpx;}
 .user .wrapper .myOrder .orderState{height:160rpx;}
@@ -40,7 +56,7 @@
 .user .wrapper .myOrder .orderState .item .pictrue{width:49rpx;height:42rpx;margin:0 auto 18rpx auto;position: relative;}
 .user .wrapper .myOrder .orderState .item .pictrue image{width:100%;height:100%;}
 .user .wrapper .myService{background-color:#fff;margin-top:15rpx;border-radius:10rpx;}
-.user .wrapper .myService .serviceList{padding:8rpx 0 27rpx 0;}
+.user .wrapper .myService .serviceList{padding:8rpx 0 8rpx 0;}
 .user .wrapper .myService .serviceList .item{width:25%;text-align:center;font-size:26rpx;color:#333;margin-top:30rpx;}
 .user .wrapper .myService .serviceList .item .pictrue{width:52rpx;height:52rpx;margin:0 auto 16rpx auto;}
 .user .wrapper .myService .serviceList .item .pictrue image{width:100%;height:100%;}
@@ -138,7 +154,7 @@ button::after{border:0;}
   width: 100%;
 }
 .answer-css{
-  height: 100rpx;
+  height: 80rpx;
   padding-top: 20rpx;
   padding-bottom: 20rpx;
 }
@@ -147,4 +163,8 @@ button::after{border:0;}
 }
 .new-header {
   max-height:150rpx;
+}
+
+.ans2{
+  height: 100rpx;
 }

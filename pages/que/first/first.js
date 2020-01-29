@@ -23,6 +23,19 @@ Page({
       url: '../logs/logs'
     })
   },
+  nextPage:function(){
+    if(this.data.radio=='1'){
+
+      wx.navigateTo({
+        url: '../doctor/doctor'
+      })
+    }else{
+
+      wx.navigateTo({
+        url: '../user/user'
+      })
+    }
+  },
 
   onLoad: function () {
     if (app.globalData.userInfo) {
