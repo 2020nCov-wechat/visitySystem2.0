@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/que/quefour/quefour",
     "pages/que/doctornear/doctornear",
     "pages/que/doctorinfo/doctorinfo",
     "pages/que/first/first",
@@ -7,7 +8,6 @@
     "pages/que/user/user",
     "pages/que/userinfo/userinfo",
     "pages/que/usernear/usernear",
-    "pages/que/quefour/quefour",
     "pages/my/my",
     "pages/question/question",
     "pages/test/test",
@@ -79,7 +79,7 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-picker": "@vant/weapp/picker/index",
-   "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
     "van-checkbox-group": "@vant/weapp/checkbox-group/index"
   }
 }
