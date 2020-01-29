@@ -1,0 +1,315 @@
+<!--pages/myinfor/myinfor.wxml-->
+<view class='user'>
+
+  <view class='header  new-header bg-color acea-row row-between-wrapper '>
+    <view class='header-have-arrow'>
+      <view class='arrow'>
+        <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
+      </view>
+
+
+    </view>
+
+
+
+  </view>
+  <view class='wrapper'>
+    <view class='nav acea-row row-middle title-padding'>
+
+      <text space="ensp">
+        第二部分 医护人员
+      </text>
+    </view>
+    <view class="item_list">
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>11. 近一周居住城市</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">初中及以下</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>12. 近一周主要居住地点</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">城市</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">农村</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>13. 近一周居住状态</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">独居</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">与家人居住</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">与朋友同事居住</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">与其他人居住</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>14. 截至目前为止，您是否直接从事发热患者或确诊新冠肺炎患者的诊疗或护理工作？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">是</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">否</van-radio>
+              </view>
+              
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title2 acea-row row-middle title-height'>15. 截至目前为止，是否有以下人员确诊为新冠肺炎？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">科室接诊的患者</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">您本人</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">家人</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">同事</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">朋友</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">您居住的小区，街道有确诊病例</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">无</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title3 acea-row row-middle title-height'>16. 近一周，您本人和与您共同居住的人（包括家人或合住的人）中，是否有人未确诊，但有发热、咳嗽等症状？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">是</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">否</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title3 acea-row row-middle title-height'>17.  您认为，您是否已经接受足够的新冠肺炎医院感染防护培训？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">是</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">否</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title3 acea-row row-middle title-height'>18.  工作中，您是否有条件按照最新的《新型冠状病毒医院感染预防与控制指南》或相关技术标准的要求，规范的做好个人防护？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">是</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">否</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title3 acea-row row-middle title-height'>19.  您认为当前的“新型冠状病毒医院感染防护标准”是否能保护您在工作中避免感染新型冠状病毒？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">是</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">否</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>20.  您是否担心自己容易感染</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">是</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">否</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title2 acea-row row-middle title-height'>21. 近一周您主要通过哪种方式获取新冠肺炎疫情信息？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css ans2">
+                <van-radio name="1">与他人聊天（包括面对面、电话、语音、视频、文字聊天等）</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">社交媒体（包括朋友圈、公众号、微博、抖音等）</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">电视</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">其他</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title3 acea-row row-middle title-height'>22. 您认为新闻或社交媒体（朋友圈、公众号、微博、抖音等）发布的心理调适资源或心理热线对您是否有帮助？ </view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">有很大的帮助</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">中等程度的帮助</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">稍微有帮助</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">无帮助</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">没有关注，无法评价</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title2 acea-row row-middle title-height'>23. 近一周，您平均每天通过各种方式接收疫情信息的时间大概为多少小时</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">小于1小时</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">1-2小时</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">3-4小时</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">5小时及以上</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>24. 对于新冠肺炎被控制的进度，您的不确定感程度 </view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">很强</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">强</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">一般</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">无</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+  <view class="wrapper btn-css">
+    <van-button type="default" size="small" color="#1296DB" bindtap="nextPage">下一页</van-button>
+  </view>
+</view>
+<van-toast id="van-toast" />

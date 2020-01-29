@@ -1,5 +1,13 @@
 {
   "pages": [
+    "pages/que/first/first",
+    "pages/que/doctorinfo/doctorinfo",
+    "pages/que/doctornear/doctornear",
+    "pages/que/doctor/doctor",
+    "pages/que/user/user",
+    "pages/que/userinfo/userinfo",
+    "pages/que/usernear/usernear",
+    "pages/que/quefour/quefour",
     "pages/my/my",
     "pages/question/question",
     "pages/test/test",
@@ -26,7 +34,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/question/question",
+        "pagePath": "pages/motiontest/motiontest",
         "iconPath": "imgs/bar/测评1.png",
         "selectedIconPath": "imgs/bar/测评.png",
         "text": "问卷调查"
