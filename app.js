@@ -47,6 +47,7 @@ App({
     uploadPicVidUrl: headUrl + '/upload/',
     getScale: headUrl +'/ncov/getscale/',
     submitScale: headUrl +'/ncov/submitscale/',
+    submitInfoUrl:headUrl+'/ncov/submitinfo/',
     openid: '',
     session_key: '' ,
     takePhotoTime:5000,//拍照间隔

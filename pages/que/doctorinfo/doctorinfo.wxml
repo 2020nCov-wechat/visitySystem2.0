@@ -27,12 +27,12 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ sex }}" bind:change="onChange">
+            <van-radio-group value="{{ sex }}" bind:change="onChangeSex">
               <view class="answer-css">
-                <van-radio name="1">男</van-radio>
+                <van-radio name="男">男</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">女</van-radio>
+                <van-radio name="女">女</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -41,19 +41,37 @@
 
 
       <view class='myService'>
-        <view class='title acea-row row-middle title-height'>3. 您的民族</view>
+        <view class='title acea-row row-middle title-height' >3. 您的民族</view>
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ radio }}" bind:change="onChange">
-              <view class="answer-css">
-                <van-radio name="1">是的</van-radio>
+            
+                <van-cell-group>
+              <van-field
+                label="名族"
+                value="{{ nation }}"
+                border="{{ false }}"
+                disabled="true"
+              >
+              <van-icon name="arrow" size="35rpx" bind:click="showBottom" slot="button"/>
+              </van-field>
+            </van-cell-group>
+                <van-popup
+                show="{{ bottom }}"
+                position="bottom"
+                custom-style="height: 50%"
+                bind:close="hideBottom"
+               >
+                            <van-picker
+                show-toolbar
+                title="标题"
+                columns="{{ nationOption }}"
+                bind:cancel="onCancelNation"
+                bind:confirm="onConfirmNation"
+              />
+              </van-popup>
               </view>
-              <view class="answer-css">
-                <van-radio name="2">不是</van-radio>
-              </view>
-            </van-radio-group>
-          </view>
+    
         </view>
       </view>
 
@@ -62,24 +80,24 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ age }}" bind:change="onChange">
+            <van-radio-group value="{{ age }}" bind:change="onChangeAge">
               <view class="answer-css">
-                <van-radio name="1">18~25</van-radio>
+                <van-radio name="18~25">18~25</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">26~30</van-radio>
+                <van-radio name="26~30">26~30</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="1">31~40</van-radio>
+                <van-radio name="31~40">31~40</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">41~50</van-radio>
+                <van-radio name="41~50">41~50</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="1">51~60</van-radio>
+                <van-radio name="51~60">51~60</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">60以上</van-radio>
+                <van-radio name="60以上">60以上</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -91,18 +109,18 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ married }}" bind:change="onChangeMarried">
               <view class="answer-css">
-                <van-radio name="1">未婚</van-radio>
+                <van-radio name="未婚">未婚</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">已婚</van-radio>
+                <van-radio name="已婚">已婚</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="1">丧偶</van-radio>
+                <van-radio name="丧偶">丧偶</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">离异</van-radio>
+                <van-radio name="离异">离异</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -114,21 +132,21 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ education }}" bind:change="onChangeEducation">
               <view class="answer-css">
-                <van-radio name="1">初中及以下</van-radio>
+                <van-radio name="初中及以下">初中及以下</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">高中/中专</van-radio>
+                <van-radio name="高中/中专">高中/中专</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="1">本科/大专</van-radio>
+                <van-radio name="本科/大专">本科/大专</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">硕士</van-radio>
+                <van-radio name="硕士">硕士</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">博士</van-radio>
+                <van-radio name="博士">博士</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -140,24 +158,24 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ workDept }}" bind:change="onChangeWorkDept">
               <view class="answer-css">
-                <van-radio name="1">三级医院</van-radio>
+                <van-radio name="三级医院">三级医院</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">二级医院</van-radio>
+                <van-radio name="二级医院">二级医院</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="1">一级医院</van-radio>
+                <van-radio name="一级医院">一级医院</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">社区服务中心</van-radio>
+                <van-radio name="社区服务中心">社区服务中心</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">疾控中心</van-radio>
+                <van-radio name="疾控中心">疾控中心</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">其他</van-radio>
+                <van-radio name="其他">其他</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -169,18 +187,18 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ job }}" bind:change="onChangeJob">
               <view class="answer-css">
-                <van-radio name="1">医生</van-radio>
+                <van-radio name="医生">医生</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">护士</van-radio>
+                <van-radio name="护士">护士</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="1">行政管理人员</van-radio>
+                <van-radio name="行政管理人员">行政管理人员</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">其他医院工作人员</van-radio>
+                <van-radio name="其他医院工作人员">其他医院工作人员</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -193,27 +211,27 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ dept }}" bind:change="onChangeDept">
               <view class="answer-css">
-                <van-radio name="1">发热门诊</van-radio>
+                <van-radio name="发热门诊">发热门诊</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">急诊</van-radio>
+                <van-radio name="急诊">急诊</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="1">普通隔离病房</van-radio>
+                <van-radio name="普通隔离病房">普通隔离病房</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">重症病房</van-radio>
+                <van-radio name="重症病房">重症病房</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">精神/心理科</van-radio>
+                <van-radio name="精神/心理科">精神/心理科</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">其他普通病房或门诊</van-radio>
+                <van-radio name="其他普通病房或门诊">其他普通病房或门诊</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">其他</van-radio>
+                <van-radio name="其他">其他</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -225,21 +243,21 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ jobLevel }}" bind:change="onChangeJobLevel">
               <view class="answer-css">
-                <van-radio name="1">无</van-radio>
+                <van-radio name="无">无</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">初级</van-radio>
+                <van-radio name="初级">初级</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="1">中级</van-radio>
+                <van-radio name="中级">中级</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">副高</van-radio>
+                <van-radio name="副高">副高</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">正高</van-radio>
+                <van-radio name="正高">正高</van-radio>
               </view>
               
             </van-radio-group>
