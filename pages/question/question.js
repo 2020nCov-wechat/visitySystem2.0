@@ -13,6 +13,7 @@ Page({
     scaleTitle: '问卷调查',
     scaleBrief: '问卷调查',
     nextBtnText: "下一题",
+    curScaleIndex:3,//当前正在做的问卷序号
     questionHadAns: 0,
     questionShowIndex: 0,
     questionNum: 3,
@@ -136,8 +137,9 @@ Page({
         console.log(that.data.radio)
         //如果后面的回答过了，就显示后面的题目
         var ra=''
-        if (that.data.questionHadAns >= that.data.questionShow){
+        if (that.data.questionHadAns > that.data.questionShowIndex){
           ra = that.data.answers[that.data.questionShowIndex + 1]
+          console.log("ra::" + ra)
         }
         that.setData({
           questionShow: that.data.questions[that.data.questionShowIndex + 1],
@@ -183,6 +185,7 @@ Page({
         this.setData({
           nextBtnText: "完成"
         })
+        this.sendAnswer(this.data.curScaleIndex)
       } else {
         console.log(this.data.questionShowIndex)
         if (this.data.questionShowIndex == this.data.questionNum - 2) {
@@ -265,16 +268,16 @@ Page({
     }
 
     //更新openid
-    // app.updateOpenid()
-    // Toast.loading({
-    //   mask: true,
-    //   message: '加载中...',
-    //   duration:2000
-    // });
-    // var that = this
-    // var time = setTimeout(function () {
-    //   that.updateScale(3)
-    // }, 2000)
+    app.updateOpenid()
+    Toast.loading({
+      mask: true,
+      message: '加载中...',
+      duration:2000
+    });
+    var that = this
+    var time = setTimeout(function () {
+      that.updateScale(that.data.curScaleIndex)
+    }, 2000)
   },
   //更新Scale
   updateScale: function(index) {
@@ -387,7 +390,17 @@ Page({
       success: function(res) {
         console.log(res.data)
         if (res.data.errorCode == 200) {
+            console.log("发送成功")
+            console.log(that.data.answers)
 
+            Toast.success('成功提交');
+          //跳转至结果
+          wx.switchTab({
+            url: "/pages/my/my",
+            success() {
+              
+            }
+          });
         } else {
           //登录过期
           // if (res.data.errCode == 500) {
