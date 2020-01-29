@@ -408,7 +408,8 @@ Page({
               success() {
                 var page = getCurrentPages().pop();
                 if (page == undefined || page == null) return;
-                page.setResult(resultMsg);
+                //更新openid
+                getApp().updateOpenid()
               }
             });
           }, 1000)

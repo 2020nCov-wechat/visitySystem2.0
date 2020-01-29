@@ -29,7 +29,7 @@
           <view class="suggess-css">
             <van-radio-group value="{{ married }}" bind:change="onChange">
               <view class="answer-css">
-                <van-radio name="1">初中及以下</van-radio>
+                <van-radio name="1">城市选择器还没实现</van-radio>
               </view>
             </van-radio-group>
           </view>

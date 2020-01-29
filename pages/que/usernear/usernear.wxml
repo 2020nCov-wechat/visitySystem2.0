@@ -21,14 +21,14 @@
       </text>
     </view>
     <view class="item_list">
-      <view class='myService'>
+        <view class='myService'>
         <view class='title acea-row row-middle title-height'>11. 近一周居住城市</view>
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
             <van-radio-group value="{{ married }}" bind:change="onChange">
               <view class="answer-css">
-                <van-radio name="1">初中及以下</van-radio>
+                <van-radio name="1">城市选择器还没实现</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -40,12 +40,12 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ lifePlace }}" bind:change="onChangeLifePlace">
               <view class="answer-css">
-                <van-radio name="1">城市</van-radio>
+                <van-radio name="城市">城市</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">农村</van-radio>
+                <van-radio name="农村">农村</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -57,52 +57,53 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ lifeStatus }}" bind:change="onChangeLifeStatus">
               <view class="answer-css">
-                <van-radio name="1">独居</van-radio>
+                <van-radio name="独居">独居</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">与家人居住</van-radio>
+                <van-radio name="与家人居住">与家人居住</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">与朋友同事居住</van-radio>
+                <van-radio name="与朋友同事居住">与朋友同事居住</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">与其他人居住</van-radio>
+                <van-radio name="与其他人居住">与其他人居住</van-radio>
               </view>
             </van-radio-group>
           </view>
         </view>
       </view>
 
-      <view class='myService'>
-        <view class='title2 acea-row row-middle title-height'>15. 截至目前为止，是否有以下人员确诊为新冠肺炎？</view>
+     <view class='myService'>
+        <view class='title2 acea-row row-middle title-height'>15. 截至目前为止，是否有以下人员确诊为新冠肺炎？[多选]</view>
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+
+            <van-checkbox-group value="{{ haveSick }}" bind:change="onChangeHaveSick">
               <view class="answer-css">
-                <van-radio name="1">科室接诊的患者</van-radio>
+                <van-checkbox name="科室接诊的患者">科室接诊的患者</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">您本人</van-radio>
+                <van-checkbox name="您本人">您本人</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">家人</van-radio>
+                <van-checkbox name="家人">家人</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">同事</van-radio>
+                <van-checkbox name="同事">同事</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">朋友</van-radio>
+                <van-checkbox name="朋友">朋友</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">您居住的小区，街道有确诊病例</van-radio>
+                <van-checkbox name="您居住的小区，街道有确诊病例">您居住的小区，街道有确诊病例</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">无</van-radio>
+                <van-checkbox name="无">无</van-checkbox>
               </view>
-            </van-radio-group>
+            </van-checkbox-group>
           </view>
         </view>
       </view>
@@ -112,12 +113,30 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ unconfirmSick }}" bind:change="onChangeUnconfirmSick">
               <view class="answer-css">
-                <van-radio name="1">是</van-radio>
+                <van-radio name="是">是</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">否</van-radio>
+                <van-radio name="否">否</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+
+<view class='myService'>
+        <view class='title acea-row row-middle title-height'>20. 您是否担心自己容易感染</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ easySick }}" bind:change="onChangeEasySick">
+              <view class="answer-css">
+                <van-radio name="是">是</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="否">否</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -125,41 +144,27 @@
       </view>
 
       <view class='myService'>
-        <view class='title acea-row row-middle title-height'>20.  您是否担心自己容易感染</view>
+        <view class='title2 acea-row row-middle title-height'>21. 近一周您主要通过哪种方式获取新冠肺炎疫情信息？[多选]</view>
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
-              <view class="answer-css">
-                <van-radio name="1">是</van-radio>
-              </view>
-              <view class="answer-css">
-                <van-radio name="2">否</van-radio>
-              </view>
-            </van-radio-group>
-          </view>
-        </view>
-      </view>
 
-      <view class='myService'>
-        <view class='title2 acea-row row-middle title-height'>21. 近一周您主要通过哪种方式获取新冠肺炎疫情信息？</view>
-        <view class='serviceList acea-row row-middle'>
-
-          <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-checkbox-group value="{{ msgWay }}" bind:change="onChangeMsgWay">
               <view class="answer-css ans2">
-                <van-radio name="1">与他人聊天（包括面对面、电话、语音、视频、文字聊天等）</van-radio>
+                <van-checkbox name="与他人聊天（包括面对面、电话、语音、视频、文字聊天等）">与他人聊天（包括面对面、电话、语音、视频、文字聊天等）</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">社交媒体（包括朋友圈、公众号、微博、抖音等）</van-radio>
+                <van-checkbox name="社交媒体（包括朋友圈、公众号、微博、抖音等）">社交媒体（包括朋友圈、公众号、微博、抖音等）</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">电视</van-radio>
+                <van-checkbox name="电视">电视</van-checkbox>
               </view>
               <view class="answer-css">
-                <van-radio name="2">其他</van-radio>
+                <van-checkbox name="其他">其他</van-checkbox>
               </view>
-            </van-radio-group>
+              
+            </van-checkbox-group>
+
           </view>
         </view>
       </view>
@@ -169,21 +174,21 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ appWork }}" bind:change="onChangeAppWork">
               <view class="answer-css">
-                <van-radio name="1">有很大的帮助</van-radio>
+                <van-radio name="有很大的帮助">有很大的帮助</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">中等程度的帮助</van-radio>
+                <van-radio name="中等程度的帮助">中等程度的帮助</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">稍微有帮助</van-radio>
+                <van-radio name="稍微有帮助">稍微有帮助</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">无帮助</van-radio>
+                <van-radio name="无帮助">无帮助</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">没有关注，无法评价</van-radio>
+                <van-radio name="没有关注，无法评价">没有关注，无法评价</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -195,18 +200,18 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ hour }}" bind:change="onChangeHour">
               <view class="answer-css">
-                <van-radio name="1">小于1小时</van-radio>
+                <van-radio name="小于1小时">小于1小时</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">1-2小时</van-radio>
+                <van-radio name="1-2小时">1-2小时</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">3-4小时</van-radio>
+                <van-radio name="3-4小时">3-4小时</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">5小时及以上</van-radio>
+                <van-radio name="5小时及以上">5小时及以上</van-radio>
               </view>
             </van-radio-group>
           </view>
@@ -218,23 +223,24 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
-            <van-radio-group value="{{ married }}" bind:change="onChange">
+            <van-radio-group value="{{ sensor }}" bind:change="onChangeSensor">
               <view class="answer-css">
-                <van-radio name="1">很强</van-radio>
+                <van-radio name="很强">很强</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">强</van-radio>
+                <van-radio name="强">强</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">一般</van-radio>
+                <van-radio name="一般">一般</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">无</van-radio>
+                <van-radio name="无">无</van-radio>
               </view>
             </van-radio-group>
           </view>
         </view>
       </view>
+
 
     </view>
   </view>
