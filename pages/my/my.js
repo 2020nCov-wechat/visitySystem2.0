@@ -71,7 +71,7 @@ Page({
       '小艾希望你尽快向医生朋友们寻求一下帮助，他们可以让你更加开心快乐!'
     ],
     result:'',
-    max:0
+    max:0.1
   },
   setResult:function(result){
     var da = this.data.result+'\n'+result
@@ -162,13 +162,13 @@ Page({
             // that.data.chartData.sub[i].title = that.data.chart[i].day
             that.data.chartData.main.categories[i] = that.data.chart[i].title
             that.data.chartData.main.data[i] = that.data.chart[i].score
-            if (that.data.chart[i].score>that.data.max)
-              that.data.max = that.data.chart[i].score;
-            else
-              that.data.max = 0.1;
+            if (that.data.chart[i].score>that.data.max){
+              that.data.max = that.data.chart[i].score;}
+            else{
+              that.data.max = 0.1;}
             
           }
-
+        
         }else{
           //登录过期
           // if (res.data.errCode == 500) {
@@ -302,6 +302,7 @@ Page({
     });
   },
   touchHandler: function (e) {
+   
     var index = columnChart.getCurrentDataIndex(e);
     if (index > -1 && index < this.data.chartData.sub.length && this.data.isMainChartDisplay) {
       this.setData({
@@ -376,8 +377,9 @@ Page({
       ringChart.stopAnimation();
     }, 500);
 
-    console.log(this.data.chartData.main.categories)
+    //console.log(this.data.chartData.main.categories)
    //console.log(this.data.chartData.sub[1].categories)
+    //console.log(this.data.max)
 
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
