@@ -49,7 +49,7 @@ App({
     submitScale: headUrl +'/ncov/submitscale/',
     submitInfoUrl:headUrl+'/ncov/submitinfo/',
     submitRecentUrl:headUrl+'/ncov/submitrecent/',
-    submitNeedUrl:headUrl+'/ncov/submitneed/',
+    submitNeed: headUrl + '/ncov/submitneed/',
     openid: '',
     session_key: '' ,
     takePhotoTime:5000,//拍照间隔

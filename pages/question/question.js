@@ -397,22 +397,24 @@ Page({
           console.log("发送成功")
           console.log(that.data.answers)
 
-          Toast.success('成功提交');
+          //Toast.success('成功提交');
 
           //获取得分与结果
-          var resultMsg = '多喝热水'
-          var time = setTimeout(function () {
-            //跳转至结果
-            wx.switchTab({
-              url: "/pages/my/my",
-              success() {
-                var page = getCurrentPages().pop();
-                if (page == undefined || page == null) return;
-                //更新openid
-                getApp().updateOpenid()
-              }
-            });
-          }, 1000)
+
+          wx.navigateTo({
+            url: '../que/quefour/quefour'
+          })
+
+          //   wx.switchTab({
+          //     url: "/pages/my/my",
+          //     success() {
+          //       var page = getCurrentPages().pop();
+          //       if (page == undefined || page == null) return;
+          //       //更新openid
+          //       getApp().updateOpenid()
+          //     }
+          //   });
+          // }, 1000)
           
         } else {
           //登录过期
