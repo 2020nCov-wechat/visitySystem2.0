@@ -20,5 +20,10 @@ Page({
   onLoad: function () {
 
   },
+  nextPage: function () {
+    wx.navigateTo({
+      url: '../../question/question'
+      })
+  },
 
 })

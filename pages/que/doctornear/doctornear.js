@@ -20,10 +20,10 @@ Page({
   onLoad: function () {
 
   },
-
   nextPage: function () {
     wx.navigateTo({
-      url: '../../usernear/usernear'
+      url: '../../question/question'
     })
   },
+
 })

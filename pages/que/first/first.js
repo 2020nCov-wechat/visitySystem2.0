@@ -27,12 +27,12 @@ Page({
     if(this.data.radio=='1'){
 
       wx.navigateTo({
-        url: '../doctor/doctor'
+        url: '../doctorinfo/doctorinfo'
       })
     }else{
 
       wx.navigateTo({
-        url: '../user/user'
+        url: '../userinfo/userinfo'
       })
     }
   },

@@ -1,0 +1,143 @@
+<!--pages/myinfor/myinfor.wxml-->
+<view class='user'>
+
+  <view class='header  new-header bg-color acea-row row-between-wrapper '>
+    <view class='header-have-arrow'>
+      <view class='arrow'>
+        <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
+      </view>
+
+
+    </view>
+
+
+
+  </view>
+  <view class='wrapper'>
+    <view class='nav acea-row row-middle title-padding'>
+
+      <text space="ensp">
+        第二部分 普通人员
+      </text>
+    </view>
+    <view class="item_list">
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>2. 您的性别？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ sex }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">男</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">女</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>3. 您的民族</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ radio }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">是的</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">不是</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>4. 您的年龄</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ age }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">18~25</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">26~30</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="1">31~40</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">41~50</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="1">51~60</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">60以上</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+      
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>5. 婚姻状况</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">未婚</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">已婚</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="1">丧偶</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">离异</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>6. 学历</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ married }}" bind:change="onChange">
+              <view class="answer-css">
+                <van-radio name="1">初中及以下</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">高中/中专</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="1">本科/大专</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">硕士</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="2">博士</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="wrapper btn-css">
+    <van-button type="default" size="small" color="#1296DB" bindtap="nextPage">下一页</van-button>
+  </view>
+</view>
+<van-toast id="van-toast" />
