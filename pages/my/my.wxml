@@ -132,6 +132,18 @@
       </view> -->
     <!-- </view> -->
     <view class='myService'>
+      <view class='title acea-row row-middle'>量表分析</view>
+      <view class='serviceList acea-row row-middle'>
+        <view class="suggess-css">
+          <text>评估建议：{{result}}</text>
+        </view>
+
+
+      </view>
+    </view>
+
+
+    <view class='myService'>
       <view class='title acea-row row-middle'>综合评价</view>
       <view class='serviceList acea-row row-middle'>
 

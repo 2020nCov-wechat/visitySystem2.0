@@ -69,9 +69,15 @@ Page({
       '多出去走走，晒晒太阳，听听音乐，约上几个朋友聊聊天!',
       '尽量不要一个人待着，注意作息规律，身处逆境时需要善待自己哦~',
       '小艾希望你尽快向医生朋友们寻求一下帮助，他们可以让你更加开心快乐!'
-    ]
+    ],
+    result:''
   },
- 
+  setResult:function(result){
+    var da = this.data.result+'\n'+result
+    this.setData({
+      result:da
+    })
+  },
   //事件处理函数
   bindViewTap: function () {
     

@@ -13,90 +13,90 @@ Page({
     scaleTitle: '问卷调查',
     scaleBrief: '问卷调查',
     nextBtnText: "下一题",
-    curScaleIndex:3,//当前正在做的问卷序号
+    curScaleIndex: 3,//当前正在做的问卷序号
     questionHadAns: 0,
     questionShowIndex: 0,
     questionNum: 3,
     questionShow: {
       "question": "1.入睡困难，睡不安稳或睡眠过多",
       "answers": [{
-          "answer": "完全不会",
-          "value": 0
-        },
-        {
-          "answer": "好几天",
-          "value": 1
-        },
-        {
-          "answer": "一半以上的天数",
-          "value": 2
-        },
-        {
-          "answer": "几乎每天",
-          "value": 3
-        },
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "好几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的天数",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      },
       ]
     },
     questions: [{
-        "question": "1.入睡困难，睡不安稳或睡眠过多",
-        "answers": [{
-            "answer": "完全不会",
-            "value": 0
-          },
-          {
-            "answer": "好几天",
-            "value": 1
-          },
-          {
-            "answer": "一半以上的天数",
-            "value": 2
-          },
-          {
-            "answer": "几乎每天",
-            "value": 3
-          },
-        ]
+      "question": "1.入睡困难，睡不安稳或睡眠过多",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
       },
       {
-        "question": "2.对事物专注有困难，例如阅读报纸或看电视时",
-        "answers": [{
-            "answer": "完全不会",
-            "value": 0
-          },
-          {
-            "answer": "好几天",
-            "value": 1
-          },
-          {
-            "answer": "一半以上的天数",
-            "value": 2
-          },
-          {
-            "answer": "几乎每天",
-            "value": 3
-          },
-        ]
+        "answer": "好几天",
+        "value": 1
       },
       {
-        "question": "3.动作或说话速度缓慢到别人已经察觉？或正好相反-烦躁或坐立不安、动来动去的情况更胜于平常",
-        "answers": [{
-            "answer": "完全不会",
-            "value": 0
-          },
-          {
-            "answer": "好几天",
-            "value": 1
-          },
-          {
-            "answer": "一半以上的天数",
-            "value": 2
-          },
-          {
-            "answer": "几乎每天",
-            "value": 3
-          },
-        ]
-      }
+        "answer": "一半以上的天数",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      },
+      ]
+    },
+    {
+      "question": "2.对事物专注有困难，例如阅读报纸或看电视时",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "好几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的天数",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      },
+      ]
+    },
+    {
+      "question": "3.动作或说话速度缓慢到别人已经察觉？或正好相反-烦躁或坐立不安、动来动去的情况更胜于平常",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "好几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的天数",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      },
+      ]
+    }
     ],
     answers: []
   },
@@ -104,14 +104,14 @@ Page({
   onChange(event) {
 
     console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
-    if (this.data.questionHadAns >= this.data.questionNum){
+    if (this.data.questionHadAns >= this.data.questionNum) {
       console.log("回答完了")
       var ansNew = this.data.answers;
-      ansNew[this.data.questionShowIndex]=event.detail
+      ansNew[this.data.questionShowIndex] = event.detail
       this.setData({
-        answers:ansNew
+        answers: ansNew
       })
-    }else{
+    } else {
       console.log("还没回答完")
       this.data.answers.push(event.detail)
     }
@@ -120,7 +120,7 @@ Page({
     })
     console.log(this.data.answers)
     var that = this
-    var time = setTimeout(function() {
+    var time = setTimeout(function () {
       if (that.data.questionShowIndex == that.data.questionNum - 2) {
         that.setData({
           nextBtnText: "完成"
@@ -136,8 +136,8 @@ Page({
       } else {
         console.log(that.data.radio)
         //如果后面的回答过了，就显示后面的题目
-        var ra=''
-        if (that.data.questionHadAns > that.data.questionShowIndex){
+        var ra = ''
+        if (that.data.questionHadAns > that.data.questionShowIndex) {
           ra = that.data.answers[that.data.questionShowIndex + 1]
           console.log("ra::" + ra)
         }
@@ -178,6 +178,7 @@ Page({
     console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '     ' + (this.data.questionNum - 1))
     if (this.data.questionHadAns <= this.data.questionShowIndex) {
       console.log("还没答完当前题目")
+      Toast.fail('请先回答当前问题');
     } else {
       if (this.data.questionShowIndex == this.data.questionNum - 1) {
         //回答完毕
@@ -234,12 +235,12 @@ Page({
   },
 
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  onLoad: function() {
+  onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -272,7 +273,7 @@ Page({
     Toast.loading({
       mask: true,
       message: '加载中...',
-      duration:2000
+      duration: 2000
     });
     var that = this
     var time = setTimeout(function () {
@@ -280,7 +281,7 @@ Page({
     }, 2000)
   },
   //更新Scale
-  updateScale: function(index) {
+  updateScale: function (index) {
 
     var newopenid = app.globalData.openid
     var newSession_key = app.globalData.session_key
@@ -297,7 +298,7 @@ Page({
         fileName: file
       },
       method: 'POST',
-      success: function(res) {
+      success: function (res) {
         console.log(res.data)
         if (res.data.errorCode == 200) {
           var data = res.data
@@ -355,14 +356,16 @@ Page({
 
         } else {
           //登录过期
-          // if (res.data.errCode == 500) {
-          //   console.log("登录过期")
-          //   //更新openid
-          //   getApp().updateOpenid()
-          //   var time = setTimeout(function () {
-          //     that.updateChart()
-          //   }, 1000)
-          // }
+          if (res.data.errCode != 200) {
+            console.log("获取问卷失败")
+            //更新openid
+            Toast.loading({
+              mask: true,
+              message: '加载中...',
+              duration: 100
+            });
+            that.updateScale(index)
+          }
         }
 
       },
@@ -370,13 +373,14 @@ Page({
 
   },
   //提交答案
-  sendAnswer: function(index) {
+  sendAnswer: function (index) {
     var newopenid = app.globalData.openid
     var newSession_key = app.globalData.session_key
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
 
     var that = this
+    console.log(that.data.answers)
     wx.request({
       //获取openid接口
       url: getApp().globalData.submitScale,
@@ -387,20 +391,28 @@ Page({
         answers: that.data.answers
       },
       method: 'POST',
-      success: function(res) {
+      success: function (res) {
         console.log(res.data)
         if (res.data.errorCode == 200) {
-            console.log("发送成功")
-            console.log(that.data.answers)
+          console.log("发送成功")
+          console.log(that.data.answers)
 
-            Toast.success('成功提交');
-          //跳转至结果
-          wx.switchTab({
-            url: "/pages/my/my",
-            success() {
-              
-            }
-          });
+          Toast.success('成功提交');
+
+          //获取得分与结果
+          var resultMsg = '多喝热水'
+          var time = setTimeout(function () {
+            //跳转至结果
+            wx.switchTab({
+              url: "/pages/my/my",
+              success() {
+                var page = getCurrentPages().pop();
+                if (page == undefined || page == null) return;
+                page.setResult(resultMsg);
+              }
+            });
+          }, 1000)
+          
         } else {
           //登录过期
           // if (res.data.errCode == 500) {
@@ -418,10 +430,10 @@ Page({
 
   },
   //判断整数
-  isInteger: function(obj) {
+  isInteger: function (obj) {
     return parseInt(obj, 10) === obj
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({

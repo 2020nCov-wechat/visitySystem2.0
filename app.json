@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/my/my",
     "pages/question/question",
     "pages/test/test",
-    "pages/my/my",
     "pages/auth/auth",
     "pages/motiontest/motiontest",
     "pages/video/video",

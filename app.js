@@ -52,7 +52,7 @@ App({
     takePhotoTime:5000,//拍照间隔
     takePhotoAuto:false,//拍照
     showPicUpload: false,//显示拍照上传成功
-    videoNum: 24,
+    videoNum: 24
   },
   updateOpenid:function(){
     var that = this;
