@@ -28,9 +28,43 @@
 
           <view class="suggess-css">
             <van-radio-group value="{{ radio }}" bind:change="onChange">
+             <block wx:if="{{questionShow.type=='1'}}">
               <view wx:for="{{questionShow.answers}}" class="answer-css">
                 <van-radio name="{{item.value}}">{{item.answer}}</van-radio>
               </view>
+              </block>
+              <block wx:if="{{questionShow.type=='5'}}">
+              <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            
+                <van-cell-group>
+              <van-field
+                label="民族"
+                value="{{ nation }}"
+                border="{{ false }}"
+                disabled="true"
+              >
+              <van-icon name="arrow" size="35rpx" bind:click="showBottom" slot="button"/>
+              </van-field>
+            </van-cell-group>
+                <van-popup
+                show="{{ bottom }}"
+                position="bottom"
+                custom-style="height: 50%"
+                bind:close="hideBottom"
+               >
+                            <van-picker
+                show-toolbar
+                title="标题"
+                columns="{{ nationOption }}"
+                bind:cancel="onCancelNation"
+                bind:confirm="onConfirmNation"
+              />
+              </van-popup>
+              </view>
+              </view>
+              </block>
 
             </van-radio-group>
           </view>
