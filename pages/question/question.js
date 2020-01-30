@@ -208,18 +208,18 @@ Page({
         }
       })
     }
-    this.readQuestion()
-    //更新openid
-    // app.updateOpenid()
-    // Toast.loading({
-    //   mask: true,
-    //   message: '加载中...',
-    //   duration: 2000
-    // });
-    // var that = this
-    // var time = setTimeout(function () {
-    //   that.updateScale(that.data.curScaleIndex)
-    // }, 2000)
+   // this.readQuestion()
+   // 更新openid
+    app.updateOpenid()
+    Toast.loading({
+      mask: true,
+      message: '加载中...',
+      duration: 2000
+    });
+    var that = this
+    var time = setTimeout(function () {
+      that.updateScale(that.data.curScaleIndex)
+    }, 2000)
   },
   //更新Scale
   updateScale: function (index) {
@@ -343,7 +343,7 @@ Page({
           //获取得分与结果
 
           wx.navigateTo({
-            url: '../que/quefour/quefour'
+            url: '../que2/quefour/quefour'
           })
 
           //   wx.switchTab({

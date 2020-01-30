@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 import Toast from '@vant/weapp/toast/toast';
-
+var questionsOut = require('../../../config/questions.js')
 Page({
   data: {
     motto: 'Hello World',
@@ -10,12 +10,36 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     radio: '',
-    sex: '',
-    nation: '',
-    age: '',
-    married: '',
-    education: '',
     bottom: false,
+    scaleTitle: '问卷调查',
+    scaleBrief: '问卷调查',
+    nextBtnText: "下一题",
+    curScaleIndex: 3,//当前正在做的问卷序号
+    questionHadAns: 0,
+    questionShowIndex: 0,
+    questionNum: questionsOut.userinfos.qNum,
+    questionShow: {
+      "question": "1.入睡困难，睡不安稳或睡眠过多",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "好几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的天数",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      },
+      ]
+    },
+    questions: questionsOut.userinfos.questions,
+    answers: [],
     nationOption: ["汉族",
       "蒙古族",
       "藏族",
@@ -71,9 +95,142 @@ Page({
       "京族",
       "独龙族",
       "赫哲族",
-      "珞巴族"]
+      "珞巴族"],
+
+
+
   },
 
+  onChange(event) {
+    console.log("onchange")
+    console.log(event)
+    // console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    if (this.data.questionHadAns >= this.data.questionNum) {
+      console.log("回答完了")
+      var ansNew = this.data.answers;
+      ansNew[this.data.questionShowIndex] = event.detail
+      this.setData({
+        answers: ansNew
+      })
+    } else {
+      console.log("还没回答完")
+      this.data.answers.push(event.detail)
+    }
+    this.setData({
+      radio: event.detail
+    })
+    console.log(this.data.answers)
+    var that = this
+    var time = setTimeout(function () {
+      if (that.data.questionShowIndex == that.data.questionNum - 2) {
+        that.setData({
+          nextBtnText: "完成"
+        })
+      }
+      if (that.data.questionShowIndex == that.data.questionNum - 1) {
+        //回答完毕
+        console.log("finish")
+        that.setData({
+          questionHadAns: that.data.questionHadAns + 1,
+          nextBtnText: "完成"
+        })
+      } else {
+        console.log(that.data.radio)
+        //如果后面的回答过了，就显示后面的题目
+        var ra = ''
+        if (that.data.questionHadAns > that.data.questionShowIndex) {
+          ra = that.data.answers[that.data.questionShowIndex + 1]
+          console.log("ra::" + ra)
+        }
+        that.setData({
+          questionShow: that.data.questions[that.data.questionShowIndex + 1],
+          questionShowIndex: that.data.questionShowIndex + 1,
+          questionHadAns: that.data.questionHadAns + 1,
+          radio: ra
+        });
+      }
+    }, 500)
+    // if (this.data.questionShowIndex == this.data.questionNum - 1) {
+    //   //回答完毕
+    //   console.log("finish")
+    // } else {
+    //   console.log(this.data.radio)
+    //   this.setData({
+    //     questionShow: this.data.questions[this.data.questionShowIndex + 1],
+    //     questionShowIndex: this.data.questionShowIndex + 1,
+    //     radio: ''
+    //   });
+    // }
+  },
+  clickBtnLast() {
+    if (this.data.questionShowIndex != 0) {
+      console.log(this.data.questions[this.data.questionShowIndex])
+      this.setData({
+        nextBtnText: "下一题",
+        questionShow: this.data.questions[this.data.questionShowIndex - 1],
+        questionShowIndex: this.data.questionShowIndex - 1,
+        radio: this.data.answers[this.data.questionShowIndex - 1]
+      });
+    } else {
+      console.log("first one")
+    }
+  },
+  clickBtnNext() {
+
+    if (this.data.questionHadAns <= this.data.questionShowIndex) {
+      console.log("还没答完当前题目")
+      Toast.fail('请先回答当前问题');
+    } else {
+      if (this.data.questionShowIndex == this.data.questionNum - 1) {
+        //回答完毕
+        console.log("last one")
+        this.setData({
+          nextBtnText: "完成"
+        })
+        this.send(this.data.answers)
+      } else {
+        console.log(this.data.questionShowIndex)
+        if (this.data.questionShowIndex == this.data.questionNum - 2) {
+          //是最后一道题
+          if (this.data.questionHadAns <= this.data.questionShowIndex + 1) {
+            //下一题还没回答
+            this.setData({
+              nextBtnText: "完成",
+              questionShow: this.data.questions[this.data.questionShowIndex + 1],
+              radio: '',
+              questionShowIndex: this.data.questionShowIndex + 1,
+            })
+          } else {
+            this.setData({
+              nextBtnText: "完成",
+              questionShow: this.data.questions[this.data.questionShowIndex + 1],
+              radio: this.data.answers[this.data.questionShowIndex + 1],
+              questionShowIndex: this.data.questionShowIndex + 1,
+            })
+          }
+
+        } else {
+          //不是最后一道题
+          if (this.data.questionHadAns <= this.data.questionShowIndex + 1) {
+            //下一题还没回答
+            this.setData({
+
+              questionShow: this.data.questions[this.data.questionShowIndex + 1],
+              radio: '',
+              questionShowIndex: this.data.questionShowIndex + 1,
+            })
+          } else {
+            this.setData({
+              questionShow: this.data.questions[this.data.questionShowIndex + 1],
+              radio: this.data.answers[this.data.questionShowIndex + 1],
+              questionShowIndex: this.data.questionShowIndex + 1,
+            });
+          }
+
+        }
+      }
+    }
+  },
   onLoad: function () {
     //更新openid
     app.updateOpenid()
@@ -82,7 +239,7 @@ Page({
     //   message: '加载中...',
     //   duration: 2000
     // });
-
+    this.readQuestion()
   },
   nextPage: function () {
     var message = []
@@ -91,6 +248,10 @@ Page({
     message.push(this.data.age)
     message.push(this.data.married)
     message.push(this.data.education)
+    message.push(this.data.workDept)
+    message.push(this.data.job)
+    message.push(this.data.dept)
+    message.push(this.data.jobLevel)
     console.log(message)
 
     this.send(message)
@@ -144,30 +305,6 @@ Page({
       [type]: !this.data[type]
     });
   },
-  //性别
-  onChangeSex: function (event) {
-    this.setData({
-      sex: event.detail
-    })
-  },
-  //年龄
-  onChangeAge: function (event) {
-    this.setData({
-      age: event.detail
-    })
-  },
-  //婚姻
-  onChangeMarried: function (event) {
-    this.setData({
-      married: event.detail
-    })
-  },
-  //学历
-  onChangeEducation: function (event) {
-    this.setData({
-      education: event.detail
-    })
-  },
 
   //民族显示
   showBottom: function () {
@@ -187,5 +324,10 @@ Page({
       nation: value.detail.value
     })
     this.hideBottom()
+  },
+  readQuestion: function () {
+    this.setData({
+      questionShow: this.data.questions[0]
+    })
   }
 })

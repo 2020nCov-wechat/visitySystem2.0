@@ -1,15 +1,16 @@
 {
   "pages": [
+    "pages/que2/first/first",
+    "pages/que2/quefour/quefour",
+    "pages/que2/userinfo/userinfo",
     "pages/que2/doctornear/doctornear",
     "pages/que2/doctorinfo/doctorinfo",
     "pages/question/question",
-    "pages/que2/first/first",
-    "pages/que2/quefour/quefour",
     "pages/my/my",
     "pages/que2/usernear/usernear",
-    "pages/que2/userinfo/userinfo",
     "pages/que2/doctor/doctor",
     "pages/que2/user/user",
+    "pages/que/first/first",
     "pages/test/test",
     "pages/auth/auth",
     "pages/motiontest/motiontest",
@@ -34,7 +35,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/motiontest/motiontest",
+        "pagePath": "pages/que2/first/first",
         "iconPath": "imgs/bar/测评1.png",
         "selectedIconPath": "imgs/bar/测评.png",
         "text": "问卷调查"

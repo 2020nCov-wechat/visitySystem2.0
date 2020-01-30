@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 
+var questionsOut = require('../../../config/questions.js')
 Page({
   data: {
     motto: 'Hello World',
@@ -9,16 +10,37 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     radio: '',
-    lifePlace: '',
-    lifeStatus: '',
-    haveSick: '',
-    unconfirmSick: '',
-    easySick: '',
-    msgWay: '',
-    appWork: '',
-    hour: '',
-    sensor: '',
 
+    bottom: false,
+    scaleTitle: '问卷调查',
+    scaleBrief: '问卷调查',
+    nextBtnText: "下一题",
+    curScaleIndex: 3,//当前正在做的问卷序号
+    questionHadAns: 0,
+    questionShowIndex: 0,
+    questionNum: questionsOut.doctornear.qNum,
+    questionShow: {
+      "question": "1.入睡困难，睡不安稳或睡眠过多",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "好几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的天数",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      },
+      ]
+    },
+    questions: questionsOut.doctornear.questions,
+    answers: [],
 
   },
   onChange: function (event) {
@@ -27,9 +49,142 @@ Page({
     })
   },
 
+  readQuestion: function () {
+    this.setData({
+      questionShow: this.data.questions[0]
+    })
+  },
+  onChange(event) {
+    console.log("onchange")
+    console.log(event)
+    // console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    if (this.data.questionHadAns >= this.data.questionNum) {
+      console.log("回答完了")
+      var ansNew = this.data.answers;
+      ansNew[this.data.questionShowIndex] = event.detail
+      this.setData({
+        answers: ansNew
+      })
+    } else {
+      console.log("还没回答完")
+      this.data.answers.push(event.detail)
+    }
+    this.setData({
+      radio: event.detail
+    })
+    console.log(this.data.answers)
+    var that = this
+    var time = setTimeout(function () {
+      if (that.data.questionShowIndex == that.data.questionNum - 2) {
+        that.setData({
+          nextBtnText: "完成"
+        })
+      }
+      if (that.data.questionShowIndex == that.data.questionNum - 1) {
+        //回答完毕
+        console.log("finish")
+        that.setData({
+          questionHadAns: that.data.questionHadAns + 1,
+          nextBtnText: "完成"
+        })
+      } else {
+        console.log(that.data.radio)
+        //如果后面的回答过了，就显示后面的题目
+        var ra = ''
+        if (that.data.questionHadAns > that.data.questionShowIndex) {
+          ra = that.data.answers[that.data.questionShowIndex + 1]
+          console.log("ra::" + ra)
+        }
+        that.setData({
+          questionShow: that.data.questions[that.data.questionShowIndex + 1],
+          questionShowIndex: that.data.questionShowIndex + 1,
+          questionHadAns: that.data.questionHadAns + 1,
+          radio: ra
+        });
+      }
+    }, 500)
+    // if (this.data.questionShowIndex == this.data.questionNum - 1) {
+    //   //回答完毕
+    //   console.log("finish")
+    // } else {
+    //   console.log(this.data.radio)
+    //   this.setData({
+    //     questionShow: this.data.questions[this.data.questionShowIndex + 1],
+    //     questionShowIndex: this.data.questionShowIndex + 1,
+    //     radio: ''
+    //   });
+    // }
+  },
+  clickBtnLast() {
+    if (this.data.questionShowIndex != 0) {
+      console.log(this.data.questions[this.data.questionShowIndex])
+      this.setData({
+        nextBtnText: "下一题",
+        questionShow: this.data.questions[this.data.questionShowIndex - 1],
+        questionShowIndex: this.data.questionShowIndex - 1,
+        radio: this.data.answers[this.data.questionShowIndex - 1]
+      });
+    } else {
+      console.log("first one")
+    }
+  },
+  clickBtnNext() {
 
+    if (this.data.questionHadAns <= this.data.questionShowIndex) {
+      console.log("还没答完当前题目")
+      Toast.fail('请先回答当前问题');
+    } else {
+      if (this.data.questionShowIndex == this.data.questionNum - 1) {
+        //回答完毕
+        console.log("last one")
+        this.setData({
+          nextBtnText: "完成"
+        })
+        this.send(this.data.answers)
+      } else {
+        console.log(this.data.questionShowIndex)
+        if (this.data.questionShowIndex == this.data.questionNum - 2) {
+          //是最后一道题
+          if (this.data.questionHadAns <= this.data.questionShowIndex + 1) {
+            //下一题还没回答
+            this.setData({
+              nextBtnText: "完成",
+              questionShow: this.data.questions[this.data.questionShowIndex + 1],
+              radio: '',
+              questionShowIndex: this.data.questionShowIndex + 1,
+            })
+          } else {
+            this.setData({
+              nextBtnText: "完成",
+              questionShow: this.data.questions[this.data.questionShowIndex + 1],
+              radio: this.data.answers[this.data.questionShowIndex + 1],
+              questionShowIndex: this.data.questionShowIndex + 1,
+            })
+          }
+
+        } else {
+          //不是最后一道题
+          if (this.data.questionHadAns <= this.data.questionShowIndex + 1) {
+            //下一题还没回答
+            this.setData({
+
+              questionShow: this.data.questions[this.data.questionShowIndex + 1],
+              radio: '',
+              questionShowIndex: this.data.questionShowIndex + 1,
+            })
+          } else {
+            this.setData({
+              questionShow: this.data.questions[this.data.questionShowIndex + 1],
+              radio: this.data.answers[this.data.questionShowIndex + 1],
+              questionShowIndex: this.data.questionShowIndex + 1,
+            });
+          }
+
+        }
+      }
+    }
+  },
   onLoad: function () {
-
     //更新openid
     app.updateOpenid()
     // Toast.loading({
@@ -37,14 +192,18 @@ Page({
     //   message: '加载中...',
     //   duration: 2000
     // });
-
+    this.readQuestion()
   },
   nextPage: function () {
     var message = []
     message.push(this.data.lifePlace)
     message.push(this.data.lifeStatus)
+    message.push(this.data.touchSick)
     message.push(this.arrayToString(this.data.haveSick))
     message.push(this.data.unconfirmSick)
+    message.push(this.data.haveTrain)
+    message.push(this.data.hadRep)
+    message.push(this.data.canhelp)
     message.push(this.data.easySick)
     message.push(this.arrayToString(this.data.msgWay))
     message.push(this.data.appWork)
@@ -98,64 +257,6 @@ Page({
 
   },
 
-
-
-  //近一周主要居住地点
-  onChangeLifePlace: function (event) {
-    this.setData({
-      lifePlace: event.detail
-    })
-  },
-  //近一周居住状态
-  onChangeLifeStatus: function (event) {
-    this.setData({
-      lifeStatus: event.detail
-    })
-  },
-
-  //截至目前为止，是否有以下人员确诊为新冠肺炎？
-  onChangeHaveSick: function (event) {
-    console.log(event.detail)
-    this.setData({
-      haveSick: event.detail
-    })
-  },
-  //近一周，您本人和与您共同居住的人（包括家人或合住的人）中，是否有人未确诊，但有发热、咳嗽等症状？
-  onChangeUnconfirmSick: function (event) {
-    this.setData({
-      unconfirmSick: event.detail
-    })
-  },
-  //您是否担心自己容易感染
-  onChangeEasySick: function (event) {
-    this.setData({
-      easySick: event.detail
-    })
-  },
-  //近一周您主要通过哪种方式获取新冠肺炎疫情信息？
-  onChangeMsgWay: function (event) {
-    this.setData({
-      msgWay: event.detail
-    })
-  },
-  //您认为新闻或社交媒体（朋友圈、公众号、微博、抖音等）发布的心理调适资源或心理热线对您是否有帮助？
-  onChangeAppWork: function (event) {
-    this.setData({
-      appWork: event.detail
-    })
-  },
-  //近一周，您平均每天通过各种方式接收疫情信息的时间大概为多少小时
-  onChangeHour: function (event) {
-    this.setData({
-      hour: event.detail
-    })
-  },
-  //对于新冠肺炎被控制的进度，您的不确定感程度
-  onChangeSensor: function (event) {
-    this.setData({
-      sensor: event.detail
-    })
-  },
 
   //数组转字符串
   arrayToString: function (array) {
