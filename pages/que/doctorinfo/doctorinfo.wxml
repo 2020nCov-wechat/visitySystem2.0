@@ -48,7 +48,7 @@
             
                 <van-cell-group>
               <van-field
-                label="名族"
+                label="民族"
                 value="{{ nation }}"
                 border="{{ false }}"
                 disabled="true"
