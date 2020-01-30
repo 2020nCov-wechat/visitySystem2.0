@@ -62,6 +62,1135 @@ var questions = [{
   ]
 }
 ]
+var que1 = {
+  "scaleTitle": "抑郁症筛查量表",
+  "scaleBrief": "在过去的两周内，以下情况烦扰您有多频繁？",
+  "qNum": 9,
+  "questions": [
+    {
+      "type": 1,
+      "question": "1.做事时提不起劲或没有兴趣",
+      "answers": [{
+        "answer": "无",
+        "value": 0
+      },
+      {
+        "answer": "轻度",
+        "value": 1
+      },
+      {
+        "answer": "中度",
+        "value": 2
+      },
+      {
+        "answer": "重度",
+        "value": 3
+      },
+      {
+        "answer": "极重度",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "2.感到心情低落，沮丧或绝望",
+      "answers": [{
+        "answer": "无",
+        "value": 0
+      },
+      {
+        "answer": "轻度",
+        "value": 1
+      },
+      {
+        "answer": "中度",
+        "value": 2
+      },
+      {
+        "answer": "重度",
+        "value": 3
+      },
+      {
+        "answer": "极重度",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "3.入睡困难，睡不安稳或睡眠过多",
+      "answers": [{
+        "answer": "无",
+        "value": 0
+      },
+      {
+        "answer": "轻度",
+        "value": 1
+      },
+      {
+        "answer": "中度",
+        "value": 2
+      },
+      {
+        "answer": "重度",
+        "value": 3
+      },
+      {
+        "answer": "极重度",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "4.感觉疲倦或没有活力",
+      "answers": [{
+        "answer": "很满意",
+        "value": 0
+      },
+      {
+        "answer": "满意",
+        "value": 1
+      },
+      {
+        "answer": "不太满意",
+        "value": 2
+      },
+      {
+        "answer": "不满意",
+        "value": 3
+      },
+      {
+        "answer": "很不满意",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "5.食欲不振或吃太多",
+      "answers": [{
+        "answer": "没有干扰",
+        "value": 0
+      },
+      {
+        "answer": "轻微",
+        "value": 1
+      },
+      {
+        "answer": "有些",
+        "value": 2
+      },
+      {
+        "answer": "较多",
+        "value": 3
+      },
+      {
+        "answer": "很多干扰",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "6.觉得自己很糟或觉得自己很失败，或让自己或家人失望",
+      "answers": [{
+        "answer": "没有",
+        "value": 0
+      },
+      {
+        "answer": "一点",
+        "value": 1
+      },
+      {
+        "answer": "有些",
+        "value": 2
+      },
+      {
+        "answer": "较多",
+        "value": 3
+      },
+      {
+        "answer": "很多",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "7.对事物专注有困难，例如阅读报纸或看电视时",
+      "answers": [{
+        "answer": "没有",
+        "value": 0
+      },
+      {
+        "answer": "一点",
+        "value": 1
+      },
+      {
+        "answer": "有些",
+        "value": 2
+      },
+      {
+        "answer": "较多",
+        "value": 3
+      },
+      {
+        "answer": "很多",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "8.行动或说话速度变得缓慢（或变得烦躁、坐立不安、动来动去等）已被周围人察觉",
+      "answers": [{
+        "answer": "没有",
+        "value": 0
+      },
+      {
+        "answer": "一点",
+        "value": 1
+      },
+      {
+        "answer": "有些",
+        "value": 2
+      },
+      {
+        "answer": "较多",
+        "value": 3
+      },
+      {
+        "answer": "很多",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "9.有不如死掉或用某种方式伤害自己的念头",
+      "answers": [{
+        "answer": "没有",
+        "value": 0
+      },
+      {
+        "answer": "一点",
+        "value": 1
+      },
+      {
+        "answer": "有些",
+        "value": 2
+      },
+      {
+        "answer": "较多",
+        "value": 3
+      },
+      {
+        "answer": "很多",
+        "value": 4
+      },
+      ]
+    }
+  ]
+}
+
+var que2 = {
+  "scaleTitle": "广泛性焦虑障碍量表",
+  "scaleBrief": "在过去的两周内，有多少时候您收到以下任何问题困扰？",
+  "qNum": 7,
+  "questions": [
+    {
+      "type": 1,
+      "question": "1.感觉紧张，焦虑或急切",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的日子",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      }
+      ]
+    },
+    {
+      "type": 1,
+      "question": "2.不能够停止或控制担忧",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的日子",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      }
+      ]
+    },
+    {
+      "type": 1,
+      "question": "3.对各种各样的事情担忧过多",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的日子",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      }
+      ]
+    },
+    {
+      "type": 1,
+      "question": "4.很难放松下来",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的日子",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      }
+      ]
+    },
+    {
+      "type": 1,
+      "question": "5.由于不安而无法静坐",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的日子",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      }
+      ]
+    },
+    {
+      "type": 1,
+      "question": "6.变得容易烦恼或急躁",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的日子",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      }
+      ]
+    },
+    {
+      "type": 1,
+      "question": "7.感到似乎将有可怕的事情发生而害怕",
+      "answers": [{
+        "answer": "完全不会",
+        "value": 0
+      },
+      {
+        "answer": "几天",
+        "value": 1
+      },
+      {
+        "answer": "一半以上的日子",
+        "value": 2
+      },
+      {
+        "answer": "几乎每天",
+        "value": 3
+      }
+      ]
+    },
+  ]
+}
+
+var que3 = {
+  "scaleTitle": "失眠严重指数",
+  "scaleBrief": "对于以下问题，请您选出近1个月以来最符合您的睡眠情况的选项。",
+  "qNum":7,
+  "questions": [
+    {
+      "type": 1,
+      "question": "1.入睡困难",
+      "answers": [{
+        "answer": "无",
+        "value": 0
+      },
+      {
+        "answer": "轻度",
+        "value": 1
+      },
+      {
+        "answer": "中度",
+        "value": 2
+      },
+      {
+        "answer": "重度",
+        "value": 3
+      },
+      {
+        "answer": "极重度",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "2.睡眠维持困难",
+      "answers": [{
+        "answer": "无",
+        "value": 0
+      },
+      {
+        "answer": "轻度",
+        "value": 1
+      },
+      {
+        "answer": "中度",
+        "value": 2
+      },
+      {
+        "answer": "重度",
+        "value": 3
+      },
+      {
+        "answer": "极重度",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "3.早醒",
+      "answers": [{
+        "answer": "无",
+        "value": 0
+      },
+      {
+        "answer": "轻度",
+        "value": 1
+      },
+      {
+        "answer": "中度",
+        "value": 2
+      },
+      {
+        "answer": "重度",
+        "value": 3
+      },
+      {
+        "answer": "极重度",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "4.对您目前的睡眠模式满意/不满意程度如何？",
+      "answers": [{
+        "answer": "很满意",
+        "value": 0
+      },
+      {
+        "answer": "满意",
+        "value": 1
+      },
+      {
+        "answer": "不太满意",
+        "value": 2
+      },
+      {
+        "answer": "不满意",
+        "value": 3
+      },
+      {
+        "answer": "很不满意",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "5.您认为您的失眠在多大程度上影响了你的日间功能？（如日间疲劳、处理工作和日常事务的能力、注意力、记忆力、情绪等）",
+      "answers": [{
+        "answer": "没有干扰",
+        "value": 0
+      },
+      {
+        "answer": "轻微",
+        "value": 1
+      },
+      {
+        "answer": "有些",
+        "value": 2
+      },
+      {
+        "answer": "较多",
+        "value": 3
+      },
+      {
+        "answer": "很多干扰",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "6.你的失眠问题影响了你的生活质量，你觉得在别人眼中你的失眠情况如何？",
+      "answers": [{
+        "answer": "没有",
+        "value": 0
+      },
+      {
+        "answer": "一点",
+        "value": 1
+      },
+      {
+        "answer": "有些",
+        "value": 2
+      },
+      {
+        "answer": "较多",
+        "value": 3
+      },
+      {
+        "answer": "很多",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "7.您对目前的睡眠问题的担心/痛苦程度如何？",
+      "answers": [{
+        "answer": "没有",
+        "value": 0
+      },
+      {
+        "answer": "一点",
+        "value": 1
+      },
+      {
+        "answer": "有些",
+        "value": 2
+      },
+      {
+        "answer": "较多",
+        "value": 3
+      },
+      {
+        "answer": "很多",
+        "value": 4
+      },
+      ]
+    }
+  ]
+}
+
+var que4 = {
+  "scaleTitle": "事件影响量表修订版",
+  "scaleBrief": "过去一月，经历了新冠肺炎疫情的您是否体验到下列困扰，请您仔细阅读每个题目，选择最能够形容每一种困扰对您影响的程度。那件事指新冠肺炎以及其引发的一系列烦恼的事情。请按照自己在最近7天之内的体验，说明这件事情对你有多大影响。",
+  "qNum": 22,
+  "questions": [
+    {
+      "type": 1,
+      "question": "1.任何与新冠肺炎相关的事物都会引发当时的感受。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "2.我很难安稳地一觉睡到天亮。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "3.别的东西也会让我想起那件事。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "4.我感觉我易受刺激、易发怒。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "5.每当想起那件事或其他事情使我记起它的时候，我会尽量避免使自己心烦意乱。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "6.即使我不愿意去想那件事时，也会想起它。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "7.我感觉，那件事好像不是真的，或者从未发生过。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "8.我设法远离一切能使我记起那件事的事物。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "9.有关那件事的画面会在我的脑海中突然出现。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "10.我感觉自己神经过敏，易被惊吓。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "11.我努力不去想那件事。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "12.我觉察到我对那件事仍有很多感受，但我没有去处理它们。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "13.我对那件事的感觉有点麻木。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "14.我发现我的行为和感觉，好像又回到了那个事件发生的时候那样。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "15.我难以入睡。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "16.我因那件事而有强烈的情感波动。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "17.我想要忘掉那件事。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "18.我感觉自己难以集中注意力。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "19.令我想起那件事的事物会引起我身体上的反应，如:出汗、呼吸困难、眩晕和心跳。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "20.我曾经梦到过那件事。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "21.我感觉自己很警觉或很戒备。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    },
+    {
+      "type": 1,
+      "question": "22.我尽量不提那件事。",
+      "answers": [{
+        "answer": "一点没有",
+        "value": 0
+      },
+      {
+        "answer": "很少出现",
+        "value": 1
+      },
+      {
+        "answer": "有时出现",
+        "value": 2
+      },
+      {
+        "answer": "常常出现",
+        "value": 3
+      },
+      {
+        "answer": "总是出现",
+        "value": 4
+      },
+      ]
+    }
+  ]
+}
+
 
 var doctorinfos = {
   "qNum": 8,
@@ -791,5 +1920,9 @@ module.exports = {
   doctornear: doctornear,
   userinfos: userinfos,
   usernear: usernear,
-  quefour: quefour
+  quefour: quefour,
+  que1: que1,
+  que2: que2,
+  que3: que3,
+  que4: que4
 }

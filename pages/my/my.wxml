@@ -166,7 +166,7 @@
     </view>
 
 
-    <view class='myService'>
+    <!-- <view class='myService'>
       <view class='title acea-row row-middle'>综合评价</view>
       <view class='serviceList acea-row row-middle'>
 
@@ -177,18 +177,17 @@
         </view>
 
         <view class="ringcontainer">
-          <!-- <canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas> -->
+          <canvas canvas-id="ringCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
 
-          <!-- <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button> -->
+          <button type="primary" bindtap="updateData" style="margin-top:30rpx">更新title</button>
         </view>
         <view class="suggess-css">
           <text>评估建议：{{suggestion}}</text>
-          <!-- <view suggestion="{{suggestion}}" class='acea-row'></view> -->
         </view>
 
 
       </view>
-    </view>
+    </view> -->
     <!-- <view class='myService'>
       <view class='title acea-row row-middle'>指标分析</view>
       <view class='serviceList acea-row row-middle'>

@@ -10,13 +10,13 @@ Page({
     radio: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    scaleTitle: '问卷调查',
-    scaleBrief: '问卷调查',
+    scaleTitle:'',
+    scaleBrief:'',
     nextBtnText: "下一题",
-    curScaleIndex: 3,//当前正在做的问卷序号
+    curScaleIndex: 1,//当前正在做的问卷序号
     questionHadAns: 0,
     questionShowIndex: 0,
-    questionNum: 3,
+    questionNum: 0,
     questionShow: {
       "question": "1.入睡困难，睡不安稳或睡眠过多",
       "answers": [{
@@ -37,10 +37,71 @@ Page({
       },
       ]
     },
-    questions: questionsOut.doctorinfos,
+    questions: [],
     answers: []
   },
 
+  initQuestion:function() {
+    this.setData({
+      questions: questionsOut.que1.questions,
+      questionShow: questionsOut.que1.questions[0],
+      scaleTitle: questionsOut.que1.scaleTitle,
+      scaleBrief: questionsOut.que1.scaleBrief,
+      questionNum: questionsOut.que1.qNum,
+    })
+  },
+  nextQuestionPage:function(){
+    if (this.data.curScaleIndex==1){
+      //开始做第二套
+      this.setData({
+        questions: questionsOut.que2.questions,
+        questionShow: questionsOut.que2.questions[0],
+        scaleTitle: questionsOut.que2.scaleTitle,
+        scaleBrief: questionsOut.que2.scaleBrief,
+        questionNum: questionsOut.que2.qNum,
+        curScaleIndex: 2,
+        questionHadAns: 0,
+        questionShowIndex: 0,
+        answers: [],
+        nextBtnText: "下一题",
+        radio: '',
+      })
+    } else if (this.data.curScaleIndex == 2) {
+      //开始做第三套
+      this.setData({
+        questions: questionsOut.que3.questions,
+        questionShow: questionsOut.que3.questions[0],
+        scaleTitle: questionsOut.que3.scaleTitle,
+        scaleBrief: questionsOut.que3.scaleBrief,
+        questionNum: questionsOut.que3.qNum,
+        curScaleIndex: 3,
+        questionHadAns: 0,
+        questionShowIndex: 0,
+        answers: [],
+        nextBtnText: "下一题",
+        radio: '',
+      })
+    } else if (this.data.curScaleIndex == 3) {
+      //开始做第四套
+      this.setData({
+        questions: questionsOut.que4.questions,
+        questionShow: questionsOut.que4.questions[0],
+        scaleTitle: questionsOut.que4.scaleTitle,
+        scaleBrief: questionsOut.que4.scaleBrief,
+        questionNum: questionsOut.que4.qNum,
+        curScaleIndex: 4,
+        questionHadAns: 0,
+        questionShowIndex: 0,
+        answers: [],
+        radio: '',
+      })
+    } else if (this.data.curScaleIndex == 4) {
+      //结束
+      wx.navigateTo({
+        url: '../que2/quefour/quefour'
+      })
+    }
+  },
   onChange(event) {
     console.log("onchange")
     console.log(event)
@@ -208,18 +269,18 @@ Page({
         }
       })
     }
-   // this.readQuestion()
+    this.initQuestion()
    // 更新openid
     app.updateOpenid()
-    Toast.loading({
-      mask: true,
-      message: '加载中...',
-      duration: 2000
-    });
-    var that = this
-    var time = setTimeout(function () {
-      that.updateScale(that.data.curScaleIndex)
-    }, 2000)
+    // Toast.loading({
+    //   mask: true,
+    //   message: '加载中...',
+    //   duration: 2000
+    // });
+    // var that = this
+    // var time = setTimeout(function () {
+    //   that.updateScale(that.data.curScaleIndex)
+    // }, 2000)
   },
   //更新Scale
   updateScale: function (index) {
@@ -294,7 +355,8 @@ Page({
             scaleTitle: title,
             scaleBrief: brief
           })
-
+          console.log("量表")
+          console.log(questions)
         } else {
           //登录过期
           if (res.data.errCode != 200) {
@@ -341,10 +403,7 @@ Page({
           //Toast.success('成功提交');
 
           //获取得分与结果
-
-          wx.navigateTo({
-            url: '../que2/quefour/quefour'
-          })
+          that.nextQuestionPage()
 
           //   wx.switchTab({
           //     url: "/pages/my/my",
@@ -359,14 +418,10 @@ Page({
           
         } else {
           //登录过期
-          // if (res.data.errCode == 500) {
-          //   console.log("登录过期")
-          //   //更新openid
-          //   getApp().updateOpenid()
-          //   var time = setTimeout(function () {
-          //     that.updateChart()
-          //   }, 1000)
-          // }
+            console.log("登录过期")
+            //更新openid
+            getApp().updateOpenid()
+            that.sendAnswer(index)
         }
 
       },
@@ -385,9 +440,5 @@ Page({
       hasUserInfo: true
     })
   },
-  readQuestion(){
-    this.setData({
-      questionShow:this.data.questions[0]
-    })
-  }
+
 })
