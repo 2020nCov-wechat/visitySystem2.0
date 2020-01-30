@@ -75,9 +75,86 @@ Page({
       "京族",
       "独龙族",
       "赫哲族",
-      "珞巴族"]
-  },
+      "珞巴族"],
 
+    questions: [{
+      "type": 1,
+      "question": "2. 您的性别",
+      "answers": [{
+        "answer": "男",
+      },
+      {
+        "answer": "女",
+      }]
+    },
+    {
+      "type": 5,
+      "question": "3. 您的民族",
+      "answers": [{
+        "answer": "请选择",
+      }]
+    },
+    {
+      "type": 1,
+      "question": "4. 您的年龄",
+      "answers": [{
+        "answer": "18~25",
+      },
+      {
+        "answer": "26~30",
+        },
+        {
+          "answer": "31~40",
+        },
+        {
+          "answer": "41~50",
+        },
+        {
+          "answer": "51~60",
+        },
+        {
+          "answer": "60以上",
+        }]
+    },
+    {
+      "type": 1,
+      "question": "5. 婚姻状况",
+      "answers": [{
+        "answer": "未婚",
+      },
+      {
+        "answer": "已婚",
+        },
+        {
+          "answer": "丧偶",
+        },
+        {
+          "answer": "离异",
+        }]
+    },
+    {
+      "type": 1,
+      "question": "6. 学历",
+      "answers": [{
+        "answer": "初中及以下",
+      },
+      {
+        "answer": "高中/中专",
+        },
+        {
+          "answer": "本科/大专",
+        },
+        {
+          "answer": "硕士",
+        },
+        {
+          "answer": "博士",
+        }]
+    },
+    ],
+
+  },
+  
   onLoad: function () {
     //更新openid
     app.updateOpenid()
