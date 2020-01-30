@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/question/question",
     "pages/que/first/first",
+    "pages/question/question",
     "pages/que/quefour/quefour",
     "pages/my/my",
     "pages/que/usernear/usernear",

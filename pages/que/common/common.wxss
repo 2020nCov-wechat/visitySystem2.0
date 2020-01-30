@@ -168,3 +168,12 @@ button::after{border:0;}
 .ans2{
   height: 100rpx;
 }
+.name-css{
+  justify-content: center;
+}
+.answertext{
+  font-size: 20px;
+}
+.question-css{
+  font-size: 20px;
+}

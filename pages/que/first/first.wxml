@@ -15,7 +15,7 @@
             </block>
           </view>
           <view class='text'>
-            <view class='acea-row row-middle'>
+            <view class='acea-row row-middle name-css'>
               <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
               <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
                 <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
@@ -51,16 +51,17 @@
     </view>
       <view class="item_list">
       <view class='myService'>
-        <view class='title acea-row row-middle title-height'>1.您是医护人员吗？</view>
+        <view class='title acea-row row-middle title-height'>
+          <text class="question-css">1.您是医护人员吗？</text></view>
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
             <van-radio-group value="{{ radio }}" bind:change="onChange">
               <view class="answer-css">
-                <van-radio name="1">是的</van-radio>
+                <van-radio name="1" icon-size="28px" label-class	="answertext">是的</van-radio>
               </view>
               <view class="answer-css">
-                <van-radio name="2">不是</van-radio>
+                <van-radio name="2" icon-size="28px" label-class	="answertext">不是</van-radio>
               </view>
             </van-radio-group>
           </view>
