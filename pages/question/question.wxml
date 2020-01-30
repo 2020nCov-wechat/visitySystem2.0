@@ -18,27 +18,6 @@
     </view>
 
 
-    <!-- <view class="scroll_box">
-      <scroll-view class="scroll-view_x" scroll-x style="width: 100%;overflow:hidden;">
-        <view class="item_list" wx:for="{{questions}}">
-          <view class='myService'>
-            <view class='title acea-row row-middle title-height'>{{item.question}}</view>
-            <view class='serviceList acea-row row-middle'>
-
-              <view class="suggess-css">
-                <van-radio-group value="{{ radio }}" bind:change="onChange">
-                  <view wx:for="{{item.answers}}" class="answer-css">
-                    <van-radio name="{{item.value}}">{{item.answer}}</van-radio>
-                  </view>
-
-                </van-radio-group>
-              </view>
-
-            </view>
-          </view>
-        </view>
-      </scroll-view>
-    </view> -->
     <view class="item_list">
       <view class='myService'>
         <view class='title acea-row row-middle title-height'>
@@ -47,13 +26,16 @@
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
+            <block wx:if="{{questionShow.type==1}}">
+
             <van-radio-group value="{{ radio }}" bind:change="onChange">
               <view wx:for="{{questionShow.answers}}" class="answer-css">
-                <van-radio icon-size="28px" name="{{item.value}}" label-class	="answertext">
+                <van-radio icon-size="28px" name="{{item.answer}}" label-class	="answertext">
                   {{item.answer}}
                 </van-radio>
               </view>
             </van-radio-group>
+            </block>
           </view>
 
         </view>

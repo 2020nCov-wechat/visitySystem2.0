@@ -2,21 +2,31 @@
 //获取应用实例
 const app = getApp()
 import Toast from '@vant/weapp/toast/toast';
-var questionsOut = require('../../config/questions.js')
+var questionsOut = require('../../../config/questions.js')
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    radio: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    radio: '',
+    sex:'',
+    nation:'',
+    age: '',
+    married:'',
+    education: '',
+    workDept: '',
+    job: '',
+    dept: '',
+    jobLevel: '',
+    bottom: false,
     scaleTitle: '问卷调查',
     scaleBrief: '问卷调查',
     nextBtnText: "下一题",
     curScaleIndex: 3,//当前正在做的问卷序号
     questionHadAns: 0,
     questionShowIndex: 0,
-    questionNum: 3,
+    questionNum: questionsOut.doctorinfos.qNum,
     questionShow: {
       "question": "1.入睡困难，睡不安稳或睡眠过多",
       "answers": [{
@@ -37,14 +47,73 @@ Page({
       },
       ]
     },
-    questions: questionsOut.doctorinfos,
-    answers: []
+    questions: questionsOut.doctorinfos.questions,
+    answers: [],
+    nationOption: ["汉族",
+      "蒙古族",
+      "藏族",
+      "苗族",
+      "壮族",
+      "回族",
+      "维吾尔族",
+      "彝族",
+      "布依族",
+      "朝鲜族",
+      "侗族",
+      "白族",
+      "哈尼族",
+      "傣族",
+      "傈僳族",
+      "畲族",
+      "拉祜族",
+      "满族",
+      "瑶族",
+      "土家族",
+      "哈萨克族",
+      "黎族",
+      "佤族",
+      "高山族",
+      "水族",
+      "东乡族",
+      "景颇族",
+      "土族",
+      "仫佬族",
+      "布朗族",
+      "毛南族",
+      "锡伯族",
+      "普米族",
+      "纳西族",
+      "柯尔克孜族",
+      "达斡尔族",
+      "羌族",
+      "撒拉族",
+      "仡佬族",
+      "阿昌族",
+      "塔吉克族",
+      "怒族",
+      "俄罗斯族",
+      "德昂族",
+      "裕固族",
+      "塔塔尔族",
+      "鄂伦春族",
+      "门巴族",
+      "基诺族",
+      "乌孜别克族",
+      "鄂温克族",
+      "保安族",
+      "京族",
+      "独龙族",
+      "赫哲族",
+      "珞巴族"],
+
+
+
   },
 
   onChange(event) {
     console.log("onchange")
     console.log(event)
-   // console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    // console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
     if (this.data.questionHadAns >= this.data.questionNum) {
       console.log("回答完了")
       var ansNew = this.data.answers;
@@ -116,7 +185,7 @@ Page({
     }
   },
   clickBtnNext() {
-    console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '     ' + (this.data.questionNum - 1))
+  
     if (this.data.questionHadAns <= this.data.questionShowIndex) {
       console.log("还没答完当前题目")
       Toast.fail('请先回答当前问题');
@@ -127,7 +196,7 @@ Page({
         this.setData({
           nextBtnText: "完成"
         })
-        this.sendAnswer(this.data.curScaleIndex)
+        this.send(this.data.answers)
       } else {
         console.log(this.data.questionShowIndex)
         if (this.data.questionShowIndex == this.data.questionNum - 2) {
@@ -169,143 +238,69 @@ Page({
 
         }
       }
-
-
-
     }
-  },
-
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-    this.readQuestion()
     //更新openid
-    // app.updateOpenid()
+    app.updateOpenid()
     // Toast.loading({
     //   mask: true,
     //   message: '加载中...',
     //   duration: 2000
     // });
-    // var that = this
-    // var time = setTimeout(function () {
-    //   that.updateScale(that.data.curScaleIndex)
-    // }, 2000)
+    this.readQuestion()
   },
-  //更新Scale
-  updateScale: function (index) {
+  nextPage: function () {
+    var message = []
+    message.push(this.data.sex)
+    message.push(this.data.nation)
+    message.push(this.data.age)
+    message.push(this.data.married)
+    message.push(this.data.education)
+    message.push(this.data.workDept)
+    message.push(this.data.job)
+    message.push(this.data.dept)
+    message.push(this.data.jobLevel)
+    console.log(message)
+
+    this.send(message)
+  }, 
+  //发送信息
+  send: function (message) {
 
     var newopenid = app.globalData.openid
     var newSession_key = app.globalData.session_key
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
-    var file = index + '.csv'
     var that = this
     wx.request({
       //获取openid接口
-      url: getApp().globalData.getScale,
+      url: getApp().globalData.submitInfoUrl,
       data: {
         openid: newopenid,
         session_key: newSession_key,
-        fileName: file
+        message: message
       },
       method: 'POST',
       success: function (res) {
         console.log(res.data)
         if (res.data.errorCode == 200) {
-          var data = res.data
-          var question = data.question
-          var title = ''
-          var brief = ''
-          if (question != null) {
-            title = question[0].title
-            brief = question[0].brief
-          }
-          console.log(title + '  ' + brief)
-          var ansNum = 0
-          //取出key，获取回答数量
-          if (question != null) {
-            for (var key in question[0]) {
-              if (that.isInteger(parseInt(key))) {
-                if (parseInt(key) > ansNum) {
-                  ansNum = parseInt(key)
-                }
-              }
-            }
-          }
 
-          //设置问题
-          var questions = []
-          for (var que in question) {
-
-            var qIns = question[que].qid + '.' + question[que].question
-
-            var answers = []
-            for (var i = 0; i <= ansNum; i++) {
-              var answer = {
-                "answer": question[que][i],
-                "value": i
-              }
-
-              answers.push(answer)
-            }
-
-            var newQues = {
-              "question": qIns,
-              "answers": answers
-            }
-            questions.push(newQues)
-          }
-
-
-          that.setData({
-            questionNum: data.questionNum,
-            questions: questions,
-            questionShow: questions[0],
-            scaleTitle: title,
-            scaleBrief: brief
+          wx.navigateTo({
+            url: '../doctornear/doctornear'
           })
-
+      
         } else {
           //登录过期
           if (res.data.errCode != 200) {
-            console.log("获取问卷失败")
+            console.log("提交失败")
             //更新openid
             Toast.loading({
               mask: true,
               message: '加载中...',
               duration: 100
             });
-            that.updateScale(index)
+            that.send(message)
           }
         }
 
@@ -313,81 +308,35 @@ Page({
     })
 
   },
-  //提交答案
-  sendAnswer: function (index) {
-    var newopenid = app.globalData.openid
-    var newSession_key = app.globalData.session_key
-    newSession_key = newSession_key.replace(/ +/g, '%2B')
-    newopenid = newopenid.replace(/ +/g, '%2B')
 
-    var that = this
-    console.log(that.data.answers)
-    wx.request({
-      //获取openid接口
-      url: getApp().globalData.submitScale,
-      data: {
-        openid: newopenid,
-        session_key: newSession_key,
-        questionNaire: index,
-        answers: that.data.answers
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res.data)
-        if (res.data.errorCode == 200) {
-          console.log("发送成功")
-          console.log(that.data.answers)
-
-          //Toast.success('成功提交');
-
-          //获取得分与结果
-
-          wx.navigateTo({
-            url: '../que/quefour/quefour'
-          })
-
-          //   wx.switchTab({
-          //     url: "/pages/my/my",
-          //     success() {
-          //       var page = getCurrentPages().pop();
-          //       if (page == undefined || page == null) return;
-          //       //更新openid
-          //       getApp().updateOpenid()
-          //     }
-          //   });
-          // }, 1000)
-          
-        } else {
-          //登录过期
-          // if (res.data.errCode == 500) {
-          //   console.log("登录过期")
-          //   //更新openid
-          //   getApp().updateOpenid()
-          //   var time = setTimeout(function () {
-          //     that.updateChart()
-          //   }, 1000)
-          // }
-        }
-
-      },
-    })
-
-  },
-  //判断整数
-  isInteger: function (obj) {
-    return parseInt(obj, 10) === obj
-  },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+  toggle(type) {
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+      [type]: !this.data[type]
+    });
   },
-  readQuestion(){
+  
+  //民族显示
+  showBottom:function() {
+    this.toggle('bottom', true);
+  },
+  hideBottom:function() {
+    this.toggle('bottom', false);
+  },
+  onCancelNation:function(){
+    this.hideBottom()
+  },
+  onConfirmNation: function (value) {
+    console.log(this.data.sex)
+    console.log(this.data.nation)
+    console.log(value.detail)
     this.setData({
-      questionShow:this.data.questions[0]
+      nation: value.detail.value
+    })
+    this.hideBottom()
+  },
+  readQuestion:function() {
+    this.setData({
+      questionShow: this.data.questions[0]
     })
   }
 })

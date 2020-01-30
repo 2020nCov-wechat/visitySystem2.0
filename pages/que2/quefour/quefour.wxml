@@ -1,0 +1,199 @@
+<!--pages/myinfor/myinfor.wxml-->
+<view class='user'>
+
+  <view class='header  new-header bg-color acea-row row-between-wrapper '>
+    <view class='header-have-arrow'>
+      <view class='arrow'>
+        <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
+      </view>
+
+
+    </view>
+
+
+
+  </view>
+  <view class='wrapper'>
+   <view class='nav acea-row row-middle title-padding'>
+
+      <text space="ensp">
+        第四部分 服务需求
+      </text>
+    </view>
+      <view class="item_list">
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>68. 总的来说，您认为您的健康状况是：</view>
+        <view class='serviceList acea-row row-middle'>
+          <view class="suggess-css">
+            <van-radio-group value="{{ health }}" bind:change="onChange" id="health">
+              <view class="answer-css">
+                <van-radio name="好">好</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="一般">一般</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="差">差</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+      </view>
+       </view>
+        
+      <view class='myService'>
+        <view class='title2 acea-row row-middle title-height'>69. 和疫情发生前相比较，您认为您目前的健康状况大致如何？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ change }}" bind:change="onChange" id="change">
+              <view class="answer-css">
+                <van-radio name="变好了">变好了</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="差不多">差不多</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="差一些">差一些</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="差多了">差多了</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class='myService'>
+        <view class='title2 acea-row row-middle title-height'>70. 您在此次新冠肺炎疫情发生后，曾经得到过哪些心理上的帮助？（可多选）</view>
+        <view class='serviceList acea-row row-middle'>
+          <view class="suggess-css">
+            <van-checkbox-group value="{{ help }}" bind:change="onChange" id="help">
+              <view class="answer-css">
+                <van-checkbox name="收到关于心理方面的宣传材料">收到关于心理方面的宣传材料</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="听到媒体对心理方面的宣传">听到媒体对心理方面的宣传</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="团体心理辅导">团体心理辅导</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="个体心理辅导">个体心理辅导</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="心理治疗">心理治疗</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="没获得过任何帮助">没获得过任何帮助</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="其他">其他</van-checkbox>
+              </view>
+            </van-checkbox-group>
+          </view>
+          </view>
+      </view>
+      <view class='myService'>
+<view class='title2 acea-row row-middle title-height'>71. 此次新冠肺炎疫情中，您最希望由谁提供心理帮助？</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ person }}" bind:change="onChange" id="person">
+              <view class="answer-css">
+                <van-radio name="专业心理咨询人员">专业心理咨询人员</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="家人及亲戚">家人及亲戚</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="朋友同事">朋友同事</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="不需要帮助">不需要帮助</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="其他">其他</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+          </view>
+      </view>
+      <view class='myService'>
+<view class='title2 acea-row row-middle title-height'>72. 您希望了解哪项有关心理方面的知识和技能？（可多选）</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-checkbox-group value="{{ type }}" bind:change="onChange" id="type">
+              <view class="answer-css">
+                <van-checkbox name="常见的心理反应">常见的心理反应</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="自己如何缓解心理反应">自己如何缓解心理反应</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="如何帮助别人缓解心理反应">如何帮助别人缓解心理反应</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="如何寻求专业心理咨询人员的帮助">如何寻求专业心理咨询人员的帮助</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="不感兴趣">不感兴趣</van-checkbox>
+              </view>
+              <view class="answer-css">
+                <van-checkbox name="其他">其他</van-checkbox>
+              </view>
+            </van-checkbox-group>
+          </view>
+          </view>
+      </view>
+      <view class='myService'>
+        <view class='title2 acea-row row-middle title-height'>73. 此次新冠肺炎疫情中，您最希望获得哪方面的心理帮助？</view>
+        <view class='serviceList acea-row row-middle'>
+          <view class="suggess-css">
+            <van-radio-group value="{{ method }}" bind:change="onChange" id="method">
+              <view class="answer-css">
+                <van-radio name="收到关于心理方面的宣传材料">收到关于心理方面的宣传材料</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="听到媒体对心理方面的宣传">听到媒体对心理方面的宣传</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="集体接受心理辅导">集体接受心理辅导</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="个体心理咨询">个体心理咨询</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="不感兴趣">不感兴趣</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="其他">其他</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+        </view>
+       </view>
+      <view class='myService'>
+        <view class='title3 acea-row row-middle title-height'>74. 在做好防护的情况下，如果有关机构开展针对此次疫情的心理健康教育活动如讲座、咨询等，您愿意参加吗?</view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <van-radio-group value="{{ activities }}" bind:change="onChange" id="activities">
+              <view class="answer-css">
+                <van-radio name="愿意">愿意</van-radio>
+              </view>
+              <view class="answer-css">
+                <van-radio name="不愿意">不愿意</van-radio>
+              </view>
+            </van-radio-group>
+          </view>
+          </view>
+       
+      </view>
+    </view>
+  </view>
+  <view class="wrapper btn-css">
+    <van-button type="default" size="small" color="#1296DB" bindtap="submitNeed">完成</van-button>
+  </view>
+</view>
+<van-toast id="van-toast" />

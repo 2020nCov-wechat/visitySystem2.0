@@ -1,0 +1,60 @@
+<!--pages/myinfor/myinfor.wxml-->
+<view class='user'>
+
+  <view class='header  new-header bg-color acea-row row-between-wrapper '>
+    <view class='header-have-arrow'>
+      <view class='arrow'>
+        <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
+      </view>
+    </view>
+  </view>
+  <view class='wrapper'>
+    <view class='nav acea-row row-middle title-padding'>
+
+      <text space="ensp">
+        第二部分 医护人员
+      </text>
+    </view>
+
+
+    <view class="item_list">
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>
+          <text class="question-css">{{questionShow.question}}</text>
+        </view>
+        <view class='serviceList acea-row row-middle'>
+
+          <view class="suggess-css">
+            <block wx:if="{{questionShow.type==1}}">
+
+              <van-radio-group value="{{ radio }}" bind:change="onChange">
+                <view wx:for="{{questionShow.answers}}" class="answer-css">
+                  <van-radio icon-size="28px" name="{{item.answer}}" label-class="answertext">
+                    {{item.answer}}
+                  </van-radio>
+                </view>
+              </van-radio-group>
+            </block>
+          </view>
+
+        </view>
+
+      </view>
+    </view>
+
+    <view class="btn-bottom">
+      <view class="btn-css">
+        <van-button color="#1296DB" type="primary" bindtap="clickBtnLast">上一题</van-button>
+      </view>
+      <view class="btn-css">
+        <van-button color="#1296DB" type="primary" bindtap="clickBtnNext">{{nextBtnText}}</van-button>
+      </view>
+    </view>
+    <view class="btn-bottom">
+      <view class="btn-css">
+        <text>{{questionShowIndex+1}}/{{questionNum}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<van-toast id="van-toast" />
