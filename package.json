@@ -4,7 +4,8 @@
   "description": "---\r ###使用的前端ui框架\r [vant weapp](https://youzan.github.io/vant-weapp/#/quickstart)",
   "main": "app.js",
   "dependencies": {
-    "@vant/weapp": "^1.0.1"
+    "@vant/weapp": "^1.0.1",
+    "kai-ui": "^1.2.4"
   },
   "devDependencies": {},
   "scripts": {

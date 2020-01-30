@@ -1,9 +1,11 @@
 {
   "pages": [
+
     "pages/que/first/first",
     "pages/que/quefour/quefour",
     "pages/my/my",
     "pages/question/question",
+
     "pages/que/usernear/usernear",
     "pages/que/userinfo/userinfo",
     "pages/que/doctornear/doctornear",
@@ -80,6 +82,8 @@
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-picker": "@vant/weapp/picker/index",
     "van-checkbox": "@vant/weapp/checkbox/index",
-    "van-checkbox-group": "@vant/weapp/checkbox-group/index"
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+
+    "kai-radio":"kai-ui/radio/index"
   }
 }

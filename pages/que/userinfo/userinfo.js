@@ -408,6 +408,65 @@ Page({
 
     }
   },
+  sendAnswer: function (index) {
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+
+    var that = this
+    console.log(that.data.answers)
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.submitScale,
+      data: {
+        openid: newopenid,
+        session_key: newSession_key,
+        questionNaire: index,
+        answers: that.data.answers
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data)
+        if (res.data.errorCode == 200) {
+          console.log("发送成功")
+          console.log(that.data.answers)
+
+          //Toast.success('成功提交');
+
+          //获取得分与结果
+
+          wx.navigateTo({
+            url: '../que/quefour/quefour'
+          })
+
+          //   wx.switchTab({
+          //     url: "/pages/my/my",
+          //     success() {
+          //       var page = getCurrentPages().pop();
+          //       if (page == undefined || page == null) return;
+          //       //更新openid
+          //       getApp().updateOpenid()
+          //     }
+          //   });
+          // }, 1000)
+
+        } else {
+          //登录过期
+          // if (res.data.errCode == 500) {
+          //   console.log("登录过期")
+          //   //更新openid
+          //   getApp().updateOpenid()
+          //   var time = setTimeout(function () {
+          //     that.updateChart()
+          //   }, 1000)
+          // }
+        }
+
+      },
+    })
+
+  },
 
 
 
