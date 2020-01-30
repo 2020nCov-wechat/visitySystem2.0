@@ -17,7 +17,7 @@
 .user .wrapper .nav .item .num{margin-top:10rpx;font-size:36rpx;color:#282828;}
 .user .wrapper .myOrder{background-color:#fff;border-radius:10rpx;margin-top:15rpx;}
 .user .wrapper .myOrder .title,.user .wrapper .myService .title{
-  height:165rpx;
+  height:185rpx;
   padding:0 30rpx;
   border-bottom:1px dashed #ddd;
   font-size:30rpx;color:#282828;
@@ -199,7 +199,12 @@ button::after{border:0;}
   display: inline-block;
 }
 .title-height{
-  height: 100rpx;
+  height: 120rpx;
+  
+}
+.title-height2{
+  height: 120rpx;
+  
 }
 .answer-css{
   height: 100rpx;
@@ -215,11 +220,7 @@ button::after{border:0;}
   justify-content: center;
 }
 .btn-css{
-  width: 40%;
   padding: 0 20rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
 }
 .tittle-css{
   width: 100%;
@@ -231,4 +232,12 @@ button::after{border:0;}
 }
 .brief-css{
   padding:0 20rpx ;
+  font-size: 19px;
+}
+.answertext{
+  font-size: 20px;
+}
+.question-css{
+  
+  font-size: 20px;
 }

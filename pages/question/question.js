@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 import Toast from '@vant/weapp/toast/toast';
-
+var questionsOut = require('../../config/questions.js')
 Page({
   data: {
     motto: 'Hello World',
@@ -37,73 +37,14 @@ Page({
       },
       ]
     },
-    questions: [{
-      "question": "1.入睡困难，睡不安稳或睡眠过多",
-      "answers": [{
-        "answer": "完全不会",
-        "value": 0
-      },
-      {
-        "answer": "好几天",
-        "value": 1
-      },
-      {
-        "answer": "一半以上的天数",
-        "value": 2
-      },
-      {
-        "answer": "几乎每天",
-        "value": 3
-      },
-      ]
-    },
-    {
-      "question": "2.对事物专注有困难，例如阅读报纸或看电视时",
-      "answers": [{
-        "answer": "完全不会",
-        "value": 0
-      },
-      {
-        "answer": "好几天",
-        "value": 1
-      },
-      {
-        "answer": "一半以上的天数",
-        "value": 2
-      },
-      {
-        "answer": "几乎每天",
-        "value": 3
-      },
-      ]
-    },
-    {
-      "question": "3.动作或说话速度缓慢到别人已经察觉？或正好相反-烦躁或坐立不安、动来动去的情况更胜于平常",
-      "answers": [{
-        "answer": "完全不会",
-        "value": 0
-      },
-      {
-        "answer": "好几天",
-        "value": 1
-      },
-      {
-        "answer": "一半以上的天数",
-        "value": 2
-      },
-      {
-        "answer": "几乎每天",
-        "value": 3
-      },
-      ]
-    }
-    ],
+    questions: questionsOut.questions,
     answers: []
   },
 
   onChange(event) {
-
-    console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    console.log("onchange")
+    console.log(event)
+   // console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
     if (this.data.questionHadAns >= this.data.questionNum) {
       console.log("回答完了")
       var ansNew = this.data.answers;
@@ -269,16 +210,16 @@ Page({
     }
 
     //更新openid
-    app.updateOpenid()
-    Toast.loading({
-      mask: true,
-      message: '加载中...',
-      duration: 2000
-    });
-    var that = this
-    var time = setTimeout(function () {
-      that.updateScale(that.data.curScaleIndex)
-    }, 2000)
+    // app.updateOpenid()
+    // Toast.loading({
+    //   mask: true,
+    //   message: '加载中...',
+    //   duration: 2000
+    // });
+    // var that = this
+    // var time = setTimeout(function () {
+    //   that.updateScale(that.data.curScaleIndex)
+    // }, 2000)
   },
   //更新Scale
   updateScale: function (index) {

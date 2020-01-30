@@ -41,15 +41,18 @@
     </view> -->
     <view class="item_list">
       <view class='myService'>
-        <view class='title acea-row row-middle title-height'>{{questionShow.question}}</view>
+        <view class='title acea-row row-middle title-height'>
+          <text class="question-css">{{questionShow.question}}</text>
+        </view>
         <view class='serviceList acea-row row-middle'>
 
           <view class="suggess-css">
             <van-radio-group value="{{ radio }}" bind:change="onChange">
               <view wx:for="{{questionShow.answers}}" class="answer-css">
-                <van-radio name="{{item.value}}">{{item.answer}}</van-radio>
+                <van-radio icon-size="28px" name="{{item.value}}" label-class	="answertext">
+                  {{item.answer}}
+                </van-radio>
               </view>
-
             </van-radio-group>
           </view>
 
@@ -60,7 +63,7 @@
 
   <view class="btn-bottom">
     <view class="btn-css">
-     <van-button color="#1296DB" type="primary" bindtap="clickBtnLast">上一题</van-button>
+     <van-button color="#1296DB" type="primary" bindtap="clickBtnLast" >上一题</van-button>
     </view>
     <view class="btn-css">
      <van-button  color="#1296DB" type="primary" bindtap="clickBtnNext">{{nextBtnText}}</van-button>
