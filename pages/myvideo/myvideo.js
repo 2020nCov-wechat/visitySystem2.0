@@ -20,7 +20,7 @@ Page({
     var videoId=options.id;//视频id
     this.setData({
       // videoUrl: getApp().globalData.getVideoUrl +'v' + videoId+".mp4",
-      videoUrl:"https://v-cdn.zjol.com.cn/280443.mp4"
+      videoUrl:"https://cmas.aiwac.net/animations/happy-1.mp4"
     })
     console.log("播放视频"+this.data.videoUrl)
   },
