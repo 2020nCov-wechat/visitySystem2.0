@@ -118,6 +118,7 @@ Page({
         curScaleIndex: 4,
         questionHadAns: 0,
         questionShowIndex: 0,
+        nextBtnText: "下一题",
         answers: [],
         radio: '',
       })

@@ -85,6 +85,10 @@ App({
       }
     })
   },
+  saveUserInfo:function(userInfo){
+    getApp().globalData.userInfo = userInfo
+  },
+
   //获取用户信息
   getUseInfoDetail: function () {
 

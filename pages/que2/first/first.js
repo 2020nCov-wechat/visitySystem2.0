@@ -62,6 +62,7 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        getApp().saveUserInfo(res.userInfo)
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -72,6 +73,7 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
+          getApp().saveUserInfo(res.userInfo)
         }
       })
     }

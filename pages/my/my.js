@@ -117,6 +117,7 @@ Page({
         })
       }
     }
+
     //更新openid
     app.updateOpenid()
     var that = this
