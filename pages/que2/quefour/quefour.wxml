@@ -46,11 +46,13 @@
                 <view class="input-clsss">
                  <van-cell-group>
                   <van-field
-                    value="{{ message }}"
+                    value="{{ messages[questionShowIndex] }}"
                     type="textarea"
-                    placeholder="请输入留言"
+                    placeholder="选择'其他'时请输入"
                     autosize
                     border="{{ false }}"
+                    bind:input="inputOthers"
+                    id="{{questionShowIndex}}"
                   />
                 </van-cell-group>
                 </view>

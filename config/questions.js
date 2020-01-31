@@ -1760,32 +1760,14 @@ var usernear = {
 var quefour = {
   "qNum":7,
   "questions": [
-    {
-      "type": 2,
-      "question": "71. 此次新冠肺炎疫情中，您最希望由谁提供心理帮助？",
-      "answers": [{
-        "answer": "专业心理咨询人员",
-      },
-      {
-        "answer": "家人及亲戚",
-      },
-      {
-        "answer": "朋友同事",
-      },
-      {
-        "answer": "不需要帮助",
-      },
-      {
-        "answer": "其他",
-      },
-      ]
-    },
+    
     {
     "type": 1,
     "question": "68. 总的来说，您认为您的健康状况是：",
     "answers": [{
       "answer": "好",
     },
+    
     {
       "answer": "一般",
     },
@@ -1835,7 +1817,7 @@ var quefour = {
     ]
   },
   {
-    "type": 1,//2
+    "type": 2,//2
     "question": "71. 此次新冠肺炎疫情中，您最希望由谁提供心理帮助？",
     "answers": [{
       "answer": "专业心理咨询人员",
@@ -1878,7 +1860,7 @@ var quefour = {
     ]
   },
   {
-    "type": 1,//2
+    "type": 2,//2
     "question": "73. 此次新冠肺炎疫情中，您最希望获得哪方面的心理帮助？",
     "answers": [{
       "answer": "收到关于心理方面的宣传材料",

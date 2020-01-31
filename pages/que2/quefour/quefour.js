@@ -69,6 +69,8 @@ Page({
     questions: questionsOut.quefour.questions,
     answers: [],
     othersInput:'',
+    message:'',
+    messages:[],
   },
   onChange: function (event) {
     this.setData({
@@ -81,10 +83,97 @@ Page({
       questionShow: this.data.questions[0]
     })
   },
+  inputOthers: function (event) {
+    console.log("input")
+    console.log(event)
+    var mesNew = this.saveMes(this.data.messages,this.data.questionShowIndex,event.detail)
+    this.setData({
+      // message: mesNew,
+      messages:mesNew
+    })
+  },
+  ifOthers: function (event){
+    if(event.detail=="其他" && this.data.questionShow.type==2){
+      //此时就不要跳转
+      if (this.data.questionHadAns > this.data.questionShowIndex) {
+        console.log("回答过了")
+        var ansNew = this.data.answers;
+        ansNew[this.data.questionShowIndex] = event.detail
+        this.setData({
+          answers: ansNew
+        })
+        //--------
+        this.setData({
+          radio: event.detail
+        })
+        console.log(this.data.answers)
+        var that = this
+        var time = setTimeout(function () {
+          if (that.data.questionShowIndex == that.data.questionNum - 2) {
+            that.setData({
+              nextBtnText: "完成"
+            })
+          }
+          if (that.data.questionShowIndex == that.data.questionNum - 1) {
+            //回答完毕
+            console.log("finish")
+            that.setData({
+              nextBtnText: "完成"
+            })
+          } else {
+            console.log(that.data.radio)
+            
+          }
+        }, 500)
+        //---------
+      } else {
+        console.log("还没回答过，第一次回答这道题目")
+        this.data.answers.push(event.detail)
+
+        this.setData({
+          radio: event.detail
+        })
+        console.log(this.data.answers)
+        var that = this
+        var time = setTimeout(function () {
+          if (that.data.questionShowIndex == that.data.questionNum - 2) {
+            that.setData({
+              nextBtnText: "完成"
+            })
+          }
+          if (that.data.questionShowIndex == that.data.questionNum - 1) {
+            //回答完毕
+            console.log("finish")
+            that.setData({
+              questionHadAns: that.data.questionHadAns + 1,
+              nextBtnText: "完成"
+            })
+          } else {
+            console.log(that.data.radio)
+            //如果后面的回答过了
+            
+            that.setData({
+              questionHadAns: that.data.questionHadAns + 1,
+            });
+          }
+        }, 500)
+
+      }
+
+
+
+      return true
+    } 
+    //此时需要跳转
+    return false
+  },
   onChange(event) {
     console.log("onchange")
     console.log(event)
     console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    if(this.ifOthers(event)){
+      return
+    }
     if (this.data.questionHadAns > this.data.questionShowIndex) {
       console.log("回答过了")
       var ansNew = this.data.answers;
@@ -285,7 +374,7 @@ Page({
     var newSession_key = app.globalData.session_key
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
-
+    var sendMsg = this.addOthersMsgWhenSend(this.data.answers)
     var that = this
     wx.request({
       //获取openid接口
@@ -293,7 +382,7 @@ Page({
       data: {
         openid: newopenid,
         session_key: newSession_key,
-        message: that.data.answers
+        message: sendMsg
       },
       method: 'POST',
       success: function (res) {
@@ -318,12 +407,13 @@ Page({
           if (res.data.errCode != 200) {
             console.log("提交失败")
             //更新openid
+            getApp().updateOpenid()
             Toast.loading({
               mask: true,
               message: '加载中...',
               duration: 100
             });
-            that.send(message)
+            that.submitNeed(message)
           }
         }
 
@@ -331,6 +421,16 @@ Page({
     })
   },
 
+  addOthersMsgWhenSend:function(msgArrays){
+    var len = this.data.messages.length
+    for(var i=0;i<len;i++){
+      if(this.data.messages[i]!="Na"){
+        msgArrays[i]=msgArrays[i]+" , "+this.data.messages[i]
+      }
+    }
+    console.log(msgArrays)
+    return msgArrays
+  },
 
   //数组转字符串
   arrayToString: function (array) {
@@ -339,5 +439,28 @@ Page({
       returnResult = returnResult + array[str] + ', '
     }
     return returnResult
+  },
+
+  saveMes: function (mesArrays, index, msg) {
+    var len = mesArrays.length
+    if(len==0){
+      mesArrays=[]
+    }
+    console.log(mesArrays+ " "+ index+ " "+msg+ " "+len)
+    index = parseInt(index)
+    if(index>len-1 ){
+      var p = index-len
+      while(p!=0){
+        p--
+        mesArrays.push('Na')
+      }
+      mesArrays.push(msg)
+      console.log("mesn")
+      console.log(mesArrays)
+      return mesArrays
+    }else{
+      mesArrays[index]=msg
+      return mesArrays
+    }
   }
 })
