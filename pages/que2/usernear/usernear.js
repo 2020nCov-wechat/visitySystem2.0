@@ -4,6 +4,7 @@ const app = getApp()
 
 import Toast from '@vant/weapp/toast/toast';
 var questionsOut = require('../../../config/questions.js')
+var area = require('../../../config/area.js')
 Page({
   backClick: function () {
     var that = this;
@@ -69,6 +70,14 @@ Page({
     questions: questionsOut.doctornear.questions,
     answers: [],
 
+    //地址
+    loading: false,
+    value: 420000,
+    areaList: {
+      province_list: area.city.province_list,
+      city_list: area.city.city_list,
+      county_list: area.city.county_list
+    },
   },
   onChange: function (event) {
     this.setData({
@@ -322,7 +331,34 @@ Page({
 
   },
 
-
+  //城市显示
+  toggle(type) {
+    this.setData({
+      [type]: !this.data[type]
+    });
+  },
+  showCityBottom: function () {
+    this.toggle('cityBottom', true);
+  },
+  hideCityBottom: function () {
+    this.toggle('cityBottom', false);
+  },
+  onCancelCity: function () {
+    this.hideCityBottom()
+  },
+  onConfirmCity: function (value) {
+    console.log(value)
+    var ad = value.detail.values[0].name + ' ' + value.detail.values[1].name + ' ' + value.detail.values[2].name
+    this.setData({
+      value: value.detail.values[0].code,
+      address: ad
+    })
+    this.hideCityBottom()
+    var event = {
+      "detail": ad
+    }
+    this.onChange(event)
+  },
   //数组转字符串
   arrayToString: function (array) {
     var returnResult = ''

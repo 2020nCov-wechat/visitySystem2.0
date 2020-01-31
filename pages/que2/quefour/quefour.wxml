@@ -44,7 +44,15 @@
                 </view>
                 
                 <view class="input-clsss">
-                  <input class="" >{{othersInput}}</input>
+                 <van-cell-group>
+                  <van-field
+                    value="{{ message }}"
+                    type="textarea"
+                    placeholder="请输入留言"
+                    autosize
+                    border="{{ false }}"
+                  />
+                </van-cell-group>
                 </view>
               </van-radio-group>
               
