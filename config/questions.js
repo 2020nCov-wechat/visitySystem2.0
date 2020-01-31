@@ -1410,15 +1410,41 @@ var userinfos = {
   ]
 }
 var doctornear = {
-  "qNum": 13,
+  "qNum": 14,
   "questions": [
-    //   {
-    //   "type": 6,
-    //   "question": "11. 近一周居住城市",
-    //   "answers": [{
-    //     "answer": "请选择",
-    //   }]
-    // },
+    
+    {
+      "type": 6,
+      "question": "11. 近一周居住城市",
+      "answers": [{
+        "answer": "请选择",
+      }]
+    },
+    {
+      "type": 1,//3
+      "question": "15. 截止目前为止，是否有以下人员确诊为新冠肺炎？[多选]",
+      "answers": [{
+        "answer": "科室接诊的患者",
+      },
+      {
+        "answer": "您本人",
+      },
+      {
+        "answer": "家人",
+      },
+      {
+        "answer": "同事",
+      },
+      {
+        "answer": "朋友",
+      },
+      {
+        "answer": "您居住的小区",
+      },
+      {
+        "answer": "无",
+      }]
+    },
     {
       "type": 1,
       "question": "12. 近一周主要居住地点",
@@ -1458,31 +1484,7 @@ var doctornear = {
         "answer": "否",
       }]
     },
-    {
-      "type": 1,//3
-      "question": "15. 截止目前为止，是否有以下人员确诊为新冠肺炎？[多选]",
-      "answers": [{
-        "answer": "科室接诊的患者",
-      },
-      {
-        "answer": "您本人",
-      },
-      {
-        "answer": "家人",
-      },
-      {
-        "answer": "同事",
-      },
-      {
-        "answer": "朋友",
-      },
-      {
-        "answer": "您居住的小区",
-      },
-      {
-        "answer": "无",
-      }]
-    },
+    
     {
       "type": 1,
       "question": "16. 近一周，您本人和与您共同居住的人（包括家人或合住的人）中，是否有人未确诊，但有发热、咳嗽等症状？",

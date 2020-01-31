@@ -3,6 +3,8 @@
 const app = getApp()
 
 var questionsOut = require('../../../config/questions.js')
+var area = require('../../../config/area.js')
+import Toast from '@vant/weapp/toast/toast';
 Page({
   backClick: function () {
     var that = this;
@@ -36,8 +38,10 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     radio: '',
-
+    manyRadio:[],
+    address: '',
     bottom: false,
+    cityBottom: false,
     scaleTitle: '问卷调查',
     scaleBrief: '问卷调查',
     nextBtnText: "下一题",
@@ -67,7 +71,16 @@ Page({
     },
     questions: questionsOut.doctornear.questions,
     answers: [],
-  
+    manyChooseHasAnswer:false,
+
+    //地址
+    loading: false,
+    value: 420000,
+    areaList: {
+      province_list: area.city.province_list ,
+      city_list: area.city.city_list,
+      county_list: area.city.county_list
+    },
   },
   onChange: function (event) {
     this.setData({
@@ -321,7 +334,34 @@ Page({
 
   },
 
-
+  //城市显示
+  toggle(type) {
+    this.setData({
+      [type]: !this.data[type]
+    });
+  },
+  showCityBottom: function () {
+    this.toggle('cityBottom', true);
+  },
+  hideCityBottom: function () {
+    this.toggle('cityBottom', false);
+  },
+  onCancelCity: function () {
+    this.hideCityBottom()
+  },
+  onConfirmCity: function (value) {
+    console.log(value)
+    var ad = value.detail.values[0].name + ' ' + value.detail.values[1].name + ' ' + value.detail.values[2].name
+    this.setData({
+      value: value.detail.values[0].code,
+      address:ad
+    })
+    this.hideCityBottom()
+    var event = {
+      "detail": ad
+    }
+    this.onChange(event)
+  },
 
   //数组转字符串
   arrayToString:function(array){
@@ -330,5 +370,36 @@ Page({
       returnResult=returnResult+array[str]+', '
     }
     return returnResult
+  },
+  //多选题
+  onManyChange:function(event){
+    console.log("onchange")
+    console.log(event)
+    console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    if(this.data.manyChooseHasAnswer==false){
+      this.setData({
+        questionHadAns: this.data.questionHadAns + 1,
+      })
+    }
+    if (this.data.questionHadAns > this.data.questionShowIndex) {
+      console.log("回答过了")
+      var ansNew = this.data.answers;
+      ansNew[this.data.questionShowIndex] = this.arrayToString(event.detail)
+      this.setData({
+        answers: ansNew,
+        manyRadio:event.detail,
+        manyChooseHasAnswer:true
+      })
+
+    } else {
+      console.log("还没回答过，第一次回答这道题目")
+      this.data.answers.push(this.arrayToString(event.detail))
+
+      this.setData({
+        manyRadio: event.detail,
+        manyChooseHasAnswer: true
+      })
+    
+    }
   }
 })

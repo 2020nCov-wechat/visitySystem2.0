@@ -205,7 +205,7 @@ button::after{border:0;}
 }
 .brief-css{
   padding:20rpx 20rpx ;
-  font-size: 19px;
+  font-size: 16px;
 }
 .answertext{
   font-size: 20px;

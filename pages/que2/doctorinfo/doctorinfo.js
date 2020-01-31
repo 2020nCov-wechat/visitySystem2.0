@@ -373,13 +373,14 @@ Page({
 
   },
 
+
+  
+  //民族显示 
   toggle(type) {
     this.setData({
       [type]: !this.data[type]
     });
   },
-  
-  //民族显示
   showBottom:function() {
     this.toggle('bottom', true);
   },

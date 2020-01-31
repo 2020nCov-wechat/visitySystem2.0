@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 
+import Toast from '@vant/weapp/toast/toast';
 var questionsOut = require('../../../config/questions.js')
 Page({
   backClick: function () {

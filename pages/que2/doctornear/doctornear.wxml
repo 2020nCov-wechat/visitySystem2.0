@@ -35,13 +35,40 @@
                 </view>
               </van-radio-group>
             </block>
-                        <block wx:if="{{questionShow.type==5}}">
+            <block wx:if="{{questionShow.type==5}}">
               <view  class="answer-css" bindtap="showBottom">
               <text style="font-size:20px;">{{nation || "请点击我以选择民族"}}</text>
               </view>
               <van-popup show="{{ bottom }}" position="bottom" custom-style="height: 50%" bind:close="hideBottom">
                 <van-picker show-toolbar title="请选择民族" columns="{{ nationOption }}" bind:cancel="onCancelNation" bind:confirm="onConfirmNation" />
               </van-popup>
+            </block>  
+
+            <block wx:if="{{questionShow.type==6}}">
+              <view  class="answer-css" bindtap="showCityBottom">
+              <text style="font-size:20px;">{{address || "请点击我以选择地址"}}</text>
+              </view>
+              <van-popup show="{{ cityBottom }}" position="bottom" custom-style="height: 50%" bind:close="hideCityBottom">
+                  <van-area
+                    value="{{ value }}"
+                    loading="{{ loading }}"
+                    area-list="{{ areaList }}"
+                    bind:confirm="onConfirmCity"
+                    bind:cancel="onCancelCity"
+                  />
+              </van-popup>
+            </block>  
+
+            
+            <block wx:if="{{questionShow.type==3}}">
+              <van-checkbox-group value="{{ manyRadio }}" bind:change="onManyChange">
+                <view wx:for="{{questionShow.answers}}" class="answer-css">
+                <van-checkbox icon-size="28px" name="{{item.answer}}" label-class="answertext">
+                {{item.answer}}
+                
+                </van-checkbox>
+                </view>
+            </van-checkbox-group>
             </block>  
 
           </view>

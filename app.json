@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/que2/first/first",
+    "pages/que2/doctornear/doctornear",
+    "pages/question/question",
+    "pages/que2/quefour/quefour",
     "pages/que2/userinfo/userinfo",
     "pages/que2/doctorinfo/doctorinfo",
-    "pages/question/question",
-    "pages/que2/first/first",
-    "pages/que2/quefour/quefour",
-    "pages/que2/doctornear/doctornear",
     "pages/my/my",
     "pages/myvideo/myvideo",
     "pages/que2/usernear/usernear",
@@ -82,6 +82,6 @@
     "van-picker": "@vant/weapp/picker/index",
     "van-checkbox": "@vant/weapp/checkbox/index",
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",
-    "kai-radio": "kai-ui/radio/index"
+    "van-area": "@vant/weapp/area/index"
   }
 }
