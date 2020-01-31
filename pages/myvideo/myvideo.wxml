@@ -1,12 +1,5 @@
 <!--pages/myvideo/myvideo.wxml-->
 <view class='user'>
-  <view class='header bg-color acea-row row-between-wrapper '>
-    <view class='header-have-arrow'>
-      <view class='arrow'>
-        <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
-      </view>
-    </view>
-  </view>
   <view class="video-css">
      <video id="TestVideo" objectFit="cover" controls="{{true}}" show-fullscreen-btn="{{true}}" enable-progress-gesture="{{true}}" enable-play-gesture="{{true}}" play-btn-position="center" bindended="playEnd" custom-cache="{{false}}" autoplay="{{true}}" src="{{videoUrl}}">
   	</video>
