@@ -1604,15 +1604,15 @@ var doctornear = {
   ]
 }
 var usernear = {
-  "qNum": 9,
+  "qNum": 10,
   "questions": [
-    //   {
-    //   "type": 6,
-    //   "question": "11. 近一周居住城市",
-    //   "answers": [{
-    //     "answer": "请选择",
-    //   }]
-    // },
+      {
+      "type": 6,
+      "question": "11. 近一周居住城市",
+      "answers": [{
+        "answer": "请选择",
+      }]
+    },
     {
       "type": 1,
       "question": "12. 近一周主要居住地点",
@@ -1760,6 +1760,26 @@ var usernear = {
 var quefour = {
   "qNum":7,
   "questions": [
+    {
+      "type": 2,
+      "question": "71. 此次新冠肺炎疫情中，您最希望由谁提供心理帮助？",
+      "answers": [{
+        "answer": "专业心理咨询人员",
+      },
+      {
+        "answer": "家人及亲戚",
+      },
+      {
+        "answer": "朋友同事",
+      },
+      {
+        "answer": "不需要帮助",
+      },
+      {
+        "answer": "其他",
+      },
+      ]
+    },
     {
     "type": 1,
     "question": "68. 总的来说，您认为您的健康状况是：",
