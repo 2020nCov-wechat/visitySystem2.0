@@ -237,3 +237,9 @@ button::after{border:0;}
 .getUserbtn{
   padding-top: 20rpx;
 }
+.titlehead{
+  font-size: 40rpx;
+  max-height: 100%;
+  color: black;
+  font-weight: bold;
+}

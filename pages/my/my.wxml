@@ -165,9 +165,10 @@
 
         <view class="videocell-css">
           <!-- <view suggestion="{{suggestion}}" class='acea-row'></view> -->
-          <van-cell title="点击查看视频吧" is-link border="{{false}}" bindtap="videoClick" />
+          <!-- <van-cell title="点击查看视频" is-link border="{{false}}" bindtap="videoClick" label-class="getvideo"/> -->
+      <van-cell title="点击查看视频" is-link border="{{false}}" bindtap="videoClick" title-class="getvideo" 
+      is-link />
         </view>
-
 
       </view>
     </view>
@@ -360,6 +361,13 @@
 
 
   </view>
+  <view class='wrapper'>
+    <view class='copy-view'>
+      <view class="copy-item">Software Support @ Huazhong</view>
+      <view class="copy-item">University ofScience and Technology, </view>
+      <view class="copy-item">Embedded and Pervasive Computing (EPIC) Lab</view>
+    </view>
+</view>
 
 
 </view>
