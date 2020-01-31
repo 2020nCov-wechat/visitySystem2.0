@@ -44,10 +44,10 @@
 
     <view class="btn-bottom">
       <view class="btn-css">
-        <van-button color="#1296DB" type="primary" bindtap="clickBtnLast">上一题</van-button>
+        <van-button color="#1296DB" type="primary" custom-class="btn-small" size="small" bindtap="clickBtnLast">上一题</van-button>
       </view>
       <view class="btn-css">
-        <van-button color="#1296DB" type="primary" bindtap="clickBtnNext">{{nextBtnText}}</van-button>
+        <van-button color="#1296DB" type="primary" custom-class="btn-small" size="small" bindtap="clickBtnNext">{{nextBtnText}}</van-button>
       </view>
     </view>
     <view class="btn-bottom">

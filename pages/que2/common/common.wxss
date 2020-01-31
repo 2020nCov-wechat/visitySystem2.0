@@ -33,11 +33,10 @@
 .user .wrapper .nav .item .num{margin-top:10rpx;font-size:36rpx;color:#282828;}
 .user .wrapper .myOrder{background-color:#fff;border-radius:10rpx;margin-top:15rpx;}
 .user .wrapper .myOrder .title,.user .wrapper .myService .title{
-  height:185rpx;
-  padding:0 30rpx;
+  /* height:185rpx; */
+  padding:30rpx 30rpx;
   border-bottom:1px dashed #ddd;
   font-size:30rpx;color:#282828;
-  
   }
 .user .wrapper .myService .title2{
   height:130rpx;
@@ -78,12 +77,19 @@
 
 .btn-css{
   height: 100rpx;
-  width: 100%;
   display: flex;
   justify-content: center;
-  margin: 30rpx 0rpx;
+  padding: 20rpx 20rpx;
 }
-
+.btn-first-css{
+  margin: 20rpx 0;
+}
+.btn-color{
+  color: black;
+}
+.btn-small{
+  max-width: 200rpx;
+}
 
 .start.star5{background-position: 0 3rpx;}
 .start.star4{background-position: 0 -30rpx;}
@@ -179,9 +185,9 @@ button::after{border:0;}
   font-size: 20px;
 }
 .answer-css{
-  height: 100rpx;
-  padding-top: 20rpx;
-  padding-bottom: 20rpx;
+  /* height: 100rpx; */
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
 }
 .btn-bottom{
   height: 100rpx;
@@ -191,16 +197,14 @@ button::after{border:0;}
   flex-direction: row;
   justify-content: center;
 }
-.btn-css{
-  padding: 0 20rpx;
-}
+
 .tittle-css{
   width: 100%;
   color:rgba(255,255,255,1);
   margin-left:5rpx;
 }
 .brief-css{
-  padding:0 20rpx ;
+  padding:20rpx 20rpx ;
   font-size: 19px;
 }
 .answertext{
@@ -214,6 +218,5 @@ button::after{border:0;}
   width: 100%;
 }
 .hellotext{
-  padding-top: 1rpx;
   font-size: 20px;
 }

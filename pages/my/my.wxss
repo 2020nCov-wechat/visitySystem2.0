@@ -159,8 +159,9 @@ button::after{border:0;}
  
 }
 .suggess-css{
-  padding:0 30rpx;
+  padding:0 20rpx;
   width: 100%;
+  font-size: 18px;
 }
 .btn-color{
   color: black;
