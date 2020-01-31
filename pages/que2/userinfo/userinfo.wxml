@@ -39,7 +39,7 @@
               <view  class="answer-css" bindtap="showBottom">
               <text style="font-size:20px;">{{nation || "请点击我以选择民族"}}</text>
               </view>
-              <van-popup show="{{ bottom }}" position="bottom" custom-style="height: 50%" bind:close="hideBottom">
+              <van-popup show="{{ bottom }}" position="bottom" custom-style="height: 40%" bind:close="hideBottom">
                 <van-picker show-toolbar title="请选择民族" columns="{{ nationOption }}" bind:cancel="onCancelNation" bind:confirm="onConfirmNation" />
               </van-popup>
             </block>
