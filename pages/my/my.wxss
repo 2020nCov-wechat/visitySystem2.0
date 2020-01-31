@@ -162,6 +162,9 @@ button::after{border:0;}
   padding:0 30rpx;
   width: 100%;
 }
+.videocell-css{
+  width: 100%;
+}
 .btn-color{
   color: black;
 }

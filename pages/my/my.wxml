@@ -165,6 +165,18 @@
       </view>
     </view>
 
+    <view class='myService'>
+      <view class='title acea-row row-middle'>指导意见</view>
+      <view class='serviceList acea-row row-middle'>
+
+        <view class="videocell-css">
+          <!-- <view suggestion="{{suggestion}}" class='acea-row'></view> -->
+          <van-cell title="点击查看视频吧" is-link border="{{false}}" bindtap="videoClick"/>
+        </view>
+
+
+      </view>
+    </view>
 
     <view class='myService'>
       <view class='title acea-row row-middle'>综合评价</view>
