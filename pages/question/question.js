@@ -295,7 +295,7 @@ Page({
         }
       })
     }
-    this.initQuestion()
+   this.initQuestion()
    // 更新openid
     app.updateOpenid()
     // Toast.loading({

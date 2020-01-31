@@ -1,0 +1,9 @@
+<!--pages/myvideo/myvideo.wxml-->
+<view class='user'>
+  <view class="video-css">
+     <video id="TestVideo" objectFit="cover" controls="{{true}}" show-fullscreen-btn="{{true}}" enable-progress-gesture="{{true}}" enable-play-gesture="{{true}}" play-btn-position="center" bindended="playEnd" custom-cache="{{false}}" autoplay="{{true}}" src="{{videoUrl}}">
+  	</video>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />

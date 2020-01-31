@@ -20,23 +20,15 @@
     <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
   </view>
   <view class='wrapper'>
-    <view class='nav acea-row row-middle'>
+    <!-- <view class='nav acea-row row-middle'>
       <view class='item' data-url='/pages/user_money/index'>
         <view bindtap="updateChartClick" class="btn-color">刷新图表</view>
       </view>
-      <!-- <view class='item' wx:if="{{userInfo.is_promoter || userInfo.statu==2}}" data-url='/pages/user_spread_user/index' bindtap='goPages'>
-            <view>当前佣金</view>
-            <view class='num'>{{userInfo.brokerage_price || 0}}</view>
-         </view>
-         <view class='item' wx:else data-url='/pages/user_integral/index' bindtap='goPages'>
-            <view>当前积分</view>
-            <view class='num'>{{userInfo.integral || 0}}</view>
-         </view> -->
+
       <view class='item' data-url='/pages/user_coupon/index'>
         <view bindtap="getOpenIdTabFromAPP" class="btn-color">刷新登录状态</view>
-        <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
       </view>
-    </view>
+    </view> -->
     <!-- <view class='myOrder'>
       <view class='title acea-row row-between-wrapper'>
         <view>我的服务</view>
@@ -132,23 +124,21 @@
       </view> -->
     <!-- </view> -->
     <view class='myService'>
-      <view class='title acea-row row-middle'>量表分析</view>
+      <view class='title acea-row row-middle'>{{chartTitle}}</view>
       <view class='serviceList acea-row row-middle'>
-        <view class='myOrder'>
           <view class="ringcontainer">
-            <view class="title">
+            <!-- <view class="title">
               <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
               {{chartTitle}}
-            </view>
+            </view> -->
             <view class="canvas-css">
               <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
             </view>
           </view>
-        </view>
 
        <view class="serviceList" wx:for="{{chart}}" wx:key="idx">
         <view class="suggess-css">
-          <text>{{item.title}}：{{item.level}}</text>
+          <text >{{item.title}}：{{item.level}}</text>
         </view>
         <!-- <view class="suggess-css">   
           <text>广泛性焦虑障碍量表：{{result}}</text>
@@ -165,6 +155,18 @@
       </view>
     </view>
 
+    <view class='myService'>
+      <view class='title acea-row row-middle'>指导意见</view>
+      <view class='serviceList acea-row row-middle'>
+
+        <view class="videocell-css">
+          <!-- <view suggestion="{{suggestion}}" class='acea-row'></view> -->
+          <van-cell title="点击查看视频吧" is-link border="{{false}}" bindtap="videoClick"/>
+        </view>
+
+
+      </view>
+    </view>
 
     <!-- <view class='myService'>
       <view class='title acea-row row-middle'>综合评价</view>

@@ -1,11 +1,13 @@
+/* pages/myvideo/myvideo.wxss */
 .header-have-arrow{
   width: 100%;
 }
+.user{height: 100%}
 .user.header-have-arrow.arrow{
   height: 30rpx;
   position: absolute;
 }
-.user .header{padding:50rpx 30rpx 0rpx 30rpx;height:200rpx;position:relative;}
+.user .header{padding:50rpx 30rpx 0rpx 30rpx;position:relative;}
 .user .header:after { position: absolute;left: 0;right: 0;bottom: -98rpx;z-index: -1;
   content:'';height:100rpx;width: 100%;border-radius: 0 0 50% 50%;background-color: #1296DB;}
 
@@ -33,10 +35,11 @@
 .user .wrapper .nav .item .num{margin-top:10rpx;font-size:36rpx;color:#282828;}
 .user .wrapper .myOrder{background-color:#fff;border-radius:10rpx;margin-top:15rpx;}
 .user .wrapper .myOrder .title,.user .wrapper .myService .title{
-  /* height:185rpx; */
-  padding:30rpx 30rpx;
+  height:185rpx;
+  padding:0 30rpx;
   border-bottom:1px dashed #ddd;
   font-size:30rpx;color:#282828;
+  
   }
 .user .wrapper .myService .title2{
   height:130rpx;
@@ -77,19 +80,12 @@
 
 .btn-css{
   height: 100rpx;
+  width: 100%;
   display: flex;
   justify-content: center;
-  padding: 20rpx 20rpx;
+  margin: 30rpx 0rpx;
 }
-.btn-first-css{
-  margin: 20rpx 0;
-}
-.btn-color{
-  color: black;
-}
-.btn-small{
-  max-width: 200rpx;
-}
+
 
 .start.star5{background-position: 0 3rpx;}
 .start.star4{background-position: 0 -30rpx;}
@@ -185,9 +181,9 @@ button::after{border:0;}
   font-size: 20px;
 }
 .answer-css{
-  /* height: 100rpx; */
-  padding-top: 25rpx;
-  padding-bottom: 25rpx;
+  height: 100rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
 }
 .btn-bottom{
   height: 100rpx;
@@ -197,14 +193,19 @@ button::after{border:0;}
   flex-direction: row;
   justify-content: center;
 }
-
+.btn-css{
+  padding: 0 20rpx;
+}
 .tittle-css{
   width: 100%;
   color:rgba(255,255,255,1);
+  margin-top: 35rpx;
+  padding-top: 10rpx;
   margin-left:5rpx;
+
 }
 .brief-css{
-  padding:20rpx 20rpx ;
+  padding:0 20rpx ;
   font-size: 19px;
 }
 .answertext{
@@ -213,10 +214,20 @@ button::after{border:0;}
 .question-css{
   font-size: 20px;
 }
-.questionTitle{
-  font-size:36rpx;
+
+
+.video-css{
   width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 60rpx 20rpx;
+  justify-content: center;
 }
-.hellotext{
-  font-size: 20px;
+
+video{
+	width: 100%;
+  height: 1000rpx;
+  align-self: center;
+  padding: 40rpx 20rpx
+
 }

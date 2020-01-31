@@ -71,225 +71,189 @@ var que1 = {
       "type": 1,
       "question": "1.做事时提不起劲或没有兴趣",
       "answers": [{
-        "answer": "无",
+        "answer": "完全不会",
         "value": 0
       },
       {
-        "answer": "轻度",
+        "answer": "好几天",
         "value": 1
       },
       {
-        "answer": "中度",
+        "answer": "一半以上的天数",
         "value": 2
       },
       {
-        "answer": "重度",
+        "answer": "几乎每天",
         "value": 3
-      },
-      {
-        "answer": "极重度",
-        "value": 4
-      },
+      }
       ]
     },
     {
       "type": 1,
       "question": "2.感到心情低落，沮丧或绝望",
       "answers": [{
-        "answer": "无",
+        "answer": "完全不会",
         "value": 0
       },
-      {
-        "answer": "轻度",
-        "value": 1
-      },
-      {
-        "answer": "中度",
-        "value": 2
-      },
-      {
-        "answer": "重度",
-        "value": 3
-      },
-      {
-        "answer": "极重度",
-        "value": 4
-      },
+        {
+          "answer": "好几天",
+          "value": 1
+        },
+        {
+          "answer": "一半以上的天数",
+          "value": 2
+        },
+        {
+          "answer": "几乎每天",
+          "value": 3
+        }
       ]
     },
     {
       "type": 1,
       "question": "3.入睡困难，睡不安稳或睡眠过多",
       "answers": [{
-        "answer": "无",
+        "answer": "完全不会",
         "value": 0
       },
-      {
-        "answer": "轻度",
-        "value": 1
-      },
-      {
-        "answer": "中度",
-        "value": 2
-      },
-      {
-        "answer": "重度",
-        "value": 3
-      },
-      {
-        "answer": "极重度",
-        "value": 4
-      },
+        {
+          "answer": "好几天",
+          "value": 1
+        },
+        {
+          "answer": "一半以上的天数",
+          "value": 2
+        },
+        {
+          "answer": "几乎每天",
+          "value": 3
+        }
       ]
     },
     {
       "type": 1,
       "question": "4.感觉疲倦或没有活力",
       "answers": [{
-        "answer": "很满意",
+        "answer": "完全不会",
         "value": 0
       },
-      {
-        "answer": "满意",
-        "value": 1
-      },
-      {
-        "answer": "不太满意",
-        "value": 2
-      },
-      {
-        "answer": "不满意",
-        "value": 3
-      },
-      {
-        "answer": "很不满意",
-        "value": 4
-      },
+        {
+          "answer": "好几天",
+          "value": 1
+        },
+        {
+          "answer": "一半以上的天数",
+          "value": 2
+        },
+        {
+          "answer": "几乎每天",
+          "value": 3
+        }
       ]
     },
     {
       "type": 1,
       "question": "5.食欲不振或吃太多",
       "answers": [{
-        "answer": "没有干扰",
+        "answer": "完全不会",
         "value": 0
       },
-      {
-        "answer": "轻微",
-        "value": 1
-      },
-      {
-        "answer": "有些",
-        "value": 2
-      },
-      {
-        "answer": "较多",
-        "value": 3
-      },
-      {
-        "answer": "很多干扰",
-        "value": 4
-      },
+        {
+          "answer": "好几天",
+          "value": 1
+        },
+        {
+          "answer": "一半以上的天数",
+          "value": 2
+        },
+        {
+          "answer": "几乎每天",
+          "value": 3
+        }
       ]
     },
     {
       "type": 1,
       "question": "6.觉得自己很糟或觉得自己很失败，或让自己或家人失望",
       "answers": [{
-        "answer": "没有",
+        "answer": "完全不会",
         "value": 0
       },
-      {
-        "answer": "一点",
-        "value": 1
-      },
-      {
-        "answer": "有些",
-        "value": 2
-      },
-      {
-        "answer": "较多",
-        "value": 3
-      },
-      {
-        "answer": "很多",
-        "value": 4
-      },
+        {
+          "answer": "好几天",
+          "value": 1
+        },
+        {
+          "answer": "一半以上的天数",
+          "value": 2
+        },
+        {
+          "answer": "几乎每天",
+          "value": 3
+        }
       ]
     },
     {
       "type": 1,
       "question": "7.对事物专注有困难，例如阅读报纸或看电视时",
       "answers": [{
-        "answer": "没有",
+        "answer": "完全不会",
         "value": 0
       },
-      {
-        "answer": "一点",
-        "value": 1
-      },
-      {
-        "answer": "有些",
-        "value": 2
-      },
-      {
-        "answer": "较多",
-        "value": 3
-      },
-      {
-        "answer": "很多",
-        "value": 4
-      },
+        {
+          "answer": "好几天",
+          "value": 1
+        },
+        {
+          "answer": "一半以上的天数",
+          "value": 2
+        },
+        {
+          "answer": "几乎每天",
+          "value": 3
+        }
       ]
     },
     {
       "type": 1,
       "question": "8.行动或说话速度变得缓慢（或变得烦躁、坐立不安、动来动去等）已被周围人察觉",
       "answers": [{
-        "answer": "没有",
+        "answer": "完全不会",
         "value": 0
       },
-      {
-        "answer": "一点",
-        "value": 1
-      },
-      {
-        "answer": "有些",
-        "value": 2
-      },
-      {
-        "answer": "较多",
-        "value": 3
-      },
-      {
-        "answer": "很多",
-        "value": 4
-      },
+        {
+          "answer": "好几天",
+          "value": 1
+        },
+        {
+          "answer": "一半以上的天数",
+          "value": 2
+        },
+        {
+          "answer": "几乎每天",
+          "value": 3
+        }
       ]
     },
     {
       "type": 1,
       "question": "9.有不如死掉或用某种方式伤害自己的念头",
       "answers": [{
-        "answer": "没有",
+        "answer": "完全不会",
         "value": 0
       },
-      {
-        "answer": "一点",
-        "value": 1
-      },
-      {
-        "answer": "有些",
-        "value": 2
-      },
-      {
-        "answer": "较多",
-        "value": 3
-      },
-      {
-        "answer": "很多",
-        "value": 4
-      },
+        {
+          "answer": "好几天",
+          "value": 1
+        },
+        {
+          "answer": "一半以上的天数",
+          "value": 2
+        },
+        {
+          "answer": "几乎每天",
+          "value": 3
+        }
       ]
     }
   ]
