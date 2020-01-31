@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/myvideo/myvideo",
     "pages/que2/first/first",
+    "pages/myvideo/myvideo",
     "pages/que2/doctornear/doctornear",
     "pages/que2/quefour/quefour",
     "pages/question/question",
