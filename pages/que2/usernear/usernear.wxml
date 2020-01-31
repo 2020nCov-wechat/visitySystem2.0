@@ -90,11 +90,14 @@
     </view>
     <!-- 最后一题 -->
     <view class="warn-text" wx:if="{{questionShowIndex == questionNum - 1}}">
-      <text >* 注意回答后点击“完成”</text>
+      <text >* 最近一周居住与工作状况回答完毕，请点击提交</text>
     </view> 
     <!-- 多选 -->
-    <view class="warn-text" wx:if="{{questionShow.type>=2&&questionShow.type<=4}}">
-      <text >* 注意回答后点击“下一题”</text>
+    <view class="warn-text" wx:if="{{questionShow.type>=3&&questionShow.type<=4}}">
+      <text >* 本多选题回答完毕，请点击下一题</text>
+    </view> 
+    <view class="warn-text" wx:if="{{questionShow.type==2}}">
+      <text >* 本题回答完毕，请点击下一题</text>
     </view> 
     <view class="btn-bottom">
       <view class="btn-css">
