@@ -11,7 +11,11 @@
 .user .header .picTxt .text .id .iconfont{font-size:30rpx;margin-left:12rpx;}
 .user .header .icon-shezhi{font-size:36rpx;color:#fff;margin-top:-52rpx;}
 .user .wrapper{padding:0 20rpx;}
-.user .wrapper .nav{background-color:#fff;border-radius:6rpx;height:140rpx;}
+.user .wrapper .nav{
+  background-color:#fff;border-radius:6rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  }
 .user .wrapper .nav .item{flex:1;text-align:center;font-size:26rpx;color:#aaa;}
 .user .wrapper .nav .item~.item{border-left:1px solid #eee;}
 .user .wrapper .nav .item .num{margin-top:10rpx;font-size:36rpx;color:#282828;}
@@ -225,10 +229,7 @@ button::after{border:0;}
 .tittle-css{
   width: 100%;
   color:rgba(255,255,255,1);
-  margin-top: 35rpx;
-  padding-top: 10rpx;
   margin-left:5rpx;
-
 }
 .brief-css{
   padding:0 20rpx ;
@@ -239,4 +240,11 @@ button::after{border:0;}
 }
 .question-css{
   font-size: 20px;
+}
+.header-have-arrow{
+  width: 100%;
+}
+.user.header-have-arrow.arrow{
+  height: 30rpx;
+  position: absolute;
 }

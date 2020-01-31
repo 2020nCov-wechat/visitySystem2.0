@@ -1,21 +1,21 @@
 <!--pages/myinfor/myinfor.wxml-->
 <view class='user'>
-
-  <view class='header  new-header bg-color acea-row row-between-wrapper '>
+  <view class='header bg-color acea-row row-between-wrapper'>
     <view class='header-have-arrow'>
       <view class='arrow'>
         <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
       </view>
     </view>
+    <view class='picTxt acea-row row-between-wrapper'>
+      <view class=' tittle-css'>
+        <view class='acea-row row-middle'>
+          <view class=' line1 questionTitle'>基本信息</view>
+        </view>
+      </view>
+    </view>
+    <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
   </view>
   <view class='wrapper'>
-    <view class='nav acea-row row-middle title-padding'>
-
-      <text space="ensp">
-        第二部分 普通人员
-      </text>
-    </view>
-
 
     <view class="item_list">
       <view class='myService'>

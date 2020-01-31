@@ -1,5 +1,10 @@
 <view class='user'>
   <view class='header bg-color acea-row row-between-wrapper'>
+    <view class='header-have-arrow'>
+      <view class='arrow'>
+        <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
+      </view>
+    </view>
     <view class='picTxt acea-row row-between-wrapper'>
       <view class=' tittle-css'>
         <view class='acea-row row-middle'>
@@ -10,7 +15,7 @@
     <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
   </view>
   <view class='wrapper'>
-  <view class='nav acea-row row-middle'>
+    <view class='nav acea-row row-middle'>
       <view class='item' data-url='/pages/user_money/index'>
         <view class="btn-color brief-css">{{scaleBrief}}</view>
       </view>
@@ -49,7 +54,7 @@
           <view class="suggess-css">
             <van-radio-group value="{{ radio }}" bind:change="onChange">
               <view wx:for="{{questionShow.answers}}" class="answer-css">
-                <van-radio icon-size="28px" name="{{item.value}}" label-class	="answertext">
+                <van-radio icon-size="28px" name="{{item.value}}" label-class="answertext">
                   {{item.answer}}
                 </van-radio>
               </view>
@@ -61,19 +66,19 @@
       </view>
     </view>
 
-  <view class="btn-bottom">
-    <view class="btn-css">
-     <van-button color="#1296DB" type="primary" bindtap="clickBtnLast" >上一题</van-button>
+    <view class="btn-bottom">
+      <view class="btn-css">
+        <van-button color="#1296DB" type="primary" bindtap="clickBtnLast">上一题</van-button>
+      </view>
+      <view class="btn-css">
+        <van-button color="#1296DB" type="primary" bindtap="clickBtnNext">{{nextBtnText}}</van-button>
+      </view>
     </view>
-    <view class="btn-css">
-     <van-button  color="#1296DB" type="primary" bindtap="clickBtnNext">{{nextBtnText}}</van-button>
+    <view class="btn-bottom">
+      <view class="btn-css">
+        <text>{{questionShowIndex+1}}/{{questionNum}}</text>
+      </view>
     </view>
-  </view>
-  <view class="btn-bottom">
-    <view class="btn-css">
-     <text>{{questionShowIndex+1}}/{{questionNum}}</text>
-    </view>
-  </view>
 
 
   </view>
