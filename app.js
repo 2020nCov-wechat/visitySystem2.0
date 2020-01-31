@@ -50,6 +50,7 @@ App({
     submitInfoUrl:headUrl+'/ncov/submitinfo/',
     submitRecentUrl:headUrl+'/ncov/submitrecent/',
     submitNeed: headUrl + '/ncov/submitneed/',
+    getVideoUrl: 'https://cmas.aiwac.net/animations/',
     openid: '',
     session_key: '' ,
     takePhotoTime:5000,//拍照间隔

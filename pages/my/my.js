@@ -21,6 +21,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     chartTitle: '综合得分',
     percent: 30,//进度条
+    videoId:"01",//结果视频编号
     isMainChartDisplay: true,
     level:'无抑郁',
     score:11,
@@ -424,5 +425,12 @@ Page({
   },
   goPages:function(){
     Toast('暂未开放');
+  },
+  videoClick:function(e){
+    var that=this
+    //查看视频 id为视频编号
+    wx.navigateTo({
+      url: '../myvideo/myvideo?id='+that.data.videoId,
+    })
   }
 })
