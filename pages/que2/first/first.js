@@ -14,6 +14,17 @@ Page({
     this.setData({
       radio:event.detail
     })
+    if (this.data.radio == '1') {
+
+      wx.navigateTo({
+        url: '../doctorinfo/doctorinfo'
+      })
+    } else {
+
+      wx.navigateTo({
+        url: '../userinfo/userinfo'
+      })
+    }
   },
 
 
@@ -23,19 +34,19 @@ Page({
       url: '../logs/logs'
     })
   },
-  nextPage:function(){
-    if(this.data.radio=='1'){
+  // nextPage:function(){
+  //   if(this.data.radio=='1'){
 
-      wx.navigateTo({
-        url: '../doctorinfo/doctorinfo'
-      })
-    }else{
+  //     wx.navigateTo({
+  //       url: '../doctorinfo/doctorinfo'
+  //     })
+  //   }else{
 
-      wx.navigateTo({
-        url: '../userinfo/userinfo'
-      })
-    }
-  },
+  //     wx.navigateTo({
+  //       url: '../userinfo/userinfo'
+  //     })
+  //   }
+  // },
 
   onLoad: function () {
     if (app.globalData.userInfo) {

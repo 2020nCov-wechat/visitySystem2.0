@@ -67,8 +67,8 @@
       </view>
     </view>
   </view>
-  <view class="wrapper btn-css btn-first-css">
+  <!-- <view class="wrapper btn-css btn-first-css">
     <van-button type="default" size="primary" color="#1296DB" bindtap="nextPage">下一页</van-button>
-  </view>
+  </view> -->
 </view>
 <van-toast id="van-toast" />
