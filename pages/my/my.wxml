@@ -1,12 +1,16 @@
 <view class='user'>
   <view class='header bg-color acea-row row-between-wrapper'>
     <view class='picTxt acea-row row-between-wrapper'>
-      <view class='pictrue'>
-        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-        <block wx:else>
+      <block wx:if="{{!hasUserInfo && canIUse}}">
+        <view class="getUser-css">
+          <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="getUserbtn"> 获取头像昵称 </button>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='pictrue'>
           <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        </block>
-      </view>
+        </view>
+      </block>
       <view class='text'>
         <view class='acea-row row-middle'>
           <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
@@ -126,21 +130,21 @@
     <view class='myService'>
       <view class='title acea-row row-middle'>{{chartTitle}}</view>
       <view class='serviceList acea-row row-middle'>
-          <view class="ringcontainer">
-            <!-- <view class="title">
+        <view class="ringcontainer">
+          <!-- <view class="title">
               <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
               {{chartTitle}}
             </view> -->
-            <view class="canvas-css">
-              <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
-            </view>
+          <view class="canvas-css">
+            <canvas canvas-id="columnCanvas" class="canvas " bindtouchstart="touchHandler"></canvas>
           </view>
-
-       <view class="serviceList" wx:for="{{chart}}" wx:key="idx">
-        <view class="suggess-css">
-          <text >{{item.title}}：{{item.level}}</text>
         </view>
-        <!-- <view class="suggess-css">   
+
+        <view class="serviceList" wx:for="{{chart}}" wx:key="idx">
+          <view class="suggess-css">
+            <text>{{item.title}}：{{item.level}}</text>
+          </view>
+          <!-- <view class="suggess-css">   
           <text>广泛性焦虑障碍量表：{{result}}</text>
         </view>
         <view class="suggess-css">   
@@ -149,7 +153,7 @@
         <view class="suggess-css">   
           <text>事件影响量表：{{result}}</text>
         </view> -->
-      </view>
+        </view>
 
 
       </view>
@@ -161,7 +165,7 @@
 
         <view class="videocell-css">
           <!-- <view suggestion="{{suggestion}}" class='acea-row'></view> -->
-          <van-cell title="点击查看视频吧" is-link border="{{false}}" bindtap="videoClick"/>
+          <van-cell title="点击查看视频吧" is-link border="{{false}}" bindtap="videoClick" />
         </view>
 
 

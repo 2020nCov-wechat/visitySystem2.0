@@ -117,7 +117,15 @@ Page({
         })
       }
     }
-
+    wx.getUserInfo({
+      success: res => {
+        app.globalData.userInfo = res.userInfo
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    })
     //更新openid
     app.updateOpenid()
     var that = this
@@ -173,14 +181,14 @@ Page({
         
         }else{
           //登录过期
-          // if (res.data.errCode == 500) {
-          //   console.log("登录过期")
-          //   //更新openid
-          //   getApp().updateOpenid()
-          //   var time = setTimeout(function () {
-          //     that.updateChart()
-          //   }, 1000)
-          // }
+          if (res.data.errCode == 500) {
+            console.log("登录过期")
+            //更新openid
+            getApp().updateOpenid()
+            var time = setTimeout(function () {
+              that.updateChart()
+            }, 1000)
+          }
         }
         
       },

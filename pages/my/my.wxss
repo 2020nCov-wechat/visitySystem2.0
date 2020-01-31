@@ -183,3 +183,6 @@ button::after{border:0;}
   height: 650rpx;
   width: 400rpx;
 }
+.getUserbtn{
+  padding-top: 20rpx;
+}

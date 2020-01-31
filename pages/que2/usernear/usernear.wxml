@@ -61,7 +61,7 @@
             <block wx:if="{{questionShow.type==3}}">
               <van-checkbox-group value="{{ answers[questionShowIndex] }}" bind:change="onManyChange">
                 <view wx:for="{{questionShow.answers}}" class="answer-css">
-                  <van-checkbox icon-size="28px" name="{{item.answer}}" label-class="answertext">
+                  <van-checkbox icon-size="28px" name="{{item.answer}}" shape="square" label-class="answertext">
                     {{item.answer}}
                   </van-checkbox>
                 </view>
@@ -71,7 +71,7 @@
             <block wx:if="{{questionShow.type==4}}">
               <van-checkbox-group value="{{ answers[questionShowIndex] }}" bind:change="onManyChange">
                 <view wx:for="{{questionShow.answers}}" class="answer-css">
-                  <van-checkbox icon-size="28px" name="{{item.answer}}" label-class="answertext">
+                  <van-checkbox icon-size="28px" name="{{item.answer}}" shape="square" label-class="answertext">
                     {{item.answer}}
                   </van-checkbox>
                 </view>

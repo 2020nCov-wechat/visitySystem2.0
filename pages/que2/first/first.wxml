@@ -6,12 +6,18 @@
       
       <view class="header-out-style">
         <view class='picTxt acea-row row-between-wrapper header-display '>
-          <view class='pictrue'>
-            <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-            <block wx:else>
-              <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          
+            <block wx:if="{{!hasUserInfo && canIUse}}" >
+              <view class="getUser-css">
+                <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="getUserbtn"> 获取头像昵称 </button>
+              </view>
             </block>
-          </view>
+            <block wx:else>
+              <view class='pictrue'>
+              <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+              </view>
+            </block>
+          
           <view class='text'>
             <view class='acea-row row-middle name-css'>
               <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>

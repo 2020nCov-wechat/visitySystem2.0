@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/que2/first/first",
+    "pages/my/my",
     "pages/myvideo/myvideo",
     "pages/que2/doctornear/doctornear",
     "pages/que2/quefour/quefour",
     "pages/question/question",
     "pages/que2/userinfo/userinfo",
     "pages/que2/doctorinfo/doctorinfo",
-    "pages/my/my",
     "pages/que2/usernear/usernear",
     "pages/que2/doctor/doctor",
     "pages/que2/user/user",
