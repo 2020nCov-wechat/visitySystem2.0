@@ -67,7 +67,7 @@
     </view>
     <!-- 最后一题 -->
     <view class="warn-text" wx:if="{{questionShowIndex == questionNum - 1}}">
-      <text >* "{{scaleTitle}}"回答完毕，请点击下一题</text>
+      <text >* "{{scaleTitle}}"回答完毕，请点击提交</text>
     </view> 
     <view class="btn-bottom">
       <view class="btn-css">
