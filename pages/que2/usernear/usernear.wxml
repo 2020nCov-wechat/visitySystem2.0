@@ -58,6 +58,30 @@
                   />
               </van-popup>
             </block>  
+            <block wx:if="{{questionShow.type==3}}">
+              <van-checkbox-group value="{{ answers[questionShowIndex] }}" bind:change="onManyChange">
+                <view wx:for="{{questionShow.answers}}" class="answer-css">
+                  <van-checkbox icon-size="28px" name="{{item.answer}}" label-class="answertext">
+                    {{item.answer}}
+                  </van-checkbox>
+                </view>
+              </van-checkbox-group>
+            </block>
+
+            <block wx:if="{{questionShow.type==4}}">
+              <van-checkbox-group value="{{ answers[questionShowIndex] }}" bind:change="onManyChange">
+                <view wx:for="{{questionShow.answers}}" class="answer-css">
+                  <van-checkbox icon-size="28px" name="{{item.answer}}" label-class="answertext">
+                    {{item.answer}}
+                  </van-checkbox>
+                </view>
+              </van-checkbox-group>
+              <view class="input-clsss">
+                <van-cell-group>
+                  <van-field value="{{ messages[questionShowIndex] }}" type="textarea" placeholder="选择'其他'时请输入" autosize border="{{ false }}" bind:input="inputOthers" id="{{questionShowIndex}}" />
+                </van-cell-group>
+              </view>
+            </block>
           </view>
 
         </view>

@@ -68,6 +68,11 @@ Page({
     },
     questions: questionsOut.quefour.questions,
     answers: [],
+
+    //保存多选结果
+    manyAnswers: [],
+
+    //其他信息
     othersInput:'',
     message:'',
     messages:[],
@@ -375,6 +380,7 @@ Page({
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
     var sendMsg = this.addOthersMsgWhenSend(this.data.answers)
+    sendMsg = this.sendManyQuestionDeal(sendMsg)
     var that = this
     wx.request({
       //获取openid接口
@@ -421,15 +427,39 @@ Page({
     })
   },
 
+
+  //需要输入“其他”信息的函数
   addOthersMsgWhenSend:function(msgArrays){
     var len = this.data.messages.length
     for(var i=0;i<len;i++){
-      if(this.data.messages[i]!="Na"){
+      if(this.data.messages[i]!=" "){
         msgArrays[i]=msgArrays[i]+" , "+this.data.messages[i]
       }
     }
     console.log(msgArrays)
     return msgArrays
+  },
+  saveMes: function (mesArrays, index, msg) {
+    var len = mesArrays.length
+    if (len == 0) {
+      mesArrays = []
+    }
+    console.log(mesArrays + " " + index + " " + msg + " " + len)
+    index = parseInt(index)
+    if (index > len - 1) {
+      var p = index - len
+      while (p != 0) {
+        p--
+        mesArrays.push(' ')
+      }
+      mesArrays.push(msg)
+      console.log("mesn")
+      console.log(mesArrays)
+      return mesArrays
+    } else {
+      mesArrays[index] = msg
+      return mesArrays
+    }
   },
 
   //数组转字符串
@@ -440,27 +470,73 @@ Page({
     }
     return returnResult
   },
-
-  saveMes: function (mesArrays, index, msg) {
-    var len = mesArrays.length
-    if(len==0){
-      mesArrays=[]
+  //多选题
+  onManyChange: function (event) {
+    console.log("onchange")
+    console.log(event)
+    console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    // if(this.data.manyChooseHasAnswer==false){
+    //   this.setData({
+    //     questionHadAns: this.data.questionHadAns + 1,
+    //   })
+    // }
+    if (this.ifOthers(event)) {
+      return
     }
-    console.log(mesArrays+ " "+ index+ " "+msg+ " "+len)
+    if (this.data.questionHadAns > this.data.questionShowIndex) {
+      console.log("回答过了")
+      var ansNew = this.data.answers//this.saveManyAnswer(this.data.manyAnswers,this.data.questionShowIndex,event.detail)
+      ansNew[this.data.questionShowIndex] = event.detail
+      console.log(ansNew)
+
+      this.setData({
+        answers: ansNew,
+        manyChooseHasAnswer: true
+      })
+
+    } else {
+      console.log("还没回答过，第一次回答这道题目")
+      this.data.answers.push(event.detail)
+      this.setData({
+        answers: this.data.answers,
+        questionHadAns: this.data.questionHadAns + 1,
+      })
+
+    }
+  },
+  saveManyAnswer(arrays, index, msg) {
+    var len = mesArrays.length
+    if (len == 0) {
+      mesArrays = []
+    }
+    console.log(mesArrays + " " + index + " " + msg + " " + len)
     index = parseInt(index)
-    if(index>len-1 ){
-      var p = index-len
-      while(p!=0){
+    if (index > len - 1) {
+      var p = index - len
+      while (p != 0) {
         p--
-        mesArrays.push('Na')
+        mesArrays.push(' ')
       }
       mesArrays.push(msg)
       console.log("mesn")
       console.log(mesArrays)
       return mesArrays
-    }else{
-      mesArrays[index]=msg
+    } else {
+      mesArrays[index] = msg
       return mesArrays
     }
-  }
+  },
+  sendManyQuestionDeal(messages) {
+    console.log(messages)
+    var len = messages.length
+    console.log("处理多选题的消息,长度：" + len)
+    for (var i = 0; i < len; i++) {
+      if (Array.prototype.isPrototypeOf(messages[i])) {
+        messages[i] = this.arrayToString(messages[i])
+      }
+    }
+    console.log(messages)
+    return messages
+  },
+
 })

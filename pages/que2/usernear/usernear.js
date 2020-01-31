@@ -78,6 +78,13 @@ Page({
       city_list: area.city.city_list,
       county_list: area.city.county_list
     },
+    //保存多选结果
+    manyAnswers: [],
+
+    //其他信息
+    othersInput: '',
+    message: '',
+    messages: [],
   },
   onChange: function (event) {
     this.setData({
@@ -289,7 +296,10 @@ Page({
   },
   //发送信息
   send: function (message) {
+    message = this.sendManyQuestionDeal(message)
 
+    message= this.addOthersMsgWhenSend(message)
+    
     var newopenid = app.globalData.openid
     var newSession_key = app.globalData.session_key
     newSession_key = newSession_key.replace(/ +/g, '%2B')
@@ -366,5 +376,190 @@ Page({
       returnResult = returnResult + array[str] + ', '
     }
     return returnResult
-  }
+  },
+  inputOthers: function (event) {
+    console.log("input")
+    console.log(event)
+    var mesNew = this.saveMes(this.data.messages, this.data.questionShowIndex, event.detail)
+    this.setData({
+      // message: mesNew,
+      messages: mesNew
+    })
+  },
+  ifOthers: function (event) {
+    if (event.detail == "其他" && this.data.questionShow.type == 3) {
+      //此时就不要跳转
+      if (this.data.questionHadAns > this.data.questionShowIndex) {
+        console.log("回答过了")
+        var ansNew = this.data.answers;
+        ansNew[this.data.questionShowIndex] = event.detail
+        this.setData({
+          answers: ansNew
+        })
+        //--------
+        this.setData({
+          radio: event.detail
+        })
+        console.log(this.data.answers)
+        var that = this
+        var time = setTimeout(function () {
+          if (that.data.questionShowIndex == that.data.questionNum - 2) {
+            that.setData({
+              nextBtnText: "完成"
+            })
+          }
+          if (that.data.questionShowIndex == that.data.questionNum - 1) {
+            //回答完毕
+            console.log("finish")
+            that.setData({
+              nextBtnText: "完成"
+            })
+          } else {
+            console.log(that.data.radio)
+
+          }
+        }, 500)
+        //---------
+      } else {
+        console.log("还没回答过，第一次回答这道题目")
+        this.data.answers.push(event.detail)
+
+        this.setData({
+          radio: event.detail
+        })
+        console.log(this.data.answers)
+        var that = this
+        var time = setTimeout(function () {
+          if (that.data.questionShowIndex == that.data.questionNum - 2) {
+            that.setData({
+              nextBtnText: "完成"
+            })
+          }
+          if (that.data.questionShowIndex == that.data.questionNum - 1) {
+            //回答完毕
+            console.log("finish")
+            that.setData({
+              questionHadAns: that.data.questionHadAns + 1,
+              nextBtnText: "完成"
+            })
+          } else {
+            console.log(that.data.radio)
+            //如果后面的回答过了
+
+            that.setData({
+              questionHadAns: that.data.questionHadAns + 1,
+            });
+          }
+        }, 500)
+
+      }
+
+
+
+      return true
+    }
+    //此时需要跳转
+    return false
+  },
+  //多选题
+  onManyChange: function (event) {
+    console.log("onchange")
+    console.log(event)
+    console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    // if(this.data.manyChooseHasAnswer==false){
+    //   this.setData({
+    //     questionHadAns: this.data.questionHadAns + 1,
+    //   })
+    // }
+    if (this.ifOthers(event)) {
+      return
+    }
+    if (this.data.questionHadAns > this.data.questionShowIndex) {
+      console.log("回答过了")
+      var ansNew = this.data.answers//this.saveManyAnswer(this.data.manyAnswers,this.data.questionShowIndex,event.detail)
+      ansNew[this.data.questionShowIndex] = event.detail
+      console.log(ansNew)
+
+      this.setData({
+        answers: ansNew,
+        manyChooseHasAnswer: true
+      })
+
+    } else {
+      console.log("还没回答过，第一次回答这道题目")
+      this.data.answers.push(event.detail)
+      this.setData({
+        answers: this.data.answers,
+        questionHadAns: this.data.questionHadAns + 1,
+      })
+
+    }
+  },
+  saveManyAnswer(arrays, index, msg) {
+    var len = mesArrays.length
+    if (len == 0) {
+      mesArrays = []
+    }
+    console.log(mesArrays + " " + index + " " + msg + " " + len)
+    index = parseInt(index)
+    if (index > len - 1) {
+      var p = index - len
+      while (p != 0) {
+        p--
+        mesArrays.push(' ')
+      }
+      mesArrays.push(msg)
+      console.log("mesn")
+      console.log(mesArrays)
+      return mesArrays
+    } else {
+      mesArrays[index] = msg
+      return mesArrays
+    }
+  },
+  sendManyQuestionDeal(messages) {
+    console.log(messages)
+    var len = messages.length
+    console.log("处理多选题的消息,长度：" + len)
+    for (var i = 0; i < len; i++) {
+      if (Array.prototype.isPrototypeOf(messages[i])) {
+        messages[i] = this.arrayToString(messages[i])
+      }
+    }
+    console.log(messages)
+    return messages
+  },
+  //需要输入“其他”信息的函数
+  addOthersMsgWhenSend: function (msgArrays) {
+    var len = this.data.messages.length
+    for (var i = 0; i < len; i++) {
+      if (this.data.messages[i] != " ") {
+        msgArrays[i] = msgArrays[i] + " , " + this.data.messages[i]
+      }
+    }
+    console.log(msgArrays)
+    return msgArrays
+  },
+  saveMes: function (mesArrays, index, msg) {
+    var len = mesArrays.length
+    if (len == 0) {
+      mesArrays = []
+    }
+    console.log(mesArrays + " " + index + " " + msg + " " + len)
+    index = parseInt(index)
+    if (index > len - 1) {
+      var p = index - len
+      while (p != 0) {
+        p--
+        mesArrays.push(' ')
+      }
+      mesArrays.push(msg)
+      console.log("mesn")
+      console.log(mesArrays)
+      return mesArrays
+    } else {
+      mesArrays[index] = msg
+      return mesArrays
+    }
+  },
 })
