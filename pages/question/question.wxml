@@ -67,11 +67,7 @@
     </view>
     <!-- 最后一题 -->
     <view class="warn-text" wx:if="{{questionShowIndex == questionNum - 1}}">
-      <text >* 注意回答后点击“完成”</text>
-    </view> 
-    <!-- 多选 -->
-    <view class="warn-text" wx:if="{{questionShow.type==3||questionShow.type==4}}">
-      <text >* 注意回答后点击“下一题”</text>
+      <text >* "{{scaleTitle}}"回答完毕，请点击提交</text>
     </view> 
     <view class="btn-bottom">
       <view class="btn-css">
