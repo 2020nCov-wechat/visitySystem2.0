@@ -1759,7 +1759,8 @@ var usernear = {
 }
 var quefour = {
   "qNum":7,
-  "questions": [{
+  "questions": [
+    {
     "type": 1,
     "question": "68. 总的来说，您认为您的健康状况是：",
     "answers": [{

@@ -68,7 +68,7 @@ Page({
     },
     questions: questionsOut.quefour.questions,
     answers: [],
-
+    othersInput:'',
   },
   onChange: function (event) {
     this.setData({
