@@ -96,7 +96,7 @@ Page({
       "独龙族",
       "赫哲族",
       "珞巴族"],
-
+    nation:''
 
 
   },
@@ -104,52 +104,90 @@ Page({
   onChange(event) {
     console.log("onchange")
     console.log(event)
-    // console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
-    if (this.data.questionHadAns >= this.data.questionNum) {
-      console.log("回答完了")
+    console.log(this.data.questionHadAns + '  ' + this.data.questionShowIndex + '  ' + (this.data.questionNum - 1))
+    if (this.data.questionHadAns > this.data.questionShowIndex) {
+      console.log("回答过了")
       var ansNew = this.data.answers;
       ansNew[this.data.questionShowIndex] = event.detail
       this.setData({
         answers: ansNew
       })
-    } else {
-      console.log("还没回答完")
-      this.data.answers.push(event.detail)
-    }
-    this.setData({
-      radio: event.detail
-    })
-    console.log(this.data.answers)
-    var that = this
-    var time = setTimeout(function () {
-      if (that.data.questionShowIndex == that.data.questionNum - 2) {
-        that.setData({
-          nextBtnText: "完成"
-        })
-      }
-      if (that.data.questionShowIndex == that.data.questionNum - 1) {
-        //回答完毕
-        console.log("finish")
-        that.setData({
-          questionHadAns: that.data.questionHadAns + 1,
-          nextBtnText: "完成"
-        })
-      } else {
-        console.log(that.data.radio)
-        //如果后面的回答过了，就显示后面的题目
-        var ra = ''
-        if (that.data.questionHadAns > that.data.questionShowIndex) {
-          ra = that.data.answers[that.data.questionShowIndex + 1]
-          console.log("ra::" + ra)
+      //--------
+      this.setData({
+        radio: event.detail
+      })
+      console.log(this.data.answers)
+      var that = this
+      var time = setTimeout(function () {
+        if (that.data.questionShowIndex == that.data.questionNum - 2) {
+          that.setData({
+            nextBtnText: "完成"
+          })
         }
-        that.setData({
-          questionShow: that.data.questions[that.data.questionShowIndex + 1],
-          questionShowIndex: that.data.questionShowIndex + 1,
-          questionHadAns: that.data.questionHadAns + 1,
-          radio: ra
-        });
-      }
-    }, 500)
+        if (that.data.questionShowIndex == that.data.questionNum - 1) {
+          //回答完毕
+          console.log("finish")
+          that.setData({
+            nextBtnText: "完成"
+          })
+        } else {
+          console.log(that.data.radio)
+          //如果后面的回答过了，就显示后面的题目
+          var ra = ''
+          if (that.data.questionHadAns > that.data.questionShowIndex) {
+            ra = that.data.answers[that.data.questionShowIndex + 1]
+            console.log("ra::" + ra)
+          }
+          that.setData({
+            questionShow: that.data.questions[that.data.questionShowIndex + 1],
+            questionShowIndex: that.data.questionShowIndex + 1,
+            radio: ra
+          });
+        }
+      }, 500)
+
+      //---------
+    } else {
+      console.log("还没回答过，第一次回答这道题目")
+      this.data.answers.push(event.detail)
+
+      this.setData({
+        radio: event.detail
+      })
+      console.log(this.data.answers)
+      var that = this
+      var time = setTimeout(function () {
+        if (that.data.questionShowIndex == that.data.questionNum - 2) {
+          that.setData({
+            nextBtnText: "完成"
+          })
+        }
+        if (that.data.questionShowIndex == that.data.questionNum - 1) {
+          //回答完毕
+          console.log("finish")
+          that.setData({
+            questionHadAns: that.data.questionHadAns + 1,
+            nextBtnText: "完成"
+          })
+        } else {
+          console.log(that.data.radio)
+          //如果后面的回答过了，就显示后面的题目
+          var ra = ''
+          if (that.data.questionHadAns > that.data.questionShowIndex) {
+            ra = that.data.answers[that.data.questionShowIndex + 1]
+            console.log("ra::" + ra)
+          }
+          that.setData({
+            questionShow: that.data.questions[that.data.questionShowIndex + 1],
+            questionShowIndex: that.data.questionShowIndex + 1,
+            questionHadAns: that.data.questionHadAns + 1,
+            radio: ra
+          });
+        }
+      }, 500)
+
+    }
+
     // if (this.data.questionShowIndex == this.data.questionNum - 1) {
     //   //回答完毕
     //   console.log("finish")
@@ -324,6 +362,10 @@ Page({
       nation: value.detail.value
     })
     this.hideBottom()
+    var event = {
+      "detail": value.detail.value
+    }
+    this.onChange(event)
   },
   readQuestion: function () {
     this.setData({

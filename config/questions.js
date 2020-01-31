@@ -18,50 +18,51 @@ var questions = [{
     "value": 3
   },
   ]
-},
-{
-  "type": 1,
-  "question": "2.对事物专注有困难，例如阅读报纸或看电视时",
-  "answers": [{
-    "answer": "完全不会",
-    "value": 0
   },
   {
-    "answer": "好几天",
-    "value": 1
+    "type": 1,
+    "question": "2.对事物专注有困难，例如阅读报纸或看电视时",
+    "answers": [{
+      "answer": "完全不会",
+      "value": 0
+    },
+    {
+      "answer": "好几天",
+      "value": 1
+    },
+    {
+      "answer": "一半以上的天数",
+      "value": 2
+    },
+    {
+      "answer": "几乎每天",
+      "value": 3
+    },
+    ]
   },
   {
-    "answer": "一半以上的天数",
-    "value": 2
-  },
-  {
-    "answer": "几乎每天",
-    "value": 3
-  },
-  ]
-},
-{
-  "type": 1,
-  "question": "3.动作或说话速度缓慢到别人已经察觉？或正好相反-烦躁或坐立不安、动来动去的情况更胜于平常",
-  "answers": [{
-    "answer": "完全不会",
-    "value": 0
-  },
-  {
-    "answer": "好几天",
-    "value": 1
-  },
-  {
-    "answer": "一半以上的天数",
-    "value": 2
-  },
-  {
-    "answer": "几乎每天",
-    "value": 3
-  },
-  ]
-}
+    "type": 1,
+    "question": "3.动作或说话速度缓慢到别人已经察觉？或正好相反-烦躁或坐立不安、动来动去的情况更胜于平常",
+    "answers": [{
+      "answer": "完全不会",
+      "value": 0
+    },
+    {
+      "answer": "好几天",
+      "value": 1
+    },
+    {
+      "answer": "一半以上的天数",
+      "value": 2
+    },
+    {
+      "answer": "几乎每天",
+      "value": 3
+    },
+    ]
+  }
 ]
+
 var que1 = {
   "scaleTitle": "抑郁症筛查量表",
   "scaleBrief": "在过去的两周内，以下情况烦扰您有多频繁？",
@@ -1157,8 +1158,10 @@ var que4 = {
 
 
 var doctorinfos = {
-  "qNum": 8,
-  "questions": [{
+  "qNum": 9,
+  "questions": [
+    
+    {
     "type": 1,
     "question": "2. 您的性别",
     "answers": [{
@@ -1169,7 +1172,13 @@ var doctorinfos = {
     }
     ]
   },
-
+    {
+      "type": 5,
+      "question": "3. 您的民族",
+      "answers": [{
+      }
+      ]
+    },
   {
     "type": 1,
     "question": "4. 您的年龄",
@@ -1319,7 +1328,7 @@ var doctorinfos = {
   ]
 }
 var userinfos = {
-  "qNum": 4,
+  "qNum": 5,
   "questions": [{
     "type": 1,
     "question": "2. 您的性别",
@@ -1331,7 +1340,13 @@ var userinfos = {
     }
     ]
   },
-
+    {
+      "type": 5,
+      "question": "3. 您的民族",
+      "answers": [{
+      }
+      ]
+    },
   {
     "type": 1,
     "question": "4. 您的年龄",
