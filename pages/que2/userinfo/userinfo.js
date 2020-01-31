@@ -4,6 +4,33 @@ const app = getApp()
 import Toast from '@vant/weapp/toast/toast';
 var questionsOut = require('../../../config/questions.js')
 Page({
+  backClick: function () {
+    var that = this;
+    wx.showModal({
+      title: '退出答题',
+      content: '确认要退出答题吗？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('点击确认回调');
+
+          var time = setTimeout(function () {
+            wx.switchTab({
+              url: "/pages/que2/first/first",
+              success() {
+                var page = getCurrentPages().pop();
+                if (page == undefined || page == null) return;
+
+              }
+            });
+          }, 1000)
+
+        } else {
+          console.log('点击取消回调')
+        }
+      }
+    })
+  },
+
   data: {
     motto: 'Hello World',
     userInfo: {},
