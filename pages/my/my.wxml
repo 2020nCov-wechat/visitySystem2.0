@@ -140,38 +140,32 @@
           </view>
         </view>
 
-        <view class="serviceList" wx:for="{{chart}}" wx:key="idx">
-          <view class="suggess-css">
-            <text>{{item.title}}：{{item.level}}</text>
-          </view>
-          <!-- <view class="suggess-css">   
-          <text>广泛性焦虑障碍量表：{{result}}</text>
-        </view>
-        <view class="suggess-css">   
-          <text>失眠严重指数：{{result}}</text>
-        </view>
-        <view class="suggess-css">   
-          <text>事件影响量表：{{result}}</text>
-        </view> -->
-        </view>
+
 
 
       </view>
     </view>
 
-    <view class='myService'>
+    <!-- <view class='myService'>
       <view class='title acea-row row-middle'>指导意见</view>
+        <view class="serviceList" wx:for="{{chart}}" wx:key="idx">
+          <view class="suggess-css">
+            <text>{{item.title}}：{{item.level}}</text>
+          </view>
+       
+        </view>
+
       <view class='serviceList acea-row row-middle'>
 
+      
         <view class="videocell-css">
-          <!-- <view suggestion="{{suggestion}}" class='acea-row'></view> -->
-          <!-- <van-cell title="点击查看视频" is-link border="{{false}}" bindtap="videoClick" label-class="getvideo"/> -->
+        
       <van-cell title="点击查看视频" is-link border="{{false}}" bindtap="videoClick" title-class="getvideo" 
       is-link />
         </view>
 
       </view>
-    </view>
+    </view> -->
 
     <!-- <view class='myService'>
       <view class='title acea-row row-middle'>综合评价</view>
@@ -361,13 +355,13 @@
 
 
   </view>
-  <view class='wrapper'>
+  <!-- <view class='wrapper'>
     <view class='copy-view'>
       <view class="copy-item">Software Support @ Huazhong</view>
-      <view class="copy-item">University ofScience and Technology, </view>
+      <view class="copy-item">University ofSc ience and Technology, </view>
       <view class="copy-item">Embedded and Pervasive Computing (EPIC) Lab</view>
     </view>
-  </view>
+  </view> -->
 
 
 </view>

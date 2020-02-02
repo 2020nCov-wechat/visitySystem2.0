@@ -1160,7 +1160,6 @@ var que4 = {
 var doctorinfos = {
   "qNum": 9,
   "questions": [
-    
     {
     "type": 1,
     "question": "2. 您的性别",

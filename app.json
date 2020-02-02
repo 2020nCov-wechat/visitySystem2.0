@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/que2/first/first",
+    "pages/web/sleep/sleep",
+    "pages/ganyu/ganyu",
     "pages/my/my",
     "pages/myvideo/myvideo",
     "pages/que2/doctornear/doctornear",
@@ -40,7 +42,13 @@
         "pagePath": "pages/que2/first/first",
         "iconPath": "imgs/bar/测评1.png",
         "selectedIconPath": "imgs/bar/测评.png",
-        "text": "问卷调查"
+        "text": "心理评估"
+      },
+      {
+        "pagePath": "pages/ganyu/ganyu",
+        "iconPath": "imgs/bar/社区1.png",
+        "selectedIconPath": "imgs/bar/社区.png",
+        "text": "干预"
       },
       {
         "pagePath": "pages/my/my",
@@ -55,10 +63,6 @@
     "crypto": {
       "version": "0.0.003",
       "provider": "wxf25d506ff81e19fb"
-    },
-    "WechatSI": {
-      "version": "0.3.1",
-      "provider": "wx069ba97219f66d99"
     }
   },
   "workers": "workers",

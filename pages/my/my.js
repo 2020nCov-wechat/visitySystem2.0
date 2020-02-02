@@ -133,6 +133,15 @@ Page({
       that.updateChart()
     }, 1000)
   },
+  onShow:function(){
+    console.log("on show")
+    //更新openid
+    app.updateOpenid()
+    var that = this
+    var time = setTimeout(function () {
+      that.updateChart()
+    }, 1000)
+  },
   updateChartClick:function(){
     this.updateChart()
   },
