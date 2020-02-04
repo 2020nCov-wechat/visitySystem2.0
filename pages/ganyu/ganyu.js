@@ -1,6 +1,6 @@
 //my.js 仿照 index.js
 //获取应用实例
-var WXBizDataCrypt = require('../../utils/WXBizDataCrypt.js')
+
 const app = getApp()
 
 var wxCharts = require('../../utils/wxcharts.js');

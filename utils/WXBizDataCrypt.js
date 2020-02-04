@@ -7,9 +7,11 @@ function WXBizDataCrypt(appId, sessionKey) {
 
 WXBizDataCrypt.prototype.decryptData = function (encryptedData, iv) {
   // base64 decode
-  var sessionKey = new Buffer(this.sessionKey, 'base64')
-  encryptedData = new Buffer(encryptedData, 'base64')
-  iv = new Buffer(iv, 'base64')
+  // var base = new Base64();
+  // base.decode(result)
+  var sessionKey = crypto.util.base64ToBytes(this.sessionKey)  
+  encryptedData = crypto.util.base64ToBytes(encryptedData )
+  iv = crypto.util.base64ToBytes(iv)
 
   try {
      // 解密
@@ -31,5 +33,6 @@ WXBizDataCrypt.prototype.decryptData = function (encryptedData, iv) {
 
   return decoded
 }
+
 
 module.exports = WXBizDataCrypt

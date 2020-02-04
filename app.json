@@ -65,6 +65,7 @@
       "provider": "wxf25d506ff81e19fb"
     }
   },
+
   "workers": "workers",
   "usingComponents": {
     "van-notify": "@vant/weapp/notify/index",

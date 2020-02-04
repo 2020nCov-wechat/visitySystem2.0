@@ -129,9 +129,9 @@
       <view class='serviceList acea-row row-middle'>
 
 
-        <!-- <view class="videocell-css"> -->
+        <!-- <view class="videocell-css">
 
-          <!-- <van-cell title="点击查看视频" is-link border="{{false}}" bindtap="videoClick" title-class="getvideo" is-link />
+          <van-cell title="点击查看视频" is-link border="{{false}}" bindtap="videoClick" title-class="getvideo" is-link />
         </view> -->
 
       </view>
