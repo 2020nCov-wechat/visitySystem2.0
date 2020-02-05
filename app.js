@@ -52,7 +52,7 @@ App({
     submitInfoUrl: headUrl + '/ncov/submitinfo/',
     submitRecentUrl: headUrl + '/ncov/submitrecent/',
     submitNeed: headUrl + '/ncov/submitneed/',
-    sendUnionUrl: headUrl + 'xx',
+    sendUnionUrl: headUrl + '/wechat/user/unionid/',
     getVideoUrl: 'https://cmas.aiwac.net/animations/',
     openid: '',
     session_key: '',
@@ -80,7 +80,7 @@ App({
               getApp().globalData.openid = res.data.openid; //获取到的openid 
               getApp().globalData.session_key = res.data.session_key; //获取到session_key 
               //console.log(getApp().globalData.openid + ' ' + getApp().globalData.session_key)
-              // that.sendUnionMsg()
+              that.sendUnionMsg()
             }
           })
         } else {
@@ -101,7 +101,6 @@ App({
           wx.getUserInfo({
             success: res => {
               console.log("登录后获取数据")
-              console.log(res)
 
               var newopenid = getApp().globalData.openid
               var newSession_key = getApp().globalData.session_key
@@ -138,7 +137,8 @@ App({
         }
       }
     })
-   
+
+    
 
   },
 
