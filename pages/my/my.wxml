@@ -316,44 +316,6 @@
       </view>
     </view> -->
 
-
-    <!-- 暂时不显示 -->
-    <view class="myOrder" wx:for="{{chart}}" wx:key="idx">
-      <block wx:if="{{item.time}}">
-        <view class='title acea-row row-between-wrapper'>
-          <wxs module="filter" src="../../utils/filter.wxs"></wxs>
-          <view>{{item.day}}</view>
-          <view class='allOrder'>
-            <text class='iconfont icon-jiantou'>{{filter.formatDate(item.time)}}</text>
-          </view>
-        </view>
-        <view class='State acea-row row-left msg-css'>
-          <view class='item acea-row row-left'>
-            <view class='pictrue' wx:if="{{item.level=='无抑郁倾向'}}">
-              <image src='/imgs/my/happy.png'></image>
-            </view>
-            <view class='pictrue' wx:elif="{{item.level=='轻度抑郁'}}">
-              <image src='/imgs/my/normal.png'></image>
-            </view>
-            <view class='pictrue' wx:elif="{{item.level=='中度抑郁'}}">
-              <image src='/imgs/my/littlesad.png'></image>
-            </view>
-            <view class='pictrue' wx:elif="{{item.level=='重度抑郁'}}">
-              <image src='/imgs/my/sad.png'></image>
-            </view>
-            <!-- <view class='item acea-row row-center'>综合得分：{{item.title}}</view> -->
-
-            <!-- <view class='item acea-row row-center'>{{item.level}}</view> -->
-            <view class='item acea-row row-center'>完成测评</view>
-
-            <view class='item acea-row row-right'>{{filter.formatTime(item.time)}}</view>
-          </view>
-        </view>
-      </block>
-
-    </view>
-
-
   </view>
   <!-- <view class='wrapper'>
     <view class='copy-view'>
