@@ -51,6 +51,12 @@
         "text": "干预"
       },
       {
+        "pagePath": "pages/web/sleep/sleep",
+        "iconPath": "imgs/bar/课程.png",
+        "selectedIconPath": "imgs/bar/课程1.png",
+        "text": "文章"
+      },
+      {
         "pagePath": "pages/my/my",
         "iconPath": "imgs/bar/我的1.png",
         "selectedIconPath": "imgs/bar/我的.png",
