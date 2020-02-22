@@ -1,0 +1,9 @@
+<view>
+  <view>请选择答题形式</view>
+  <view>
+    <button bindtap="queClick">问卷答题</button>
+  </view>
+  <view>
+    <button bindtap="voiceClick">语音答题</button>
+  </view>
+</view>

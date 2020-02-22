@@ -146,7 +146,7 @@
       </view>
     </view>
 
-    <!-- <view class='myService'>
+    <view class='myService'>
       <view class='title acea-row row-middle'>指导意见</view>
         <view class="serviceList" wx:for="{{chart}}" wx:key="idx">
           <view class="suggess-css">
@@ -165,7 +165,7 @@
         </view>
 
       </view>
-    </view> -->
+    </view>
 
     <!-- <view class='myService'>
       <view class='title acea-row row-middle'>综合评价</view>
@@ -325,6 +325,16 @@
     </view>
   </view> -->
 
+  <view class="">
+    <view class='wrapper'>
+      <view class='copy-view'>
+        <view class="copy-item">Software Support @ Huazhong</view>
+        <view class="copy-item">University ofScience and Technology, </view>
+        <view class="copy-item">Embedded and Pervasive Computing (EPIC) Lab</view>
+      </view>
+    </view>
+
+  </view>
 
 </view>
 
