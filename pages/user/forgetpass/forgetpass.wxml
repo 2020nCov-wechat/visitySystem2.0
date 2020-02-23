@@ -1,0 +1,43 @@
+<view class="padding">
+  <view class="list">
+    <view class="tishi">若您忘记了密码，可在此重新设置新密码。</view>
+    <view class="list-call">
+					<image class="img" src="../../../imgs/shilu-login/1.png"></image>
+					<input class="biaoti" bindinput="phoneInput" type="number" maxlength="11" placeholder="手机号" />
+				</view>
+				<view class="list-call">
+					<image class="img" src="../../../imgs/shilu-login/3.png"></image>
+					<input class="biaoti" bindinput="codeInput" type="number" maxlength="6" placeholder="验证码" />
+          <block wx:if="{{second>0}}">
+					  <view class="yzm yzms"  bindtap="getcode">{{yanzhengma}}</view>
+          </block>
+          <block wx:else>
+					  <view class="yzm"  bindtap="getcode">{{yanzhengma}}</view>
+          </block>
+				</view>
+				<view class="list-call">
+					<image class="img" src="../../../imgs/shilu-login/2.png"></image>
+					<input class="biaoti" bindinput="passwordInput" type="text" maxlength="32" placeholder="登录密码(学号后六位)" password="{{!showPassword}}" />
+           <block wx:if="{{showPassword}}">
+					  <image class="img" src="../../../imgs/shilu-login/op.png" bindtap="display"></image>
+          </block>
+          <block wx:else>
+					  <image class="img" src="../../../imgs/shilu-login/cl.png" bindtap="display"></image>
+          </block>
+					
+				</view>
+
+  </view>
+  <view class="dlbutton" hover-class="dlbutton-hover" bindtap="bindLogin">
+    <text>修改密码</text>
+  </view>
+  <view class="bottom-view ">
+    <view class='wrapper'>
+      <view class='copy-view'>
+        <view class="copy-item">Software Support @ Huazhong</view>
+        <view class="copy-item">University ofScience and Technology, </view>
+        <view class="copy-item">Embedded and Pervasive Computing (EPIC) Lab</view>
+      </view>
+    </view>
+  </view>
+</view>

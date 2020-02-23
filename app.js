@@ -1,7 +1,40 @@
 //app.js
 var headUrl = 'https://follwup.aiwac.net'
+var headUrlV2 = 'http://www.aiwac.net:8013/'
 var WXBizDataCrypt = require('utils/WXBizDataCrypt')
 App({
+  globalData: {
+    appId: 'wxf308f14b24473080',
+    userInfo: null,
+    checkUserUrl: headUrl + '/wechat/login/',
+    getUserInfo: headUrl + '/wechat/user/info/',
+    insertUpdateInfoUrl: headUrl + '/wechat/user/infoinorup/',
+    testResult: headUrl + '/ncov/getresults/',
+    sendResultUrl: headUrl + '/answer/submit/',
+    checkOrEndUrl: headUrl + '/answer/query/',
+    uploadPicVidUrl: headUrl + '/upload/',
+    getScale: headUrl + '/ncov/getscale/',
+    submitScale: headUrl + '/ncov/submitscale/',
+    submitInfoUrl: headUrl + '/ncov/submitinfo/',
+    submitRecentUrl: headUrl + '/ncov/submitrecent/',
+    submitNeed: headUrl + '/ncov/submitneed/',
+    sendUnionUrl: headUrl + '/wechat/user/unionid/',
+    getVideoUrl: 'https://cmas.aiwac.net/animations/',
+
+    userLoginUrl: headUrlV2 + 'followup2/stlogin',
+    userRegistUrl: headUrlV2 + 'followup2/stRegist',
+    userGetCodeUrl: headUrlV2 + 'followup2/getCode',
+    userTestLoginStatusUrl: headUrlV2 + 'followup2/test',
+    userForgetPassUrl: headUrlV2 +'followup2/resetPassword',
+
+    openid: '',
+    session_key: '',
+    sessionId:'',
+    takePhotoTime: 5000,//拍照间隔
+    takePhotoAuto: false,//拍照
+    showPicUpload: false,//显示拍照上传成功
+    videoNum: 24
+  },
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -37,36 +70,52 @@ App({
 
     //worker = wx.createWorker('workers/request/index.js') // 文件名指定 worker 的入口文件路径，绝对路径
   },
-  globalData: {
-    appId: 'wxf308f14b24473080',
-    userInfo: null,
-    checkUserUrl: headUrl + '/wechat/login/',
-    getUserInfo: headUrl + '/wechat/user/info/',
-    insertUpdateInfoUrl: headUrl + '/wechat/user/infoinorup/',
-    testResult: headUrl + '/ncov/getresults/',
-    sendResultUrl: headUrl + '/answer/submit/',
-    checkOrEndUrl: headUrl + '/answer/query/',
-    uploadPicVidUrl: headUrl + '/upload/',
-    getScale: headUrl + '/ncov/getscale/',
-    submitScale: headUrl + '/ncov/submitscale/',
-    submitInfoUrl: headUrl + '/ncov/submitinfo/',
-    submitRecentUrl: headUrl + '/ncov/submitrecent/',
-    submitNeed: headUrl + '/ncov/submitneed/',
-    sendUnionUrl: headUrl + '/wechat/user/unionid/',
-    getVideoUrl: 'https://cmas.aiwac.net/animations/',
-    openid: '',
-    session_key: '',
-    takePhotoTime: 5000,//拍照间隔
-    takePhotoAuto: false,//拍照
-    showPicUpload: false,//显示拍照上传成功
-    videoNum: 24
+  //-----------------------------------------用户鉴权 start-----------------------------------------//
+  saveSessionId:function(se){
+    this.globalData.sessionId=se
   },
+  ifHaveSessionId:function(){
+    if(this.globalData.sessionId==''){
+      return false
+    }else{
+      return true
+    }
+  },
+  savePhoneAndPass:function(phone,password){
+    wx.setStorage({
+      key: 'phone',
+      data: phone,
+    })
+    wx.setStorage({
+      key: 'password',
+      data: password,
+    })
+  },
+  getPhoneAndPass:function(){
+    try{
+      return {
+        phone: wx.getStorageSync('phone'),
+        password: wx.getStorageSync('password')
+      }
+    }catch(e){
+        console.log(e)
+    }
+  },
+  //本地缓存有手机号和密码，则返回true，否则返回false
+  ifHavePhonePass:function(){
+    var userInfor =  this.getPhoneAndPass()
+    if(userInfor.phone==null||userInfor.phone==''){
+      return false;
+    }else{
+      return true;
+    }
+  },
+  //-----------------------------------------用户鉴权 end-----------------------------------------//
   updateOpenid: function () {
     var that = this;
     wx.login({
       success: function (data) {
         console.log(data)
-
         if (data.code) {
           wx.request({
             //获取openid接口
@@ -80,6 +129,7 @@ App({
               getApp().globalData.openid = res.data.openid; //获取到的openid 
               getApp().globalData.session_key = res.data.session_key; //获取到session_key 
               //console.log(getApp().globalData.openid + ' ' + getApp().globalData.session_key)
+              // getApp().globalData.sessionId = res.data.
               that.sendUnionMsg()
             }
           })
@@ -92,7 +142,6 @@ App({
   saveUserInfo: function (userInfo) {
     getApp().globalData.userInfo = userInfo
   },
-
   sendUnionMsg: function () {
     wx.login({
       success: function (r) {
@@ -137,14 +186,9 @@ App({
         }
       }
     })
-
-    
-
   },
-
   //获取用户信息
   getUseInfoDetail: function () {
-
     wx.request({
       //获取openid接口
       url: getApp().globalData.getUserInfo,
@@ -155,8 +199,7 @@ App({
       method: 'GET',
       success: function (res) {
         console.log(res.data)
-
-      }
+      },
     })
   },
 })

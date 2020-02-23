@@ -1,0 +1,3 @@
+@import "../../common/user.wxss";
+
+@import "../../common/copyright.wxss"

@@ -1,0 +1,38 @@
+<view class="padding">
+  <view class="header">
+    <image src="../../../imgs/shilu-login/logo.png"></image>
+  </view>
+
+  <view class="list">
+    <view class="list-call">
+      <image class="img" src="/../imgs/shilu-login/1.png"></image>
+      <input class="biaoti" value="{{phoneno}}" bindinput="phonenoInput" type="number" maxlength="11" placeholder="输入手机号" />
+    </view>
+    <view class="list-call">
+      <image class="img" src="/../imgs/shilu-login/2.png"></image>
+      <input class="biaoti" value="{{password}}" bindinput="passwordInput" type="text" maxlength="32" placeholder="输入密码" password="true" />
+    </view>
+
+  </view>
+
+  <view class="dlbutton" hover-class="dlbutton-hover" bindtap="bindLogin">
+    <text>登录</text>
+  </view>
+
+  <view class="xieyi">
+    <navigator url="../forgetpass/forgetpass" open-type="navigate">忘记密码</navigator>
+    <text>|</text>
+    <navigator url="../regist/regist" open-type="navigate">注册账户</navigator>
+  </view>
+
+  <view class="bottom-view ">
+    <view class='wrapper'>
+      <view class='copy-view'>
+        <view class="copy-item">Software Support @ Huazhong</view>
+        <view class="copy-item">University ofScience and Technology, </view>
+        <view class="copy-item">Embedded and Pervasive Computing (EPIC) Lab</view>
+      </view>
+    </view>
+  </view>
+  <van-toast id="van-toast" />
+</view>
