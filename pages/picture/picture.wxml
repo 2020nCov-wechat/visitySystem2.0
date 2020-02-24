@@ -1,7 +1,7 @@
 <!--pages/picture/picture.wxml-->
-<view class="page-body">
+<!-- <view class="page-body">
   <view class="page-body-wrapper">
-    <camera device-position="front" flash="off" binderror="error" class="camera" bindstop='bindstop' binderror='binderror'>
+    <camera device-position="front" flash="off" binderror="error" class="camera" bindstop='bindstop' binderror='binderror' style="width: 90%; height: 300px">
       <cover-view class='border_writh'></cover-view>
     </camera>
     
@@ -15,8 +15,8 @@
     </view>
     
   </view>
-  <view class="btn-area">
-    <view class="btn" >
+  <view class="btn-area"> -->
+    <!-- <view class="btn" >
       <van-button type="primary" bindtap="takeVideo">拍摄视频</van-button>
     </view>
     <view class="btn" >
@@ -24,9 +24,27 @@
     </view>
     <view class="btn" >
       <van-button type="primary" bindtap="startime">开启拍照</van-button>
-    </view>
-    <view class="btn" >
-      <van-button type="primary" bindtap="takePhoto">拍照</van-button>
+    </view> -->
+    <!-- <view class="btn" >
+      <van-button type="primary" bindtap="takePhoto">拍照认证</van-button>
     </view>
   </view>
+</view> -->
+
+<view class="view">
+  <view class="window">
+    <image class="cover-9" src="{{src}}" bindtap="img" wx:if="{{src}}"></image>
+    
+    <view class="window-2">
+      <van-button bindtap="open" type="primary" data-type="takePhoto">拍照认证</van-button>   
+    </view>
+  </view>
+ 
+  <camera class="camera" device-position="{{device?'back':'front'}}" wx:if="{{camera}}" flash="off">
+    <cover-view class="cover-1" bindtap="camera">
+    </cover-view>
+    <cover-image class="cover-3" src="../../imgs/arrow.png" style="width:60rpx;height:60rpx;" bindtap="close"></cover-image>
+    <cover-image class="cover-4" src="../../imgs/reverse.png" style="width:80rpx;height:60rpx;" bindtap="devicePosition"></cover-image>
+
+  </camera>
 </view>

@@ -108,12 +108,14 @@ Page({
         } else {
           wx.showToast({
             icon: 'none',
-            title: '请检查网络'
+            title: '服务请求失败'
           })
         }
       },
       fail: function (error) {
+        Toast.clear()//清除toast
         wx.showToast({
+          icon: 'none',
           title: '请检查网络',
         })
       }
