@@ -124,13 +124,13 @@ Component({
           }else{
             wx.showToast({
               icon: 'none',
-              title: '请检查网络'
+              title: '服务请求失败'
             })
           }
- 
         },
         fail:function(error){
           wx.showToast({
+            icon: 'none',
             title: '请检查网络',
           })
         }
@@ -219,12 +219,13 @@ Component({
           } else {
             wx.showToast({
               icon: 'none',
-              title: '请检查网络'
+              title: '服务请求失败'
             })
           }
         },
         fail: function (error) {
           wx.showToast({
+            icon: 'none',
             title: '请检查网络',
           })
         }
