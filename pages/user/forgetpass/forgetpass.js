@@ -59,6 +59,13 @@ Component({
       if (this.data.second > 0) {
         return;
       }
+      if (this.data.phoneno.length != 11) {
+        wx.showToast({
+          icon: 'none',
+          title: '请输入正确的手机号'
+        });
+        return;
+      }
       var that = this
       console.log(
         {
@@ -100,9 +107,17 @@ Component({
               });
             }
           } else {
-
+            wx.showToast({
+              icon: 'none',
+              title: '请检查网络'
+            })
           }
 
+        },
+        fail: function (error) {
+          wx.showToast({
+            title: '请检查网络',
+          })
         }
       });
     },
@@ -176,6 +191,11 @@ Component({
               title: '请检查网络'
             })
           }
+        },
+        fail: function (error) {
+          wx.showToast({
+            title: '请检查网络',
+          })
         }
       });
     }

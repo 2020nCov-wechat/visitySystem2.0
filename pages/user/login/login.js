@@ -111,6 +111,11 @@ Page({
             title: '请检查网络'
           })
         }
+      },
+      fail: function (error) {
+        wx.showToast({
+          title: '请检查网络',
+        })
       }
     });
   }

@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/quechoose/quechoose",
     "pages/my/my",
     "pages/user/forgetpass/forgetpass",
     "pages/myold/my",
     "pages/user/login/login",
     "pages/user/regist/regist",
-    "pages/quechoose/quechoose",
     "pages/que2/first/first",
     "pages/que2/quefour/quefour",
     "pages/web/sleep/sleep",
@@ -48,12 +48,6 @@
         "iconPath": "imgs/bar/测评1.png",
         "selectedIconPath": "imgs/bar/测评.png",
         "text": "心理评估"
-      },
-      {
-        "pagePath": "pages/web/sleep/sleep",
-        "iconPath": "imgs/bar/课程.png",
-        "selectedIconPath": "imgs/bar/课程1.png",
-        "text": "文章"
       },
       {
         "pagePath": "pages/my/my",
