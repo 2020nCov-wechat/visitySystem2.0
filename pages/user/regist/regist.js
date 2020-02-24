@@ -70,8 +70,15 @@ Component({
         inputFlag:false
       })
     },
-    getcode() {
+    getcode:function() {
       if (this.data.second > 0) {
+        return;
+      }
+      if(this.data.phoneno.length!=11){
+        wx.showToast({
+          icon: 'none',
+          title: '请输入正确的手机号'
+        });
         return;
       }
       var that = this
@@ -115,9 +122,17 @@ Component({
               });
             }
           }else{
-
+            wx.showToast({
+              icon: 'none',
+              title: '服务请求失败'
+            })
           }
- 
+        },
+        fail:function(error){
+          wx.showToast({
+            icon: 'none',
+            title: '请检查网络',
+          })
         }
       });
     },
@@ -204,10 +219,15 @@ Component({
           } else {
             wx.showToast({
               icon: 'none',
-              title: '请检查网络'
+              title: '服务请求失败'
             })
           }
-
+        },
+        fail: function (error) {
+          wx.showToast({
+            icon: 'none',
+            title: '请检查网络',
+          })
         }
       });
     }

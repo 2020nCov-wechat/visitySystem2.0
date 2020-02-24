@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/quechoose/quechoose",
     "pages/my/my",
     "pages/user/forgetpass/forgetpass",
     "pages/myold/my",
     "pages/user/login/login",
     "pages/user/regist/regist",
-    "pages/quechoose/quechoose",
     "pages/que2/first/first",
     "pages/que2/quefour/quefour",
     "pages/web/sleep/sleep",
@@ -55,6 +55,7 @@
         "selectedIconPath": "imgs/bar/课程1.png",
         "text": "文章"
       },
+        
       {
         "pagePath": "pages/my/my",
         "iconPath": "imgs/bar/我的1.png",

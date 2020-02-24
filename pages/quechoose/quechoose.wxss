@@ -1,1 +1,84 @@
-/* pages/quechoose/quechoose.wxss */
+.title-view{
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title-css{
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* 首页切换面板 */
+.goukaboard,
+.temaiBoard,
+.kamengboard,
+.memberboard {
+	width: 710rpx;
+	margin: 0rpx auto;
+	position: relative;
+}
+
+.mb {
+	height: 32rpx;
+}
+
+/* 购卡板块 */
+.goukaboard .goukason {
+	height: 180rpx;
+	box-shadow: 0rpx 12rpx 42rpx -18rpx rgba(44, 71, 148, 1);
+	border-radius: 32rpx;
+	margin: 0rpx auto 20rpx;
+	box-sizing: border-box;
+	padding: 32rpx 0 0 32rpx;
+	position: relative;
+  width: 70vw;
+}
+
+.goukaboard .goukason text {
+	display: block;
+	color: #fff;
+}
+
+.goukaboard .goukason image {
+	height: 100%;
+	border-radius: 32rpx;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.goukaboard .goukason3 image {
+	width: 270rpx;
+}
+
+.goukaboard .goukason2 image {
+	width: 216rpx;
+}
+
+.goukaboard .goukason1 image {
+	width: 210rpx;
+}
+
+.goukaboard .goukason4 image {
+	width: 264rpx;
+}
+
+.goukaboard .goukason .title {
+	font-size: 32rpx;
+	margin-bottom: 16rpx;
+	font-weight: 600;
+}
+
+.goukaboard .goukason .description {
+	font-size: 28rpx;
+}
+
+.goukaboard .goukason1 {
+	background: linear-gradient(to right, #2956ec, #4d75ed);
+}
+
+.goukaboard .goukason2 {
+	background: linear-gradient(to right, #ff9514, #ffbb6c);
+}

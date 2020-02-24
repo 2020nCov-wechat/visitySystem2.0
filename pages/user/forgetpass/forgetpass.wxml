@@ -17,7 +17,7 @@
 				</view>
 				<view class="list-call">
 					<image class="img" src="../../../imgs/shilu-login/2.png"></image>
-					<input class="biaoti" bindinput="passwordInput" type="text" maxlength="32" placeholder="登录密码(学号后六位)" password="{{!showPassword}}" />
+					<input class="biaoti" bindinput="passwordInput" type="text" maxlength="32" placeholder="新密码" password="{{!showPassword}}" />
            <block wx:if="{{showPassword}}">
 					  <image class="img" src="../../../imgs/shilu-login/op.png" bindtap="display"></image>
           </block>

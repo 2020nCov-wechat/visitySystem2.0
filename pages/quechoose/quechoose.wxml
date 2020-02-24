@@ -1,9 +1,19 @@
 <view>
-  <view>请选择答题形式</view>
-  <view>
-    <button bindtap="queClick">问卷答题</button>
+  <view class="title-view">
+    <text class="title-css">请选择答题形式</text>
   </view>
-  <view>
-    <button bindtap="voiceClick">语音答题</button>
+  <view class="goukaboard">
+    <view bindtap="queClick" class="goukason goukason2">
+      <text class="title">问卷答题</text>
+      <!-- <text class="description">挑选远特e卡，抢先购买优质号段</text> -->
+      <image src="../../imgs/wl_xxsz.png"></image>
+    </view>
+    <view bindtap="voiceClick" class="goukason goukason1">
+      <text class="title">语音答题</text>
+      <!-- <text class="description">先买卡后选号，省时省力</text> -->
+      <image src="../../imgs/wl_hmzx.png"></image>
+    </view>
+
   </view>
+
 </view>
