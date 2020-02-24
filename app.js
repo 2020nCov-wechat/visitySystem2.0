@@ -71,9 +71,11 @@ App({
     //worker = wx.createWorker('workers/request/index.js') // 文件名指定 worker 的入口文件路径，绝对路径
   },
   //-----------------------------------------用户鉴权 start-----------------------------------------//
+  //保存sessionid，不缓存在本地，小程序退出后数据会丢失
   saveSessionId:function(se){
     this.globalData.sessionId=se
   },
+  //检查sessionid是否存在
   ifHaveSessionId:function(){
     if(this.globalData.sessionId==''){
       return false
@@ -81,6 +83,7 @@ App({
       return true
     }
   },
+  //保存手机号和密码Md5格式在本地缓存，除非清除小程序缓存，否则会一直保存
   savePhoneAndPass:function(phone,password){
     wx.setStorage({
       key: 'phone',
@@ -91,6 +94,7 @@ App({
       data: password,
     })
   },
+  //获取包含手机号和密码的数据对象
   getPhoneAndPass:function(){
     try{
       return {
