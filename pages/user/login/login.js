@@ -14,6 +14,10 @@ Page({
    */
   onLoad: function(options) {
     this.checkHavePhone()
+    this.setData({
+      phoneno: getApp().getPhoneAndPass().phone,
+      password: getApp().getPhoneAndPass().password,
+    })
   },
   checkHavePhone:function(){
     if (getApp().ifHavePhonePass()) {

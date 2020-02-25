@@ -10,9 +10,9 @@ App({
     getUserInfo: headUrl + '/wechat/user/info/',
     insertUpdateInfoUrl: headUrl + '/wechat/user/infoinorup/',
     testResult: headUrl + '/ncov/getresults/',
-    sendResultUrl: headUrl + '/answer/submit/',
+    // sendResultUrl: headUrl + '/answer/submit/',
     checkOrEndUrl: headUrl + '/answer/query/',
-    uploadPicVidUrl: headUrl + '/upload/',
+    // uploadPicVidUrl: headUrl + '/upload/',
     getScale: headUrl + '/ncov/getscale/',
     submitScale: headUrl + '/ncov/submitscale/',
     submitInfoUrl: headUrl + '/ncov/submitinfo/',
@@ -28,6 +28,10 @@ App({
     userForgetPassUrl: headUrlV2 +'followup2/resetPassword',
     compareFaceUrl: headUrlV2 + 'followup2/compareFace',
 
+    getMotionTestResultUrl: headUrlV2 + 'followup2/wechat/chart',
+    sendResultUrl: headUrlV2 + 'followup2/wechat/answer/submit',
+    uploadPicVidUrl: headUrlV2 + 'followup2/wechat/upload',
+    
     openid: '',
     session_key: '',
     sessionId:'',

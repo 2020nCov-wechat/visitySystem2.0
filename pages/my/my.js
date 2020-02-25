@@ -15,6 +15,7 @@ const appID = 'wx4967a2d91998acc2'
 
 Page({
   data: {
+    sessionId: getApp().globalData.sessionId,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -80,6 +81,29 @@ Page({
       url: '../myinfor/myinfor'
     })
   },
+  logout:function(){
+    var that = this;
+    wx.showModal({
+      title: '退出登录',
+      content: '确认要退出登录吗？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('点击确认回调');
+          getApp().savePhoneAndPass('', '')
+          getApp().saveSessionId('')
+          var time = setTimeout(function () {
+            // that.updateChart()
+            that.checkSessionId()
+          }, 100)
+
+        } else {
+          console.log('点击取消回调')
+        }
+      }
+    })
+
+    
+  },
   onLoad: function () {
     if (app.globalData.userInfo && app.globalData.openid) {
       this.setData({
@@ -109,7 +133,7 @@ Page({
         })
       }
       //更新openid
-      app.updateOpenid()
+      // app.updateOpenid()
       var that = this
       var time = setTimeout(function () {
         // that.updateChart()
@@ -132,17 +156,17 @@ Page({
   //更新chart
   updateChart: function () {
 
-    var newopenid = app.globalData.openid
-    var newSession_key = app.globalData.session_key
-    newSession_key = newSession_key.replace(/ +/g, '%2B')
-    newopenid = newopenid.replace(/ +/g, '%2B')
+    var sessionId = app.globalData.sessionId
+    // sessionId = sessionId.replace(/ +/g, '%2B')
     var that = this
     wx.request({
       //获取openid接口
-      url: getApp().globalData.testResult,
-      data: {
-        openid: newopenid,
-        session_key: newSession_key
+      url: getApp().globalData.getMotionTestResultUrl,
+      data:{
+
+      },
+      header: {
+        'sessionId': sessionId,
       },
       method: 'POST',
       success: function (res) {
@@ -167,6 +191,10 @@ Page({
           }
 
         } else {
+          wx.showToast({
+            icon: 'none',
+            title: '无最近评测数据',
+          })
           //登录过期
           // if (res.data.errCode == 500) {
           //   console.log("登录过期")
@@ -179,6 +207,13 @@ Page({
         }
 
       },
+      fail:function(error){
+        console.log(error)
+        wx.showToast({
+          icon: 'none',
+          title: '请检查网络',
+        })
+      }
     })
 
   },
