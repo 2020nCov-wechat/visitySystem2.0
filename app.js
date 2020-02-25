@@ -26,6 +26,7 @@ App({
     userGetCodeUrl: headUrlV2 + 'followup2/getCode',
     userTestLoginStatusUrl: headUrlV2 + 'followup2/test',
     userForgetPassUrl: headUrlV2 +'followup2/resetPassword',
+    compareFaceUrl: headUrlV2 + 'followup2/compareFace',
 
     openid: '',
     session_key: '',

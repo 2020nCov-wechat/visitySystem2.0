@@ -28,7 +28,8 @@
     "pages/voice/edit/edit",
     "pages/myinfor/myinfor",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/stuque/question/question"
     
   ],
   "window": {

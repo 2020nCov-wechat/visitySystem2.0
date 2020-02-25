@@ -8,12 +8,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    phoneno: getApp().getPhoneAndPass().phone,
+    password: getApp().getPhoneAndPass().password,
+    sessionId:getApp().globalData.sessionId,
     src:''
   },
   clickBtn:function(){
-
-
-    
     wx.chooseImage({
       success(res) {
         const tempFilePaths = res.tempFilePaths
@@ -59,17 +59,62 @@ Page({
   //图片上传
   localhostimgesupdata: function (imgPath) {
     console.log('图片上传')
+    var sessionId = app.globalData.sessionId
+    sessionId = sessionId.replace(/ +/g, '%2B')
+    console.log(sessionId)
     wx.uploadFile({
-      url: getApp().globalData.uploadPicVidUrl, //图片上传服务器真实的接口地址
+      url: getApp().globalData.compareFaceUrl, //图片上传服务器真实的接口地址
       filePath: imgPath,
-      name: 'fileName',
+      name: 'file',
+      header: {
+        'Content-Type': 'multipart/form-data',
+        'sessionId': sessionId,
+      },
+      formData: {
+        method: 'GET',   //请求方式
+      },
       success: function (res) {
+        //var data = res.data
+        var data = JSON.parse(res.data)
         console.log(res)
-        wx.showToast({
-          title: '图片上传成功',
-          icon: 'success',
-          duration: 2000
-        })
+        if (res.statusCode == 200) {
+          wx.showToast({
+            title: '图片上传成功',
+            icon: 'success',
+            duration: 2000
+          })
+          if (data.errorMsg=='无人脸'){
+            wx.showToast({
+              title: '未检测到人脸',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+          else if (data.errorMsg == '对比成功'){
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '../motiontest/motiontest',
+              })
+            }, 1000)
+          }
+          else if (data.errorMsg == '不是同一个人'){
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '../que2/first/first',
+              })
+            }, 1000)
+          }
+          else{
+            wx.showToast({
+              title: '请重拍',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+        else{
+          console.log('上传失败')
+        }
       }
     })
   },
@@ -77,7 +122,7 @@ Page({
     console.log('定时停止')
     clearInterval(time)
   },
-  takePhoto: function () {
+  camera: function () {
     let that = this
     let ctx = wx.createCameraContext()
     ctx.takePhoto({
@@ -85,8 +130,10 @@ Page({
       success: (res) => {
         console.log(res.tempImagePath)
         that.setData({
-          src: res.tempImagePath
+          src: res.tempImagePath,
+          camera: false
         })
+        that.localhostimgesupdata(res.tempImagePath)
         wx.showToast({
           title: '拍照',
           icon: 'success',
@@ -145,4 +192,27 @@ Page({
     console.log('卸载')
     clearInterval(time)
   },
+  open(e) {
+    let { type } = e.target.dataset;
+    console.log("开启相机准备", type == "takePhoto" ? "拍照" : "录视频");
+    this.setData({
+      camera: true,
+      type
+    })
+  },
+  // 关闭模拟的相机界面
+  close() {
+    console.log("关闭相机");
+    this.setData({
+      camera: false
+    })
+  },
+  // 切换相机前后置摄像头
+  devicePosition() {
+    this.setData({
+      device: !this.data.device,
+    })
+    console.log("当前相机摄像头为:", this.data.device ? "后置" : "前置");
+  },
+  
 })

@@ -76,12 +76,13 @@ Page({
   },
   queClick:function(){
     wx.navigateTo({
-      url: '../que2/first/first',
+      // url: '../que2/first/first',
+      url:'../stuque/question/question',
     })
   },
   voiceClick:function(){
     wx.navigateTo({
-      url: '../motiontest/motiontest',
+      url: '../picture/picture',
     })
   }
 })
