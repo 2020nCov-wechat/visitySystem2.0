@@ -26,11 +26,29 @@ Page({
       })
     }
   },
+  testClick:function(){
+    wx.switchTab({
+      url: '../my/my',
+      success(){
+        console.log("success")
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) {
+          console.log("null")
+          return;
+        }
+        page.onLoad(); // 执行前一个页面的checkHavePhone方法
+
+      },
+      fail:function(e){
+        console.log(e)
+      }    
+})
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
