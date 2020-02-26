@@ -527,7 +527,7 @@ Page({
         openid: newopenid,
         session_key: newSession_key,
         question: videoPage,
-        answer: resultMsg
+        answer: resultMsg,
       },
       method: 'POST',
       success: function (res) {

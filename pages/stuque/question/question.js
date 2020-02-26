@@ -2,7 +2,9 @@
 //获取应用实例
 const app = getApp()
 import Toast from '@vant/weapp/toast/toast';
-// var questionsOut = require('../../config/questions.js')
+import Dialog from '@vant/weapp/dialog/dialog';
+const util = require('../../../utils/util.js')
+
 var questionsOut = require('../../../config/stuQuestion.js')
 
 Page({
@@ -14,7 +16,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           console.log('点击确认回调');
-
+          that.checkExam(2)
           var time = setTimeout(function () {
             wx.switchTab({
               url: "/pages/quechoose/quechoose",
@@ -70,67 +72,68 @@ Page({
   },
 
   initQuestion:function() {
+    var that=this
     this.setData({
       questions: questionsOut.stuque.questions,
-      questionShow: questionsOut.stuque.questions[0],
-      // scaleTitle: questionsOut.que1.scaleTitle,
-      // scaleBrief: questionsOut.que1.scaleBrief,
+      // questionShow: questionsOut.stuque.questions[0],
       questionNum: questionsOut.stuque.queNum,
     })
+    this.checkExam(1)
   },
-  nextQuestionPage:function(){
-    if (this.data.curScaleIndex==1){
-      //开始做第二套
-      this.setData({
-        questions: questionsOut.que2.questions,
-        questionShow: questionsOut.que2.questions[0],
-        scaleTitle: questionsOut.que2.scaleTitle,
-        scaleBrief: questionsOut.que2.scaleBrief,
-        questionNum: questionsOut.que2.qNum,
-        curScaleIndex: 2,
-        questionHadAns: 0,
-        questionShowIndex: 0,
-        answers: [],
-        nextBtnText: "下一题",
-        radio: '',
-      })
-    } else if (this.data.curScaleIndex == 2) {
-      //开始做第三套
-      this.setData({
-        questions: questionsOut.que3.questions,
-        questionShow: questionsOut.que3.questions[0],
-        scaleTitle: questionsOut.que3.scaleTitle,
-        scaleBrief: questionsOut.que3.scaleBrief,
-        questionNum: questionsOut.que3.qNum,
-        curScaleIndex: 3,
-        questionHadAns: 0,
-        questionShowIndex: 0,
-        answers: [],
-        nextBtnText: "下一题",
-        radio: '',
-      })
-    } else if (this.data.curScaleIndex == 3) {
-      //开始做第四套
-      this.setData({
-        questions: questionsOut.que4.questions,
-        questionShow: questionsOut.que4.questions[0],
-        scaleTitle: questionsOut.que4.scaleTitle,
-        scaleBrief: questionsOut.que4.scaleBrief,
-        questionNum: questionsOut.que4.qNum,
-        curScaleIndex: 4,
-        questionHadAns: 0,
-        questionShowIndex: 0,
-        nextBtnText: "下一题",
-        answers: [],
-        radio: '',
-      })
-    } else if (this.data.curScaleIndex == 4) {
-      //结束
-      wx.navigateTo({
-        url: '../que2/quefour/quefour'
-      })
-    }
-  },
+
+  // nextQuestionPage:function(){
+  //   if (this.data.curScaleIndex==1){
+  //     //开始做第二套
+  //     this.setData({
+  //       questions: questionsOut.que2.questions,
+  //       questionShow: questionsOut.que2.questions[0],
+  //       scaleTitle: questionsOut.que2.scaleTitle,
+  //       scaleBrief: questionsOut.que2.scaleBrief,
+  //       questionNum: questionsOut.que2.qNum,
+  //       curScaleIndex: 2,
+  //       questionHadAns: 0,
+  //       questionShowIndex: 0,
+  //       answers: [],
+  //       nextBtnText: "下一题",
+  //       radio: '',
+  //     })
+  //   } else if (this.data.curScaleIndex == 2) {
+  //     //开始做第三套
+  //     this.setData({
+  //       questions: questionsOut.que3.questions,
+  //       questionShow: questionsOut.que3.questions[0],
+  //       scaleTitle: questionsOut.que3.scaleTitle,
+  //       scaleBrief: questionsOut.que3.scaleBrief,
+  //       questionNum: questionsOut.que3.qNum,
+  //       curScaleIndex: 3,
+  //       questionHadAns: 0,
+  //       questionShowIndex: 0,
+  //       answers: [],
+  //       nextBtnText: "下一题",
+  //       radio: '',
+  //     })
+  //   } else if (this.data.curScaleIndex == 3) {
+  //     //开始做第四套
+  //     this.setData({
+  //       questions: questionsOut.que4.questions,
+  //       questionShow: questionsOut.que4.questions[0],
+  //       scaleTitle: questionsOut.que4.scaleTitle,
+  //       scaleBrief: questionsOut.que4.scaleBrief,
+  //       questionNum: questionsOut.que4.qNum,
+  //       curScaleIndex: 4,
+  //       questionHadAns: 0,
+  //       questionShowIndex: 0,
+  //       nextBtnText: "下一题",
+  //       answers: [],
+  //       radio: '',
+  //     })
+  //   } else if (this.data.curScaleIndex == 4) {
+  //     //结束
+  //     wx.navigateTo({
+  //       url: '../que2/quefour/quefour'
+  //     })
+  //   }
+  // },
   onChange(event) {
     console.log("onchange")
     console.log(event)
@@ -200,7 +203,8 @@ Page({
             nextBtnText: "完成"
           })
         } else {
-          console.log(that.data.radio)
+          // console.log(that.data.radio)
+          that.sendAnswer(that.data.questionShowIndex,that.data.radio)
           //如果后面的回答过了，就显示后面的题目
           var ra = ''
           if (that.data.questionHadAns > that.data.questionShowIndex) {
@@ -250,12 +254,26 @@ Page({
       Toast.fail('请先回答当前问题');
     } else {
       if (this.data.questionShowIndex == this.data.questionNum - 1) {
+    
         //回答完毕
         console.log("last one")
         this.setData({
           nextBtnText: "完成"
         })
-        this.sendAnswer(this.data.curScaleIndex)
+        this.sendAnswer(this.data.questionShowIndex, this.data.radio)
+        var that=this
+        var time = setTimeout(function () {
+             that.checkExam(3)
+              wx.switchTab({
+                url: "/pages/my/my",
+                success() {
+                  var page = getCurrentPages().pop();
+                  if (page == undefined || page == null) return;
+                  //更新openid
+                  getApp().updateOpenid()
+                }
+              });
+            }, 1000)
       } else {
         console.log(this.data.questionShowIndex)
         if (this.data.questionShowIndex == this.data.questionNum - 2) {
@@ -443,22 +461,28 @@ Page({
 
   },
   //提交答案
-  sendAnswer: function (index) {
+  sendAnswer: function (index,answer) {
     var newopenid = app.globalData.openid
     var newSession_key = app.globalData.session_key
+    var newSessionId = app.globalData.sessionId
+    newSessionId = newSessionId.replace(/ +/g, '%2B')
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
-
     var that = this
-    console.log(that.data.answers)
+    // console.log(answers)
+    console.log('index:'+index+',anwser:'+answer)
     wx.request({
       //获取openid接口
-      url: getApp().globalData.submitScale,
+      url: getApp().globalData.sendResultUrl,
+      header: {
+        'sessionId': newSessionId,
+      },
       data: {
         openid: newopenid,
         session_key: newSession_key,
-        questionNaire: index,
-        answers: that.data.answers
+        question: index+1,
+        answer: '' + answer,
+        result: answer
       },
       method: 'POST',
       success: function (res) {
@@ -467,33 +491,16 @@ Page({
           console.log("发送成功")
           console.log(that.data.answers)
 
-          Toast.success('成功提交');
-
-          //获取得分与结果
-          // that.nextQuestionPage()
-          var time = setTimeout(function () {
-            wx.switchTab({
-              url: "/pages/my/my",
-              success() {
-                var page = getCurrentPages().pop();
-                if (page == undefined || page == null) return;
-                //更新openid
-                getApp().updateOpenid()
-              }
-            });
-          }, 1000)
-          
-        } else {
-          //登录过期
-            console.log("登录过期")
-            //更新openid
-            getApp().updateOpenid()
-            that.sendAnswer(index)
+         } else {
+          // 登录过期
+          console.log("登录过期")
+          //更新openid
+          getApp().updateOpenid()
+          that.sendAnswer(index)
         }
 
       },
     })
-
   },
   //判断整数
   isInteger: function (obj) {
@@ -506,6 +513,86 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  /**
+  * 查询当前测试的状态
+  * 发送参数：
+  *        checkOrEnd:1：查询
+  *                   2：提前结束，非正常结束，删除本次数据
+  *                   3：正常结束，标志位设置为1，评测结束
+  * 返回1-22：正常题目
+  * 返回-1：超时，直接删标志位为0的数据，小程序会从第一题开始发起回答
+  */
+  checkExam: function (checkCode) {
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    var newSessionId = app.globalData.sessionId
+    newSessionId = newSessionId.replace(/ +/g, '%2B')
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+    console.log('sessionid:' + newSessionId)
+    var that = this
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.checkOrEndUrl,
+      header: {
+        'sessionId': newSessionId,
+      },
+      data: {
+        openid: newopenid,
+        session_key: newSession_key,
+        checkOrEnd: checkCode
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data)
+        if (res.data.errorCode == 200) {
+          if (res.data.nextQuestion == -1) {
+            
+          }
+          if (res.data.nextQuestion > 1) {
+            that.setData({
+              questionShow : that.data.questions[res.data.nextQuestion-1],
+              questionShowIndex : res.data.nextQuestion-1,
+              questionHadAns : res.data.nextQuestion-1
+            })
+            for(var i=1;i<res.data.nextQuestion;i++){
+              that.data.answers.push(-1)
+            }
+            Dialog.alert({
+              title: '温馨提示',
+              message: '继续您上一次的回答，请回答第：' + res.data.nextQuestion + ' 题'
+            }).then(() => {
+              // on close
+            });
+          }
+        } else {
+          console.log()
+          //that.showResultByNotify('错误码：' + res.data.errorCode)
+          //登录过期
+          // if (res.data.errorCode == 500) {
+          //   //更新openid
+          //   getApp().updateOpenid()
+          //   var time = setTimeout(function () {
+          //     that.checkExam(checkCode)
+          //   }, 1000)
+          // }
+          //Toast.fail('错误码：' + res.data.errorCode);
+          //Toast.fail('未识别，请重新回答');
+        }
+        // that.setData({
+        //   currentDate: res.data.birthday,
+        //   userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
+        //   sex: res.data.gender,
+        //   tabs: res.data.tabs,
+        // })
+      }
+    })
+
+    //结束事件
+    if (checkCode == 2 || checkCode == 3) {
+      //this.videoPage=0;
+    }
   },
 
 })
