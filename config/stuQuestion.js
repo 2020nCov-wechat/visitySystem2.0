@@ -271,7 +271,7 @@ var stuque = {
   },
     {
       "type": 1,
-      "question": "17. 会经常感到烦躁、坐卧不安、难以静坐吗？",
+      "question": "17. 会经常感到烦躁、坐卧不安、难以静坐？",
       "answers": [{
         "answer": "是的，经常这样",
         "value": 0

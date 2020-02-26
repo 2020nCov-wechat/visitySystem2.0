@@ -48,21 +48,21 @@ Page({
     questionShowIndex: 0,
     questionNum: 0,
     questionShow: {
-      "question": "1.入睡困难，睡不安稳或睡眠过多",
+      "question": "1. 在过去的两个星期，你会不会每天都感到心情低落，沮丧或绝望",
       "answers": [{
-        "answer": "完全不会",
+        "answer": "几乎每天",
         "value": 0
       },
       {
-        "answer": "好几天",
+        "answer": "一半以上时间吧",
         "value": 1
       },
       {
-        "answer": "一半以上的天数",
+        "answer": "偶尔",
         "value": 2
       },
       {
-        "answer": "几乎每天",
+        "answer": "完全没有",
         "value": 3
       },
       ]
@@ -263,16 +263,8 @@ Page({
         this.sendAnswer(this.data.questionShowIndex, this.data.radio)
         var that=this
         var time = setTimeout(function () {
-             that.checkExam(3)
-              wx.switchTab({
-                url: "/pages/my/my",
-                success() {
-                  var page = getCurrentPages().pop();
-                  if (page == undefined || page == null) return;
-                  //更新openid
-                  getApp().updateOpenid()
-                }
-              });
+             that.checkEnd()
+             
             }, 1000)
       } else {
         console.log(this.data.questionShowIndex)
@@ -493,10 +485,10 @@ Page({
 
          } else {
           // 登录过期
-          console.log("登录过期")
-          //更新openid
-          getApp().updateOpenid()
-          that.sendAnswer(index)
+          // console.log("登录过期")
+          // //更新openid
+          // getApp().updateOpenid()
+          // that.sendAnswer(index)
         }
 
       },
@@ -548,7 +540,9 @@ Page({
         console.log(res.data)
         if (res.data.errorCode == 200) {
           if (res.data.nextQuestion == -1) {
-            
+            that.setData({
+              questionShow: that.data.question[0]
+            })
           }
           if (res.data.nextQuestion > 1) {
             that.setData({
@@ -568,17 +562,17 @@ Page({
           }
         } else {
           console.log()
-          //that.showResultByNotify('错误码：' + res.data.errorCode)
-          //登录过期
-          // if (res.data.errorCode == 500) {
-          //   //更新openid
-          //   getApp().updateOpenid()
-          //   var time = setTimeout(function () {
-          //     that.checkExam(checkCode)
-          //   }, 1000)
-          // }
-          //Toast.fail('错误码：' + res.data.errorCode);
-          //Toast.fail('未识别，请重新回答');
+          // that.showResultByNotify('错误码：' + res.data.errorCode)
+          // 登录过期
+          if (res.data.errorCode == 500) {
+            // //更新openid
+            // getApp().updateOpenid()
+            // var time = setTimeout(function () {
+            //   that.checkExam(checkCode)
+            // }, 1000)
+          }
+          Toast.fail('错误码：' + res.data.errorCode);
+          Toast.fail('失败，请退出后重新回答');
         }
         // that.setData({
         //   currentDate: res.data.birthday,
@@ -593,6 +587,66 @@ Page({
     if (checkCode == 2 || checkCode == 3) {
       //this.videoPage=0;
     }
+  },
+
+  checkEnd: function () {
+    var newopenid = app.globalData.openid
+    var newSession_key = app.globalData.session_key
+    var newSessionId = app.globalData.sessionId
+    newSessionId = newSessionId.replace(/ +/g, '%2B')
+    newSession_key = newSession_key.replace(/ +/g, '%2B')
+    newopenid = newopenid.replace(/ +/g, '%2B')
+    console.log('sessionid:' + newSessionId)
+    var that = this
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.checkOrEndUrl,
+      header: {
+        'sessionId': newSessionId,
+      },
+      data: {
+        openid: newopenid,
+        session_key: newSession_key,
+        checkOrEnd: 3
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data)
+        if (res.data.errorCode == 200) {
+          wx.switchTab({
+            url: "/pages/my/my",
+            success() {
+              var page = getCurrentPages().pop();
+              if (page == undefined || page == null) return;
+              //更新openid
+              getApp().updateOpenid()
+            }
+          });
+        } else {
+          console.log()
+          Toast.fail('提交失败，请退出后重新答题');
+          // that.showResultByNotify('错误码：' + res.data.errorCode)
+          // // 登录过期
+          // if (res.data.errorCode == 500) {
+          //   // //更新openid
+          //   // getApp().updateOpenid()
+          //   // var time = setTimeout(function () {
+          //   //   that.checkExam(checkCode)
+          //   // }, 1000)
+
+          // }
+          // // Toast.fail('错误码：' + res.data.errorCode);
+          // // Toast.fail('提交失败，请重新提交');
+        }
+        // that.setData({
+        //   currentDate: res.data.birthday,
+        //   userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
+        //   sex: res.data.gender,
+        //   tabs: res.data.tabs,
+        // })
+      }
+    })
+
   },
 
 })
