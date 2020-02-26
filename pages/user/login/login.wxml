@@ -10,7 +10,7 @@
     </view>
     <view class="list-call">
       <image class="img" src="/../imgs/shilu-login/2.png"></image>
-      <input class="biaoti" value="{{password}}" bindinput="passwordInput" type="text" maxlength="32" placeholder="输入密码" password="true" />
+      <input class="biaoti" value="{{password}}" bindinput="passwordInput" type="text" maxlength="16" placeholder="输入密码" password="true" />
     </view>
 
   </view>

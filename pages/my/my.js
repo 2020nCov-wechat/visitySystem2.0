@@ -136,9 +136,9 @@ Page({
       // app.updateOpenid()
       var that = this
       var time = setTimeout(function () {
-        // that.updateChart()
+        that.updateChart()
         that.checkSessionId()
-      }, 1000)
+      }, 500)
     }
     
   },

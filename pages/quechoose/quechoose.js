@@ -83,6 +83,7 @@ Page({
   voiceClick:function(){
     wx.navigateTo({
       url: '../picture/picture',
+      // url: '../motiontest/motiontest',
     })
   }
 })

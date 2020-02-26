@@ -90,23 +90,29 @@ Page({
               duration: 2000
             })
           }
-          else if (data.errorMsg == '对比成功'){
+          else if (data.errorMsg == '对比成功') {
+            wx.showToast({
+              title: data.errorMsg,
+              icon: 'none',
+              duration: 2000
+            })
             setTimeout(function () {
               wx.navigateTo({
                 url: '../motiontest/motiontest',
               })
             }, 1000)
           }
-          else if (data.errorMsg == '不是同一个人'){
-            setTimeout(function () {
-              wx.navigateTo({
-                url: '../que2/first/first',
-              })
-            }, 1000)
-          }
+          // else if (data.errorMsg == '不是同一个人'){
+          //   setTimeout(function () {
+          //     wx.navigateTo({
+          //       url: '../que2/first/first',
+          //     })
+          //   }, 1000)
+          // }
           else{
             wx.showToast({
-              title: '请重拍',
+              title: data.errorMsg,
+              // title: '请重拍',
               icon: 'none',
               duration: 2000
             })
