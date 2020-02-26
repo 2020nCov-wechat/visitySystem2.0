@@ -177,6 +177,8 @@ Page({
       //this.checkExam(1)
       var newopenid = app.globalData.openid
       var newSession_key = app.globalData.session_key
+      var newSessionId = app.globalData.sessionId
+      newSessionId = newSessionId.replace(/ +/g, '%2B')
       newSession_key = newSession_key.replace(/ +/g, '%2B')
       newopenid = newopenid.replace(/ +/g, '%2B')
       util.requestPromise(
@@ -186,7 +188,10 @@ Page({
           session_key: newSession_key,
           checkOrEnd: 1
         },
-        'POST'
+        'POST',
+        {
+          'sessionId': newSessionId 
+        }
       ).then(res => {
         console.log(res.data)
         if (res.data.errorCode == 200) {
@@ -455,12 +460,17 @@ Page({
   checkExam: function (checkCode) {
     var newopenid = app.globalData.openid
     var newSession_key = app.globalData.session_key
+    var newSessionId = app.globalData.sessionId
+    newSessionId = newSessionId.replace(/ +/g, '%2B')
     newSession_key = newSession_key.replace(/ +/g, '%2B')
     newopenid = newopenid.replace(/ +/g, '%2B')
     var that = this
     wx.request({
       //获取openid接口
       url: getApp().globalData.checkOrEndUrl,
+      header:{
+        'sessionId':newSessionId
+      },
       data: {
         openid: newopenid,
         session_key: newSession_key,
@@ -514,20 +524,21 @@ Page({
   },
   //发送语音识别结果给后台
   sendResult: function (resultMsg, videoPage) {
-    var newopenid = app.globalData.openid
-    var newSession_key = app.globalData.session_key
-    newSession_key = newSession_key.replace(/ +/g, '%2B')
-    newopenid = newopenid.replace(/ +/g, '%2B')
+
     console.log(resultMsg + ' ' + videoPage)
+    var sessionId = app.globalData.sessionId
+    // sessionId = sessionId.replace(/ +/g, '%2B')
     var that = this
     wx.request({
       //获取openid接口
       url: getApp().globalData.sendResultUrl,//gai url
       data: {
-        openid: newopenid,
-        session_key: newSession_key,
         question: videoPage,
         answer: resultMsg,
+        result: -1  
+      },
+      header: {
+        'sessionId': sessionId,
       },
       method: 'POST',
       success: function (res) {
@@ -679,10 +690,8 @@ Page({
   },
   //视频上传
   uploadVideo: function (videoPath) {
-    var newopenid = app.globalData.openid
-    var newSession_key = app.globalData.session_key
-    newSession_key = newSession_key.replace(/ +/g, '%2B')
-    newopenid = newopenid.replace(/ +/g, '%2B')
+    var sessionId = app.globalData.sessionId
+    // sessionId = sessionId.replace(/ +/g, '%2B')
     console.log('上传')
     var that = this
     wx.uploadFile({
@@ -690,11 +699,12 @@ Page({
       filePath: videoPath,
       name: 'file',
       formData: {
-        openid: newopenid,
-        session_key: newSession_key,
         picOrVid: 2,
         fileName: videoPath,
         question: this.videoPage
+      },
+      header: {
+        'sessionId': sessionId,
       },
       success: function (res) {
         console.log('视频上传成功')

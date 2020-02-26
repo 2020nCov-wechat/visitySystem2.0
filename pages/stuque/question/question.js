@@ -11,8 +11,8 @@ Page({
   backClick: function () {
     var that = this;
     wx.showModal({
-      title: '退出答题',
-      content: '确认要退出答题吗？',
+      title: '退出提示',
+      content: '提前退出测评，需要重新回答所有问题哦！',
       success: function (res) {
         if (res.confirm) {
           console.log('点击确认回调');

@@ -4,12 +4,13 @@
       <view class='pictrue'>
         <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
         <block wx:else>
-          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image> -->
         </block>
       </view>
       <view class='text'>
         <view class='acea-row row-middle'>
-          <view class='name line1'>{{userInfo.nickName || '请登录'}}</view>
+          <view class='name line1'>{{userInfo.nickName || ' '}}</view>
           <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
             <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
         </view>
@@ -33,7 +34,8 @@
             <view class='num'>{{userInfo.integral || 0}}</view>
          </view> -->
       <view class='item' data-url='/pages/user_coupon/index'>
-        <view bindtap="getOpenIdTabFromAPP" class="btn-color">刷新登录状态</view>
+        <view bindtap="logout" class="btn-color">退出登录</view>
+        <!-- <view bindtap="getOpenIdTabFromAPP" class="btn-color">刷新登录状态</view> -->
         <!-- <view class='num'>{{userInfo.couponCount || 0}}</view> -->
       </view>
     </view>

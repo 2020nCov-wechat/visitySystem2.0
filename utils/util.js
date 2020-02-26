@@ -54,7 +54,7 @@ function formatTimeTwo(number, format) {
  * @param：{string} myUrl 接口地址
  * @return: Promise实例对象
  */
-const requestPromise = (myUrl, myData, myMethod) => {
+const requestPromise = (myUrl, myData, myMethod,myheader) => {
   // 返回一个Promise实例对象
   return new Promise((resolve, reject) => {
     console.log("in promise")
@@ -63,6 +63,7 @@ const requestPromise = (myUrl, myData, myMethod) => {
       url: myUrl,
       data: myData,
       method: myMethod,
+      header:myheader,
       success: res => resolve(res)
     })
   })
