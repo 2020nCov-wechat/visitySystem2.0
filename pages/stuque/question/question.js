@@ -47,26 +47,7 @@ Page({
     questionHadAns: 0,
     questionShowIndex: 0,
     questionNum: 0,
-    questionShow: {
-      "question": "1. 在过去的两个星期，你会不会每天都感到心情低落，沮丧或绝望",
-      "answers": [{
-        "answer": "几乎每天",
-        "value": 0
-      },
-      {
-        "answer": "一半以上时间吧",
-        "value": 1
-      },
-      {
-        "answer": "偶尔",
-        "value": 2
-      },
-      {
-        "answer": "完全没有",
-        "value": 3
-      },
-      ]
-    },
+    questionShow: questionsOut.stuque.questions[0],
     questions: [],
     answers: []
   },
