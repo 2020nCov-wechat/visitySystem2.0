@@ -134,11 +134,9 @@ Page({
       }
       //更新openid
       // app.updateOpenid()
-      var that = this
-      var time = setTimeout(function () {
-        that.updateChart()
-        that.checkSessionId()
-      }, 500)
+      if (this.checkSessionId()){
+        this.updateChart()
+      }
     }
     
   },
@@ -148,14 +146,19 @@ Page({
       wx.navigateTo({
         url: '../user/login/login',
       })
+      return false
     }
+    return true
   },
   updateChartClick: function () {
     this.updateChart()
   },
+  onShow: function (e) {
+    this.onLoad();
+  },
   //更新chart
   updateChart: function () {
-
+    console.log("update chart")
     var sessionId = app.globalData.sessionId
     // sessionId = sessionId.replace(/ +/g, '%2B')
     var that = this

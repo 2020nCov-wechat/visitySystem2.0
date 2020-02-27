@@ -307,9 +307,6 @@ Page({
 
         }
       }
-
-
-
     }
   },
 
@@ -614,12 +611,16 @@ Page({
         console.log(res.data)
         if (res.data.errorCode == 200) {
           wx.switchTab({
-            url: "/pages/my/my",
+            url: "../../my/my",
             success() {
-              var page = getCurrentPages().pop();
-              if (page == undefined || page == null) return;
-              //更新openid
-              getApp().updateOpenid()
+              setTimeout(function () {
+                var page = getCurrentPages().pop();
+                if (page == undefined || page == null) {
+                  return;
+                }
+                page.updateChart(); // 执行前一个页面的updateChart方法
+              }, 200)
+              
             }
           });
         } else {
