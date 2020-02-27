@@ -544,7 +544,7 @@ Page({
               questionShow: that.data.question[0]
             })
           }
-          if (res.data.nextQuestion > 1) {
+          if (res.data.nextQuestion > 1 && res.data.nextQuestion<=20) {
             that.setData({
               questionShow : that.data.questions[res.data.nextQuestion-1],
               questionShowIndex : res.data.nextQuestion-1,
@@ -555,10 +555,15 @@ Page({
             }
             Dialog.alert({
               title: '温馨提示',
-              message: '继续您上一次的回答，请回答第：' + res.data.nextQuestion + ' 题'
+              message: '继续您上一次的回答，请回答第 ' + res.data.nextQuestion + ' 题',
+              
             }).then(() => {
               // on close
             });
+          }
+          if(res.data.nextQuestion>20){
+            that.checkEnd(2);
+            Toast.fail('上次异常结束，重新进行答题');
           }
         } else {
           console.log()
@@ -574,12 +579,7 @@ Page({
           Toast.fail('错误码：' + res.data.errorCode);
           Toast.fail('失败，请退出后重新回答');
         }
-        // that.setData({
-        //   currentDate: res.data.birthday,
-        //   userDate: timeTwo.formatTimeTwo(parseInt(res.data.birthday), 'Y年M月D日'),
-        //   sex: res.data.gender,
-        //   tabs: res.data.tabs,
-        // })
+  
       }
     })
 
