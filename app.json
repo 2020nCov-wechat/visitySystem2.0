@@ -29,7 +29,8 @@
     "pages/myinfor/myinfor",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/stuque/question/question"
+    "pages/stuque/question/question",
+    "pages/stuque/yiqinQue/yiqinQue"
     
   ],
   "window": {

@@ -82,3 +82,7 @@
 .goukaboard .goukason2 {
 	background: linear-gradient(to right, #ff9514, #ffbb6c);
 }
+
+.goukaboard .goukason3 {
+	background: linear-gradient(to right, #20b882, #41d69c);
+}

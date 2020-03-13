@@ -38,7 +38,6 @@ Page({
   },
 
   onLoad: function () {
-
     this.checkAuth()
     this.initRecord()
     //app.getRecordAuth()
@@ -107,9 +106,14 @@ Page({
       wx.switchTab({
         url: "/pages/my/my",
         success() {
-          var page = getCurrentPages().pop();
-          if (page == undefined || page == null) return;
-          page.updateChart();
+          setTimeout(function () {
+            var page = getCurrentPages().pop();
+            if (page == undefined || page == null) {
+              return;
+            }
+            page.updateChart(); // 执行前一个页面的updateChart方法
+          }, 200)
+
         }
       });
 

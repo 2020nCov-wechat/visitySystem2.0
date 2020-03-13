@@ -154,7 +154,7 @@ Page({
     this.updateChart()
   },
   onShow: function (e) {
-    this.onLoad();
+    this.updateChart();
   },
   //更新chart
   updateChart: function () {

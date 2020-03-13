@@ -92,6 +92,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+  yiqinClick:function(){
+    wx.navigateTo({
+      // url: '../que2/first/first',
+      url: '../stuque/yiqinQue/yiqinQue',
+    })
+  },
   queClick:function(){
     wx.navigateTo({
       // url: '../que2/first/first',

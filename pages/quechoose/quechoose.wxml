@@ -3,6 +3,11 @@
     <text class="title-css">请选择答题形式</text>
   </view>
   <view class="goukaboard">
+    <view bindtap="yiqinClick" class="goukason goukason3">
+			<text class="title">疫情问卷</text>
+			<!-- <text class="description">全国海量号码，随心购买</text> -->
+			<image src="../../imgs/wl_yjgk.png"></image>
+		</view>
     <view bindtap="queClick" class="goukason goukason2">
       <text class="title">问卷答题</text>
       <!-- <text class="description">挑选远特e卡，抢先购买优质号段</text> -->
