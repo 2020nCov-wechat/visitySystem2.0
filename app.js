@@ -33,6 +33,7 @@ App({
     sendResultUrl: headUrlV2 + 'followup2/wechat/answer/submit',
     checkOrEndUrl: headUrlV2 + 'followup2/wechat/answer/query',
     uploadPicVidUrl: headUrlV2 + 'followup2/wechat/upload',
+    stuSubmitScaleUrl: headUrlV2 +'followup2/wechat/submitscale',
     
     openid: '',
     session_key: '',

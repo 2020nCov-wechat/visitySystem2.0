@@ -447,11 +447,6 @@ Page({
   },
   //提交答案
   sendAnswer: function (index) {
-    var newopenid = app.globalData.openid
-    var newSession_key = app.globalData.session_key
-    newSession_key = newSession_key.replace(/ +/g, '%2B')
-    newopenid = newopenid.replace(/ +/g, '%2B')
-
     var newSessionId = app.globalData.sessionId
     newSessionId = newSessionId.replace(/ +/g, '%2B')
 
@@ -459,13 +454,11 @@ Page({
     console.log(that.data.answers)
     wx.request({
       //获取openid接口
-      url: getApp().globalData.submitScale,
+      url: getApp().globalData.stuSubmitScaleUrl,
       header: {
         'sessionId': newSessionId,
       },
       data: {
-        openid: newopenid,
-        session_key: newSession_key,
         questionNaire: index,
         answers: that.data.answers
       },
