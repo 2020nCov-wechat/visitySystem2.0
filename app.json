@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/quechoose/quechoose",
+    "pages/ansQue/ansQue",
     "pages/my/my",
     "pages/user/forgetpass/forgetpass",
     "pages/myold/my",
@@ -18,7 +19,6 @@
     "pages/que2/usernear/usernear",
     "pages/que2/doctor/doctor",
     "pages/que2/user/user",
-    "pages/que/first/first",
     "pages/test/test",
     "pages/auth/auth",
     "pages/motiontest/motiontest",
@@ -30,7 +30,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/stuque/question/question",
-    "pages/stuque/yiqinQue/yiqinQue"
+    "pages/stuque/yiqinQue/yiqinQue",
+    "pages/2048/2048"
     
   ],
   "window": {
@@ -78,7 +79,6 @@
     }
   },
 
-  "workers": "workers",
   "usingComponents": {
     "van-notify": "@vant/weapp/notify/index",
     "van-dialog": "@vant/weapp/dialog/index",

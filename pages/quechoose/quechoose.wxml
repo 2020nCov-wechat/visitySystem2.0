@@ -20,5 +20,8 @@
     </view>
 
   </view>
+  <view class="bottom-view">
+    <image class="userinfo-avatar" bindtap="ansClick" src="../../imgs/chat.png"></image>
+  </view>
 
 </view>

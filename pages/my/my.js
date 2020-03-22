@@ -455,5 +455,11 @@ Page({
   },
   goPages: function () {
     Toast('暂未开放');
+  },
+  clickImg:function(){
+    wx.navigateTo({
+      // url: '../logs/logs'
+      url: '../2048/2048'
+    })
   }
 })

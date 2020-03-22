@@ -1,6 +1,7 @@
-//app.js
+  //app.js
 var headUrl = 'https://follwup.aiwac.net'
-var headUrlV2 = 'http://www.aiwac.net:8013/'
+var headUrlV2 = 'http://115.29.151.221:8013/'
+var headUrlAiwac = 'http://www.aiwac.net:8013/'
 var WXBizDataCrypt = require('utils/WXBizDataCrypt')
 App({
   globalData: {
@@ -34,6 +35,7 @@ App({
     checkOrEndUrl: headUrlV2 + 'followup2/wechat/answer/query',
     uploadPicVidUrl: headUrlV2 + 'followup2/wechat/upload',
     stuSubmitScaleUrl: headUrlV2 +'followup2/wechat/submitscale',
+    stuSendQueUrl: headUrlV2 +'followup2/wechat/question',
     
     openid: '',
     session_key: '',

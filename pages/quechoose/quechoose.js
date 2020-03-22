@@ -42,7 +42,7 @@ Page({
       fail:function(e){
         console.log(e)
       }    
-})
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -109,5 +109,11 @@ Page({
       url: '../picture/picture',
       // url: '../motiontest/motiontest',
     })
-  }
+  },
+  ansClick: function () {
+    wx.navigateTo({
+      // url: '../que2/first/first',
+      url: '../ansQue/ansQue',
+    })
+  },
 })
