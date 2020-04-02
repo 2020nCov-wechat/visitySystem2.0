@@ -124,14 +124,19 @@ Page({
       })
     } else if (this.data.curScaleIndex == 4) {
       //结束
-      wx.switchTab({
-        url: "/pages/quechoose/quechoose",
-        success() {
-          var page = getCurrentPages().pop();
-          if (page == undefined || page == null) return;
 
-        }
-      });
+      wx.navigateTo({
+        url: '/pages/stuque/advice/advice',
+      })
+
+      // wx.switchTab({
+      //   url: "/pages/quechoose/quechoose",
+      //   success() {
+      //     var page = getCurrentPages().pop();
+      //     if (page == undefined || page == null) return;
+
+      //   }
+      // });
     }
   },
   onChange(event) {

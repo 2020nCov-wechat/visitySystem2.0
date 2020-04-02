@@ -5,6 +5,9 @@
   height: 30rpx;
   position: absolute;
 }
+.arrow{
+  padding-top: 20rpx;
+}
 .user .header{padding:50rpx 30rpx 0rpx 30rpx;height:200rpx;position:relative;}
 .user .header:after { position: absolute;left: 0;right: 0;bottom: -98rpx;z-index: -1;
   content:'';height:100rpx;width: 100%;border-radius: 0 0 50% 50%;background-color: #1296DB;}

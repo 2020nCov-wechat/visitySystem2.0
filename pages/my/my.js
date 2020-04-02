@@ -28,6 +28,7 @@ Page({
     suggestion: '早睡早起',
     imgPath: '../../imgs/result/noResult.png',
     chart: null,
+    feiyanAdvices:null,
     chartData: {
       main: {
         title: '综合得分',
@@ -155,6 +156,46 @@ Page({
   },
   onShow: function (e) {
     this.updateChart();
+    this.updateFeiyanAdvice();
+  },
+  updateFeiyanAdvice: function () {
+    console.log("update advice chart")
+    var sessionId = app.globalData.sessionId
+    var that = this
+    wx.request({
+      //获取openid接口
+      url: getApp().globalData.getFeiyanTestResultUrl,
+      data: {
+      },
+      header: {
+        'sessionId': sessionId,
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("update advice g et ")
+        console.log(res.data)
+        if (res.data.errorCode == 200) {
+            var scaleResults = res.data.scaleResults
+            that.setData({
+              feiyanAdvices:scaleResults
+            })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '无最近评测数据',
+          })
+        }
+
+      },
+      fail: function (error) {
+        console.log(error)
+        wx.showToast({
+          icon: 'none',
+          title: '请检查网络',
+        })
+      }
+    })
+
   },
   //更新chart
   updateChart: function () {

@@ -95,6 +95,7 @@ Page({
   yiqinClick:function(){
     wx.navigateTo({
       // url: '../que2/first/first',
+      // url: '../stuque/advice/advice',
       url: '../stuque/yiqinQue/yiqinQue',
     })
   },

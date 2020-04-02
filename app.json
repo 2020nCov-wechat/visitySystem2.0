@@ -31,6 +31,7 @@
     "pages/logs/logs",
     "pages/stuque/question/question",
     "pages/stuque/yiqinQue/yiqinQue",
+    "pages/stuque/advice/advice",
     "pages/2048/2048"
     
   ],

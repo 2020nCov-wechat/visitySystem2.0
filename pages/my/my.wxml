@@ -2,17 +2,13 @@
   <view class='header bg-color acea-row row-between-wrapper'>
     <view class='picTxt acea-row row-between-wrapper'>
       <view class='pictrue'>
-        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-        <block wx:else>
-          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover" bindtap="clickImg"></image>
-          <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image> -->
-        </block>
+        <view bindtap="clickImg">
+          <open-data class="userinfo-avatar" type="userAvatarUrl" ></open-data>
+        </view>
       </view>
       <view class='text'>
-        <view class='acea-row row-middle'>
-          <view class='name line1'>{{userInfo.nickName || ' '}}</view>
-          <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
-            <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
+        <view class='acea-row row-middle name line1'>
+          <open-data type="userNickName"></open-data>
         </view>
         <!-- <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
             <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view> -->
@@ -155,6 +151,33 @@
 
 
       </view>
+    </view>
+    <view class='myService'>
+      <view class='title acea-row row-middle'>指导意见</view>
+      <block wx:if="{{feiyanAdvices}}">
+        <view class="serviceList" wx:for="{{feiyanAdvices}}" wx:key="idx">
+          <view class="suggess-css">
+            <text>{{item.title}}：{{item.level}}</text>
+          </view>
+          <!-- <view class="suggess-css">   
+            <text>广泛性焦虑障碍量表：{{result}}</text>
+          </view>
+          <view class="suggess-css">   
+            <text>失眠严重指数：{{result}}</text>
+          </view>
+          <view class="suggess-css">   
+            <text>事件影响量表：{{result}}</text>
+          </view> -->
+        </view>
+      </block>
+      <block wx:else >
+        <view class="serviceList">
+          <view class="suggess-css">
+            <text>无最近评测记录</text>
+          </view>
+        </view>
+      </block>
+      
     </view>
     <!-- <view class='myService'>
       <view class='title acea-row row-middle'>指标分析</view>

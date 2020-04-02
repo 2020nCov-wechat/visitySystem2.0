@@ -1,0 +1,51 @@
+<view class='user'>
+  <view class='header bg-color acea-row row-between-wrapper'>
+    <view class='header-have-arrow'>
+      <view class='arrow'>
+        <van-icon name="/imgs/arrow-left.png" size="35rpx" bind:click="backClick" />
+      </view>
+    </view>
+    <view class='picTxt acea-row row-between-wrapper'>
+      <view class=' tittle-css'>
+        <view class='acea-row row-middle'>
+          <view class=' line1 questionTitle'>{{title}}</view>
+        </view>
+      </view>
+    </view>
+    <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
+  </view>
+  <view class='wrapper'>
+    <view class="item_list">
+      <view class='myService'>
+        <view class='title acea-row row-middle title-height'>
+          <text class="question-css">{{question}}</text>
+        </view>
+        <view class='serviceList acea-row row-middle'>
+          <view class="suggess-css">
+            <view class="input-clsss">
+                <van-cell-group>
+                  <van-field value="{{ answer }}" type="textarea" placeholder="可不填" autosize border="{{ false }}" bind:input="inputOthers" />
+                </van-cell-group>
+              </view>
+          </view>
+
+        </view>
+
+      </view>
+    </view>
+    <!-- 最后一题 -->
+    <view class="warn-text">
+      <text >* 疫情真实感受回答完毕，请点击提交</text>
+    </view> 
+    <view class="btn-bottom">
+      <view class="btn-css">
+        <van-button color="#1296DB" type="primary" custom-class="btn-small" size="small" bindtap="clickBtnNext">提交</van-button>
+      </view>
+    </view>
+
+
+  </view>
+</view>
+
+
+<van-toast id="van-toast" />
