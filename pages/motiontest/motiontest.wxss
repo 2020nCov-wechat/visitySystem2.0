@@ -25,6 +25,30 @@ video{
   justify-content: center;
   margin-top: 10rpx;
 }
+.camera-btn{
+  background-color: rgb(73, 58, 116);
+  color: #fff;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 4em;
+  border: 0px;
+  left: 50rpx;
+  bottom: 50rpx;
+  position: fixed;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  font-size: 12px;
+  
+}
+.camera-btn::after{
+    background-color: rgb(11, 110, 163);
+
+}
+.camera-cover{
+  width: 180rpx; 
+  height: 250rpx;
+}
 
 .foot-group {
   left: 0;

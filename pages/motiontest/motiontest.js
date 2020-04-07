@@ -35,6 +35,7 @@ Page({
     haveDBResult: false,//用于等待后台返回查询结果题号
     // videoNum: 24//测评视频数量
     a: "",//摄像头隐藏
+    isCam: false, 
   },
 
   onLoad: function () {
@@ -43,7 +44,6 @@ Page({
     //app.getRecordAuth()
     //更新openid
     //app.updateOpenid()
-
     video_urls = {};  //视频url
     videoPage = 0;
     // videoNum = 24
@@ -51,6 +51,15 @@ Page({
     isDefault = true; // 当前是否眨眼或开场视频
     btn_type = 1;//开始按钮
     if (btn_type == 1) { this.setData({ btn_txt: "开始测评", }) }
+    if(this.data.isCam){ 
+      this.setData({
+        ishidden:true,
+        btn_cam_txt:"关闭摄像"})
+    }else { 
+      this.setData({ 
+        ishidden:false,
+        btn_cam_txt: "打开摄像" })
+    }
 
     //测评视频集合,v22、v23为眨眼默认视频
     for (var i = 0; i < getApp().globalData.videoNum; i++) {
@@ -741,6 +750,73 @@ Page({
     })
   },
   //==============================视频拍摄========================
+  //用户视频开关按钮
+  cameraBtn: function(){
+    if(this.data.isCam){
+      //停止
+      this.stopRecordV2 //停止录像
+      this.setData({
+        isCam:false,
+        ishidden:false,
+        btn_cam_txt: '打开摄像'
+      });
+      console.log("关闭摄像头")
+    }else{
+      // this.checkAuth //申请权限
+      var that = this
+      wx.getSetting({
+        success(res) {
+          console.log(res)
+          if (res.authSetting['scope.camera']) { 
+            that.startRecordV2 //开始录像
+            that.setData({
+              isCam: true,
+              ishidden: true,
+              btn_cam_txt: '关闭摄像'
+            });
+            console.log("打开摄像头")
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '请允许小艾使用摄像头，否则无法对您进行准确评测哦~~~同意后，请重启小程序生效',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  wx.openSetting({      //这里的方法是调到一个添加权限的页面，可以自己尝试
+                    success: (res) => {
+                      if (!res.authSetting['scope.camera']) {
+                        wx.authorize({
+                          scope: 'scope.camera',
+                          success() {
+                            console.log('授权成功')
+                            wx.navigateTo({
+                              url: '',
+                            })
+                          }, fail() {
+                            console.log('用户点击取消')
+                          }
+                        })
+                      }
+                    },
+                    fail: function () {
+                      console.log("授权设置摄像头失败");
+                    }
+                  })
+
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          }
+          }})
+     
+    }
+    //开始录像
+   
+
+  },
 
   //==============================权限========================
   checkAuth: function () {
@@ -828,6 +904,12 @@ Page({
             }
           })
         } else {
+          console.log("有摄像头权限")
+          that.setData({
+            ishidden:true,
+            isCam: true,
+            btn_cam_txt:"关闭摄像"
+          })
           wx.reLaunch({
             url: 'pages/motiontest/motiontest',
           })

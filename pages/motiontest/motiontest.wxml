@@ -21,11 +21,14 @@
     </camera> -->
   <camera device-position="front" flash="off" binderror="error"  class="{{cameraShow}}"
       style="width: 180rpx; height: 250rpx;">
+      <cover-view hidden="{{ishidden}}">
+        <cover-image class="camera-cover" src="../../imgs/camera-cover.png"></cover-image>
+      </cover-view>
   </camera>
 </view>
 <view class="pageView">
   <view class="video-css">
-     <video id="TestVideo" objectFit="cover" controls="{{false}}" show-fullscreen-btn="{{false}}" enable-progress-gesture="{{false}}" enable-play-gesture="{{true}}" play-btn-position="center" bindended="playEnd" custom-cache="{{false}}" autoplay="{{true}}" src="{{videUrl}}">
+     <video id="TestVideo" objectFit="cover" controls="{{false}}" show-fullscreen-btn="{{false}}" enable-progress-gesture="{{false}}" enable-play-gesture="{{false}}" play-btn-position="center" bindended="playEnd" custom-cache="{{false}}" autoplay="{{true}}" src="{{videUrl}}">
   	</video>
   </view>
   <view class="btn-css">
@@ -38,6 +41,9 @@
         bindrecordend="streamRecordEnd"></bottom-button>
     </view>
   </view>
+  <view >  
+  <view class='camera-btn' bindtap="cameraBtn">{{btn_cam_txt}}</view>
+</view>
   
   <!-- <view class="camera-btn-css">
     <van-button type="info" round class="camera-btn-css">圆形按钮</van-button>
