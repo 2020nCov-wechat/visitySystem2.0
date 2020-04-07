@@ -768,13 +768,16 @@ Page({
         success(res) {
           console.log(res)
           if (res.authSetting['scope.camera']) { 
-            that.startRecordV2 //开始录像
             that.setData({
               isCam: true,
               ishidden: true,
               btn_cam_txt: '关闭摄像'
             });
             console.log("打开摄像头")
+            if(btn_type == 2){
+              //测评中
+              that.startRecordV2 //开始录像
+            }
           }else{
             wx.showModal({
               title: '提示',
