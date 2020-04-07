@@ -1,0 +1,18 @@
+<!--pages/takephoto/takephoto.wxml-->
+<view class="takephoto">
+  <!-- <navigator open-type="switchTab" class="goBack" url="../quechoose/quechoose">返回</navigator> -->
+  <view class="distinguishing">
+    <image src="http://cmas2020.cn:8013/static/wx/imgs/face.png" />
+  </view>
+  <view class="camera">
+    <canvas class="progress_bg" canvas-id="canvasProgressbg"></canvas>
+    <canvas class="progress_canvas" canvas-id="canvasProgress"></canvas>
+    <camera id='camera' device-position="front" bindinitdone="startdrawCanvas" flash="off" binderror="error">
+      <cover-view class='cameraGai'>
+        <cover-image src='http://cmas2020.cn:8013/static/wx/imgs/blank.png' class='cover-image'></cover-image>
+      </cover-view>
+    </camera>
+  </view>
+  <view class="complete" bindtap="complateDis" >拍照</view>
+  <i-message id="message" />
+</view>

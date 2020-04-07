@@ -1,0 +1,23 @@
+<!--pages/permit/permit.wxml-->
+
+<view class="wrapper" >
+    <view class="book-info">
+       
+        <text class="author">小艾</text><text class="author1">申请使用</text>
+        <view class="author2">人脸识别验证你的身份信息，请确保为本人操作</view>
+    </view>
+    <view class="spacing"></view>
+    <view class="container-agreement">
+        <checkbox-group bindchange="agreeMent" class="info">
+            <checkbox value="true" checked="false"/> 你同意服务提供者使用并传送相关数据用于身份核验<text class="user-agree" catchtap="showAgreement">《用户协议》</text>。
+        </checkbox-group>
+        <view wx:if="{{isAgreement}}" class="agreement-text">
+            修订版《用户协议》
+        </view>
+    </view>
+    <view class="btn-box">
+        <button catchtap="submit" data-bookinfo="{{bookInfo}}" disabled="{{submitBtn}}" class="btn-size btn-primary" hover-class="btn-primary-hover">下 一 步</button>
+    </view>
+</view>
+  
+  

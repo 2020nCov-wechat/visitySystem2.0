@@ -32,8 +32,11 @@
     "pages/stuque/question/question",
     "pages/stuque/yiqinQue/yiqinQue",
     "pages/stuque/advice/advice",
-    "pages/2048/2048"
-    
+    "pages/2048/2048",
+    "pages/permit/permit",
+    "pages/license/license",
+    "pages/takephoto/takephoto",
+    "pages/takephoto/start/start"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -59,7 +62,6 @@
         "selectedIconPath": "imgs/bar/课程1.png",
         "text": "文章"
       },
-        
       {
         "pagePath": "pages/my/my",
         "iconPath": "imgs/bar/我的1.png",
@@ -79,7 +81,6 @@
       "provider": "wx069ba97219f66d99"
     }
   },
-
   "usingComponents": {
     "van-notify": "@vant/weapp/notify/index",
     "van-dialog": "@vant/weapp/dialog/index",

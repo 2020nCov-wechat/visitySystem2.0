@@ -1,0 +1,88 @@
+/* pages/permit/permit.wxss */
+.book-info{
+    
+    padding-bottom: 50rpx;
+    text-align: center;
+    margin: 50rpx auto 0 auto; 
+}
+
+.author{
+    font-size:36rpx;
+    margin: 50rpx auto 0 auto; 
+    font-weight:bold;
+    text-align: center;
+
+}
+.author1{
+    font-size:36rpx;
+    margin: 50rpx auto 0 auto;
+    text-align: center;
+}
+
+.author2{
+    font-size:48rpx;
+    width: 620rpx;
+    margin: 50rpx auto 0 auto;
+    padding: 20rpx;
+    text-align: center;
+    border-radius: 8rpx;
+    font-weight:bold;
+}
+
+/*用户协议*/
+.container-agreement{
+    padding-bottom: 200rpx;
+    font-size: 28rpx;
+    color: #333333;
+    line-height: 1.25rem;
+}
+.user-agree{
+    color: rgb(43,162,69);
+}
+
+.tips{
+    width: 620rpx;
+    margin: 50rpx auto 0 auto;
+    padding: 20rpx;
+    text-align: center;
+    background: #f4f5f7;
+    border-radius: 8rpx;
+}
+.tips view{
+    margin-top: 5rpx;
+}
+.info{
+    margin-top: 30rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #666;
+     width: 620rpx;
+    margin: 50rpx auto 0 auto;
+}
+
+.agreement-text{
+    width: 620rpx;
+    padding: 20rpx;
+    margin: 30rpx auto 0 auto;
+    background: #f4f5f7;
+}
+
+.btn-box{
+   
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150rpx;
+    background: #fff;
+    margin: 50rpx auto 0 auto;
+    
+}
+
+.btn-size{
+    margin: 30rpx 50rpx 0 50rpx;
+    background: rgb(43,162,69);
+    color:#fff;
+     
+} 

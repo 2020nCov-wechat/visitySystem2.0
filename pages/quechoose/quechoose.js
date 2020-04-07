@@ -106,10 +106,23 @@ Page({
     })
   },
   voiceClick:function(){
-    wx.navigateTo({
-      url: '../picture/picture',
-      // url: '../motiontest/motiontest',
-    })
+    // wx.navigateTo({
+    //   url: '../picture/picture',
+    //   // url: '../motiontest/motiontest',
+    // })
+    const welecome = wx.getStorageSync('permit');
+    if (welecome) {
+      console.log(welecome);
+      wx.redirectTo({
+        url: "../takephoto/start/start",
+      })
+    } else {
+      wx.navigateTo({
+        url: "../permit/permit",
+      })
+    }
+
+    
   },
   ansClick: function () {
     wx.navigateTo({

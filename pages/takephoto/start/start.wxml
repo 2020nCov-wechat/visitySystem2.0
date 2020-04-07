@@ -1,0 +1,7 @@
+<!--pages/takephoto/start/start.wxml-->
+<view class="startFetch">
+  <!-- <navigator open-type="switchTab"class="goBack" url="../../quechoose/quechoose">返回</navigator> -->
+  <image src="http://cmas2020.cn:8013/static/wx/imgs/face1.png" />
+  <navigator open-type="redirect" class="start" hover-class="none"
+  url="../takephoto">开始识别</navigator>
+</view>
